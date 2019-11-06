@@ -6,31 +6,32 @@
 #define UNTITLED_RESERVA_H
 
 
+#include "Transacao.h"
 
 class Reserva {
 
     Data data;
     Veiculo veiculo;
     Transacao pagamento;
-    bool concretização;
+    bool concretizacao;
 
 public:
 
-    Data getData();
+    const Data &getData() const;
 
-    void setData(Data data);
+    void setData(const Data &data);
 
-    Veiculo getVeiculo();
+    const Veiculo &getVeiculo() const;
 
-    void setVeiculo(Veiculo veiculo);
+    void setVeiculo(const Veiculo &veiculo);
 
-    Transacao getPagamento();
+    const Transacao &getPagamento() const;
 
-    void setPagamento(Transacao pagamento);
+    void setPagamento(const Transacao &pagamento);
 
-    bool isConcretização();
+    bool isConcretizacao() const;
 
-    void setConcretização(bool concretização);
+    void setConcretizacao(const bool concretizacao);
 
 
 };

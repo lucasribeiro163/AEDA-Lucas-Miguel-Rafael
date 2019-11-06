@@ -6,18 +6,19 @@
 #define UNTITLED_VEICULO_H
 
 #include <vector>
+#include "Data.h"
 
 using namespace std;
 
 class Veiculo {
 
-    vector<Data> disponiblidade;
+    vector<Data*> disponiblidade;
 
 public:
 
-    const vector<Data> &getDisponiblidade() const;
+    const vector<Data*> &getDisponiblidade() const;
 
-    void setDisponiblidade(const vector<Data> &disponiblidade);
+    void setDisponiblidade(const vector<Data*> &disponiblidade);
 
 };
 
@@ -38,7 +39,7 @@ class VeiculoComercial{
 
     double volume_carga;
     double peso_carga;
-    bool refrigeraçao;
+    bool refrigeracao;
 
 public:
 
@@ -50,9 +51,9 @@ public:
 
     void setPesoCarga(double pesoCarga);
 
-    bool isRefrigeraçao() const;
+    bool isRefrigeracao() const;
 
-    void setRefrigeraçao(bool refrigeraçao);
+    void setRefrigeracao(bool refrigeracao);
 
 
 };

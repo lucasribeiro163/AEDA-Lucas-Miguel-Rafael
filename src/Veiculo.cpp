@@ -3,6 +3,7 @@
 //
 
 #include "Veiculo.h"
+#include "Data.h"
 
 double VeiculoComercial::getVolumeCarga() const {
     return volume_carga;
@@ -20,19 +21,18 @@ void VeiculoComercial::setPesoCarga(double pesoCarga) {
     peso_carga = pesoCarga;
 }
 
-bool VeiculoComercial::isRefrigeraçao() const {
-    return refrigeraçao;
+bool VeiculoComercial::isRefrigeracao() const {
+    return refrigeracao;
 }
 
-void VeiculoComercial::setRefrigeraçao(bool refrigeraçao) {
-    VeiculoComercial::refrigeraçao = refrigeraçao;
-}
+void VeiculoComercial::setRefrigeracao(bool refrigeracao) {
+    VeiculoComercial::refrigeracao = refrigeracao;
 }
 
-const vector<Data> &Veiculo::getDisponiblidade() const {
+const vector<Data*> &Veiculo::getDisponiblidade() const {
     return disponiblidade;
 }
 
-void Veiculo::setDisponiblidade(const vector<Data> &disponiblidade) {
+void Veiculo::setDisponiblidade(const vector<Data*> &disponiblidade) {
     Veiculo::disponiblidade = disponiblidade;
 }

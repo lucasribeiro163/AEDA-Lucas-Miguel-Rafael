@@ -7,6 +7,8 @@
 
 #include <string>
 #include <vector>
+#include "Veiculo.h"
+#include "Reserva.h"
 
 using namespace std;
 
@@ -14,7 +16,7 @@ class Utilizador {
 
 };
 
-class Ciente : public Utilizador{
+class Cliente : public Utilizador{
 
     string nif;
     int tipo;
@@ -25,9 +27,9 @@ public:
 
     void setNif(const string &nif);
 
-    int getTipo() const;
+    const int &getTipo() const;
 
-    void setTipo(int tipo);
+    void setTipo(const int &tipo);
 
 };
 
@@ -37,14 +39,14 @@ class Visitant : public Utilizador{
 
 public:
 
-    const string &getId() const;
+    string getId() const;
 
-    void setId(const string &id);
+    void setId(string id);
 
 };
 
 
-class CienteDono : public Cliente{
+class ClienteDono : public Cliente{
 
     vector<Veiculo*> veiculos;
 
@@ -56,7 +58,7 @@ public:
 
 };
 
-class CienteBasico : public Cliente{
+class ClienteBasico : public Cliente{
 
     vector<Reserva*> reservas;
     vector<Reserva*> historico;
@@ -71,9 +73,9 @@ public:
 
     void setHistorico(const vector<Reserva *> &historico);
 
-    void addVeiculo(Reserva reserva);
+    void addVeiculo(const Reserva &reserva);
 
-    void addToHistorico(Reserva element);
+    void addToHistorico(const Reserva &element);
 
 
 };

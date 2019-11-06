@@ -3,51 +3,52 @@
 //
 
 #include "Utilizador.h"
+#include "Veiculo.h"
 
-const string &Ciente::getNif() const {
+const string &Cliente::getNif() const {
     return nif;
 }
 
-void Ciente::setNif(const string &nif) {
-    Ciente::nif = nif;
+void Cliente::setNif(const string &nif) {
+    Cliente::nif = nif;
 }
 
-int Ciente::getTipo() const {
+const int &Cliente::getTipo() const {
     return tipo;
 }
 
-void Ciente::setTipo(int tipo) {
-    Ciente::tipo = tipo;
+void Cliente::setTipo(const int &tipo) {
+    Cliente::tipo = tipo;
 }
 
-const string &Visitant::getId() const {
+string Visitant::getId() const {
     return id;
 }
 
-void Visitant::setId(const string &id) {
+void Visitant::setId(string id) {
     Visitant::id = id;
 }
 
-const vector<Veiculo *> &CienteDono::getVeiculos() const {
+const vector<Veiculo *> &ClienteDono::getVeiculos() const {
     return veiculos;
 }
 
-void CienteDono::setVeiculos(const vector<Veiculo *> &veiculos) {
-    CienteDono::veiculos = veiculos;
+void ClienteDono::setVeiculos(const vector<Veiculo *> &veiculos) {
+    ClienteDono::veiculos = veiculos;
 }
 
-const vector<Reserva *> &CienteBasico::getReservas() const {
+const vector<Reserva *> &ClienteBasico::getReservas() const {
     return reservas;
 }
 
-void CienteBasico::setReservas(const vector<Reserva *> &reservas) {
-    CienteBasico::reservas = reservas;
+void ClienteBasico::setReservas(const vector<Reserva *> &reservas) {
+    ClienteBasico::reservas = reservas;
 }
 
-const vector<Reserva *> &CienteBasico::getHistorico() const {
+const vector<Reserva *> &ClienteBasico::getHistorico() const {
     return historico;
 }
 
-void CienteBasico::setHistorico(const vector<Reserva *> &historico) {
-    CienteBasico::historico = historico;
+void ClienteBasico::setHistorico(const vector<Reserva *> &historico) {
+    ClienteBasico::historico = historico;
 }

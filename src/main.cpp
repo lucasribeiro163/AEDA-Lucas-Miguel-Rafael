@@ -25,9 +25,6 @@ using namespace std;
 
 int main(){
 
-
-
-
     int displayed_screen = 1;
 
     while(true){
@@ -39,11 +36,6 @@ int main(){
 
     }
 
-
-
-
     return 1;
-
-
 }
 

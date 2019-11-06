@@ -28,10 +28,10 @@ void Reserva::setPagamento(const Transacao &pagamento) {
     Reserva::pagamento = pagamento;
 }
 
-bool Reserva::isConcretização() const {
-    return concretização;
+bool Reserva::isConcretizacao() const {
+    return concretizacao;
 }
 
-void Reserva::setConcretização(bool concretização) {
-    Reserva::concretização = concretização;
+void Reserva::setConcretizacao(const bool concretizacao) {
+    Reserva::concretizacao = concretizacao;
 }

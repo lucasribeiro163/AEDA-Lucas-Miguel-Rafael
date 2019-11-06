@@ -27,3 +27,4 @@ int Data::getDia() const {
 void Data::setDia(int dia) {
     Data::dia = dia;
 }
+
