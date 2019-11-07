@@ -1,0 +1,20 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+C:/Users/migue/Desktop/FEUP/AEDA/Project/main.cpp
+iostream
+-
+src/Data.cpp
+C:/Users/migue/Desktop/FEUP/AEDA/Project/src/Data.cpp
+
+C:/Users/migue/Desktop/FEUP/AEDA/Project/src/Data.cpp
+Data.h
+C:/Users/migue/Desktop/FEUP/AEDA/Project/src/Data.h
+
+C:/Users/migue/Desktop/FEUP/AEDA/Project/src/Data.h
+
