@@ -1,5 +1,11 @@
 #include <iostream>
-#include "src/Data.cpp"
+#include "src/Data.h"
+#include "src/Empresa.h"
+#include "src/Hora.h"
+#include "src/Reserva.h"
+#include "src/Transacao.h"
+#include "src/Utilizador.h"
+#include "src/Veiculo.h"
 
 using namespace std;
 
@@ -37,6 +43,7 @@ void checkRegister() {
 }
 
 int main() {
+    Empresa empresa;
     cout << "Welcome to the agency" << endl;
     checkRegister();
     return 0;

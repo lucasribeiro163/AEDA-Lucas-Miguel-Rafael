@@ -5,12 +5,14 @@
 #ifndef UNTITLED_DATA_H
 #define UNTITLED_DATA_H
 
+#include "Hora.h"
 
 class Data {
 
     int ano;
     int mes;
     int dia;
+    Hora hora;
 
 public:
 
@@ -26,7 +28,7 @@ public:
 
     void setDia(int dia);
 
-
+    bool operator<=(Data data);
 };
 
 

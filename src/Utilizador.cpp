@@ -5,28 +5,24 @@
 #include "Utilizador.h"
 #include "Veiculo.h"
 
-const string &Cliente::getNif() const {
+const int &VisitanteRegistado::getNif() const {
     return nif;
 }
 
-void Cliente::setNif(const string &nif) {
-    Cliente::nif = nif;
+void VisitanteRegistado::setNif(const int &nif) {
+    this->nif = nif;
 }
 
-const int &Cliente::getTipo() const {
-    return tipo;
-}
-
-void Cliente::setTipo(const int &tipo) {
-    Cliente::tipo = tipo;
-}
-
-string Visitant::getId() const {
+int VisitanteRegistado::getId() const {
     return id;
 }
 
-void Visitant::setId(string id) {
-    Visitant::id = id;
+void VisitanteRegistado::setId(int id) {
+    this->id = id;
+}
+
+const int VisitanteRegistado::getPreferencias()const{
+    return preferencias;
 }
 
 const vector<Veiculo *> &ClienteDono::getVeiculos() const {
@@ -34,21 +30,34 @@ const vector<Veiculo *> &ClienteDono::getVeiculos() const {
 }
 
 void ClienteDono::setVeiculos(const vector<Veiculo *> &veiculos) {
-    ClienteDono::veiculos = veiculos;
+    this->veiculos = veiculos;
 }
 
-const vector<Reserva *> &ClienteBasico::getReservas() const {
+const vector<Reserva *> &Cliente::getReservas() const {
     return reservas;
 }
 
-void ClienteBasico::setReservas(const vector<Reserva *> &reservas) {
-    ClienteBasico::reservas = reservas;
+void Cliente::setReservas(const vector<Reserva *> &reservas) {
+    this->reservas = reservas;
 }
 
-const vector<Reserva *> &ClienteBasico::getHistorico() const {
+const vector<Reserva *> &Cliente::getHistorico() const {
     return historico;
 }
 
-void ClienteBasico::setHistorico(const vector<Reserva *> &historico) {
-    ClienteBasico::historico = historico;
+void Cliente::setHistorico(const vector<Reserva *> &historico) {
+    this->historico = historico;
+}
+
+void Cliente::addToHistorico(Reserva &reserva) {
+    Reserva *reservaPtr;
+    reservaPtr=&reserva;
+    historico.push_back(reservaPtr);
+}
+
+void ClienteDono::addVeiculo(Veiculo &veiculo) {
+    Veiculo *veiculoPtr;
+    veiculoPtr = &veiculo;
+    veiculos.push_back(veiculoPtr);
+
 }

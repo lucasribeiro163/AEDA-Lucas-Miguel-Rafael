@@ -9,7 +9,7 @@ int Data::getAno() const {
 }
 
 void Data::setAno(int ano) {
-    Data::ano = ano;
+    this->ano = ano;
 }
 
 int Data::getMes() const {
@@ -17,7 +17,7 @@ int Data::getMes() const {
 }
 
 void Data::setMes(int mes) {
-    Data::mes = mes;
+    this->mes = mes;
 }
 
 int Data::getDia() const {
@@ -25,6 +25,22 @@ int Data::getDia() const {
 }
 
 void Data::setDia(int dia) {
-    Data::dia = dia;
+    this->dia = dia;
+}
+
+bool Data::operator<=(Data data) {
+    if(this->ano > data.ano) return false;
+    if(this->ano < data.ano) return true;
+
+    //se chega aqui, o ano e igual
+    if(this->mes > data.mes) return false;
+    if(this->mes < data.mes) return true;
+
+    //se chega aqui, o mes e igual
+    if(this->dia > data.dia) return false;
+    if(this->dia < data.dia) return true;
+
+    //se chega aqui, o dia e igual
+    return (this->hora<=data.hora);
 }
 

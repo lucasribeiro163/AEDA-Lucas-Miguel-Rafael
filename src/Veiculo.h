@@ -16,14 +16,14 @@ class Veiculo {
 
 public:
 
-    const vector<Data*> &getDisponiblidade() const;
+    virtual const vector<Data*> &getDisponiblidade() const;
 
     void setDisponiblidade(const vector<Data*> &disponiblidade);
 
 };
 
 
-class VeiculoPassageiro{
+class VeiculoPassageiros{
 
     int nrPassageiros;
 
@@ -53,19 +53,9 @@ public:
 
     bool isRefrigeracao() const;
 
-    void setRefrigeracao(bool refrigeracao);
+    void setRefrigeracao(bool &refrigeracao);
 
 
 };
-
-
-
-
-
-
-
-
-
-
 
 #endif //UNTITLED_VEICULO_H

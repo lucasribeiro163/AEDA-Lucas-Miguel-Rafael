@@ -8,13 +8,15 @@
 #include <vector>
 #include "Utilizador.h"
 
+using namespace std;
+
 class Empresa {
     vector<Cliente *> clientes;
 
 public:
     Empresa();
     vector<Cliente *> getClientes() const;
-    void addCliente(Cliente *cliente);
+    void addCliente(Cliente &cliente);
 };
 
 

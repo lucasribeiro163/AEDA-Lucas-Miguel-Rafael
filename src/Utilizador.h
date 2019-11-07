@@ -18,16 +18,19 @@ class Visitante {
 
 class VisitanteRegistado : public Visitante{
 
-    string nif;
-    int preferencias, id;
+    int preferencias, id, nif;
 
 public:
 
-    const string &getNif() const;
+    virtual const int &getNif() const;
 
-    void setNif(const string &nif);
+    virtual void setNif(const int &nif);
 
-    const int &getPreferencias() const;
+    virtual int getId() const;
+
+    virtual void setId(int id);
+
+    virtual const int getPreferencias() const;
 
     void setPreferencias(const int &preferencias);
 
@@ -40,20 +43,15 @@ class Cliente : public VisitanteRegistado{
 
 public:
 
-    string getId() const;
+    virtual const vector<Reserva *> &getReservas() const;
 
-    void setId(string id);
+    virtual void setReservas(const vector<Reserva *> &reservas);
 
-    const vector<Reserva *> &getReservas() const;
+    virtual const vector<Reserva *> &getHistorico() const;
 
-    void setReservas(const vector<Reserva *> &reservas);
+    virtual void setHistorico(const vector<Reserva *> &historico);
 
-    const vector<Reserva *> &getHistorico() const;
-
-    void setHistorico(const vector<Reserva *> &historico);
-
-
-    void addToHistorico(const Reserva &element);
+    virtual void addToHistorico(Reserva &reserva);
 };
 
 
@@ -67,7 +65,7 @@ public:
 
     void setVeiculos(const vector<Veiculo *> &veiculos);
 
-    void addVeiculo(const Veiculo &veiculo);
+    void addVeiculo(Veiculo &veiculo);
 
 };
 

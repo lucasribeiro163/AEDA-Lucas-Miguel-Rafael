@@ -149,6 +149,33 @@ main.cpp.s:
 	$(MAKE) -f CMakeFiles\Project.dir\build.make CMakeFiles/Project.dir/main.cpp.s
 .PHONY : main.cpp.s
 
+src/Data.obj: src/Data.cpp.obj
+
+.PHONY : src/Data.obj
+
+# target to build an object file
+src/Data.cpp.obj:
+	$(MAKE) -f CMakeFiles\Project.dir\build.make CMakeFiles/Project.dir/src/Data.cpp.obj
+.PHONY : src/Data.cpp.obj
+
+src/Data.i: src/Data.cpp.i
+
+.PHONY : src/Data.i
+
+# target to preprocess a source file
+src/Data.cpp.i:
+	$(MAKE) -f CMakeFiles\Project.dir\build.make CMakeFiles/Project.dir/src/Data.cpp.i
+.PHONY : src/Data.cpp.i
+
+src/Data.s: src/Data.cpp.s
+
+.PHONY : src/Data.s
+
+# target to generate assembly for a file
+src/Data.cpp.s:
+	$(MAKE) -f CMakeFiles\Project.dir\build.make CMakeFiles/Project.dir/src/Data.cpp.s
+.PHONY : src/Data.cpp.s
+
 src/Empresa.obj: src/Empresa.cpp.obj
 
 .PHONY : src/Empresa.obj
@@ -176,6 +203,141 @@ src/Empresa.cpp.s:
 	$(MAKE) -f CMakeFiles\Project.dir\build.make CMakeFiles/Project.dir/src/Empresa.cpp.s
 .PHONY : src/Empresa.cpp.s
 
+src/Hora.obj: src/Hora.cpp.obj
+
+.PHONY : src/Hora.obj
+
+# target to build an object file
+src/Hora.cpp.obj:
+	$(MAKE) -f CMakeFiles\Project.dir\build.make CMakeFiles/Project.dir/src/Hora.cpp.obj
+.PHONY : src/Hora.cpp.obj
+
+src/Hora.i: src/Hora.cpp.i
+
+.PHONY : src/Hora.i
+
+# target to preprocess a source file
+src/Hora.cpp.i:
+	$(MAKE) -f CMakeFiles\Project.dir\build.make CMakeFiles/Project.dir/src/Hora.cpp.i
+.PHONY : src/Hora.cpp.i
+
+src/Hora.s: src/Hora.cpp.s
+
+.PHONY : src/Hora.s
+
+# target to generate assembly for a file
+src/Hora.cpp.s:
+	$(MAKE) -f CMakeFiles\Project.dir\build.make CMakeFiles/Project.dir/src/Hora.cpp.s
+.PHONY : src/Hora.cpp.s
+
+src/Reserva.obj: src/Reserva.cpp.obj
+
+.PHONY : src/Reserva.obj
+
+# target to build an object file
+src/Reserva.cpp.obj:
+	$(MAKE) -f CMakeFiles\Project.dir\build.make CMakeFiles/Project.dir/src/Reserva.cpp.obj
+.PHONY : src/Reserva.cpp.obj
+
+src/Reserva.i: src/Reserva.cpp.i
+
+.PHONY : src/Reserva.i
+
+# target to preprocess a source file
+src/Reserva.cpp.i:
+	$(MAKE) -f CMakeFiles\Project.dir\build.make CMakeFiles/Project.dir/src/Reserva.cpp.i
+.PHONY : src/Reserva.cpp.i
+
+src/Reserva.s: src/Reserva.cpp.s
+
+.PHONY : src/Reserva.s
+
+# target to generate assembly for a file
+src/Reserva.cpp.s:
+	$(MAKE) -f CMakeFiles\Project.dir\build.make CMakeFiles/Project.dir/src/Reserva.cpp.s
+.PHONY : src/Reserva.cpp.s
+
+src/Transacao.obj: src/Transacao.cpp.obj
+
+.PHONY : src/Transacao.obj
+
+# target to build an object file
+src/Transacao.cpp.obj:
+	$(MAKE) -f CMakeFiles\Project.dir\build.make CMakeFiles/Project.dir/src/Transacao.cpp.obj
+.PHONY : src/Transacao.cpp.obj
+
+src/Transacao.i: src/Transacao.cpp.i
+
+.PHONY : src/Transacao.i
+
+# target to preprocess a source file
+src/Transacao.cpp.i:
+	$(MAKE) -f CMakeFiles\Project.dir\build.make CMakeFiles/Project.dir/src/Transacao.cpp.i
+.PHONY : src/Transacao.cpp.i
+
+src/Transacao.s: src/Transacao.cpp.s
+
+.PHONY : src/Transacao.s
+
+# target to generate assembly for a file
+src/Transacao.cpp.s:
+	$(MAKE) -f CMakeFiles\Project.dir\build.make CMakeFiles/Project.dir/src/Transacao.cpp.s
+.PHONY : src/Transacao.cpp.s
+
+src/Utilizador.obj: src/Utilizador.cpp.obj
+
+.PHONY : src/Utilizador.obj
+
+# target to build an object file
+src/Utilizador.cpp.obj:
+	$(MAKE) -f CMakeFiles\Project.dir\build.make CMakeFiles/Project.dir/src/Utilizador.cpp.obj
+.PHONY : src/Utilizador.cpp.obj
+
+src/Utilizador.i: src/Utilizador.cpp.i
+
+.PHONY : src/Utilizador.i
+
+# target to preprocess a source file
+src/Utilizador.cpp.i:
+	$(MAKE) -f CMakeFiles\Project.dir\build.make CMakeFiles/Project.dir/src/Utilizador.cpp.i
+.PHONY : src/Utilizador.cpp.i
+
+src/Utilizador.s: src/Utilizador.cpp.s
+
+.PHONY : src/Utilizador.s
+
+# target to generate assembly for a file
+src/Utilizador.cpp.s:
+	$(MAKE) -f CMakeFiles\Project.dir\build.make CMakeFiles/Project.dir/src/Utilizador.cpp.s
+.PHONY : src/Utilizador.cpp.s
+
+src/Veiculo.obj: src/Veiculo.cpp.obj
+
+.PHONY : src/Veiculo.obj
+
+# target to build an object file
+src/Veiculo.cpp.obj:
+	$(MAKE) -f CMakeFiles\Project.dir\build.make CMakeFiles/Project.dir/src/Veiculo.cpp.obj
+.PHONY : src/Veiculo.cpp.obj
+
+src/Veiculo.i: src/Veiculo.cpp.i
+
+.PHONY : src/Veiculo.i
+
+# target to preprocess a source file
+src/Veiculo.cpp.i:
+	$(MAKE) -f CMakeFiles\Project.dir\build.make CMakeFiles/Project.dir/src/Veiculo.cpp.i
+.PHONY : src/Veiculo.cpp.i
+
+src/Veiculo.s: src/Veiculo.cpp.s
+
+.PHONY : src/Veiculo.s
+
+# target to generate assembly for a file
+src/Veiculo.cpp.s:
+	$(MAKE) -f CMakeFiles\Project.dir\build.make CMakeFiles/Project.dir/src/Veiculo.cpp.s
+.PHONY : src/Veiculo.cpp.s
+
 # Help Target
 help:
 	@echo The following are some of the valid targets for this Makefile:
@@ -188,9 +350,27 @@ help:
 	@echo ... main.obj
 	@echo ... main.i
 	@echo ... main.s
+	@echo ... src/Data.obj
+	@echo ... src/Data.i
+	@echo ... src/Data.s
 	@echo ... src/Empresa.obj
 	@echo ... src/Empresa.i
 	@echo ... src/Empresa.s
+	@echo ... src/Hora.obj
+	@echo ... src/Hora.i
+	@echo ... src/Hora.s
+	@echo ... src/Reserva.obj
+	@echo ... src/Reserva.i
+	@echo ... src/Reserva.s
+	@echo ... src/Transacao.obj
+	@echo ... src/Transacao.i
+	@echo ... src/Transacao.s
+	@echo ... src/Utilizador.obj
+	@echo ... src/Utilizador.i
+	@echo ... src/Utilizador.s
+	@echo ... src/Veiculo.obj
+	@echo ... src/Veiculo.i
+	@echo ... src/Veiculo.s
 .PHONY : help
 
 

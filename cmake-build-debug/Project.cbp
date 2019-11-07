@@ -83,10 +83,46 @@
 		<Unit filename="C:/Users/migue/Desktop/FEUP/AEDA/Project/main.cpp">
 			<Option target="Project"/>
 		</Unit>
+		<Unit filename="C:/Users/migue/Desktop/FEUP/AEDA/Project/src/Data.cpp">
+			<Option target="Project"/>
+		</Unit>
+		<Unit filename="C:/Users/migue/Desktop/FEUP/AEDA/Project/src/Data.h">
+			<Option target="Project"/>
+		</Unit>
 		<Unit filename="C:/Users/migue/Desktop/FEUP/AEDA/Project/src/Empresa.cpp">
 			<Option target="Project"/>
 		</Unit>
 		<Unit filename="C:/Users/migue/Desktop/FEUP/AEDA/Project/src/Empresa.h">
+			<Option target="Project"/>
+		</Unit>
+		<Unit filename="C:/Users/migue/Desktop/FEUP/AEDA/Project/src/Hora.cpp">
+			<Option target="Project"/>
+		</Unit>
+		<Unit filename="C:/Users/migue/Desktop/FEUP/AEDA/Project/src/Hora.h">
+			<Option target="Project"/>
+		</Unit>
+		<Unit filename="C:/Users/migue/Desktop/FEUP/AEDA/Project/src/Reserva.cpp">
+			<Option target="Project"/>
+		</Unit>
+		<Unit filename="C:/Users/migue/Desktop/FEUP/AEDA/Project/src/Reserva.h">
+			<Option target="Project"/>
+		</Unit>
+		<Unit filename="C:/Users/migue/Desktop/FEUP/AEDA/Project/src/Transacao.cpp">
+			<Option target="Project"/>
+		</Unit>
+		<Unit filename="C:/Users/migue/Desktop/FEUP/AEDA/Project/src/Transacao.h">
+			<Option target="Project"/>
+		</Unit>
+		<Unit filename="C:/Users/migue/Desktop/FEUP/AEDA/Project/src/Utilizador.cpp">
+			<Option target="Project"/>
+		</Unit>
+		<Unit filename="C:/Users/migue/Desktop/FEUP/AEDA/Project/src/Utilizador.h">
+			<Option target="Project"/>
+		</Unit>
+		<Unit filename="C:/Users/migue/Desktop/FEUP/AEDA/Project/src/Veiculo.cpp">
+			<Option target="Project"/>
+		</Unit>
+		<Unit filename="C:/Users/migue/Desktop/FEUP/AEDA/Project/src/Veiculo.h">
 			<Option target="Project"/>
 		</Unit>
 		<Unit filename="C:/Users/migue/Desktop/FEUP/AEDA/Project/CMakeLists.txt">

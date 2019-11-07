@@ -36,5 +36,21 @@ public:
 
 };
 
+class ReservaHoraria : public Reserva{
+
+};
+
+class ReservaDiaria : public Reserva{
+
+};
+
+class ReservaSemanal : public Reserva{
+
+};
+
+class ReservaMensal : public Reserva{
+
+};
+
 
 #endif //UNTITLED_RESERVA_H

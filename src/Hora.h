@@ -26,6 +26,7 @@ public:
 
     void setSegundo(int segundo);
 
+    bool operator<=(Hora hora);
 };
 
 

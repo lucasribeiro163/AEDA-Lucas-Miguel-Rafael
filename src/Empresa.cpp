@@ -5,12 +5,13 @@
 #include "Empresa.h"
 
 Empresa::Empresa(){
-
 }
 
 vector<Cliente *> Empresa::getClientes() const{
     return clientes;
 }
-void Empresa::addCliente(Cliente *cliente){
-    clientes.push_back(cliente);
+void Empresa::addCliente(Cliente &cliente){
+    Cliente *clientePtr;
+    clientePtr = &cliente;
+    clientes.push_back(clientePtr);
 }

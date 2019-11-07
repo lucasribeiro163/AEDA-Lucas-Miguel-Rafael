@@ -3,4 +3,5 @@ project(Project)
 
 set(CMAKE_CXX_STANDARD 14)
 
-add_executable(Project main.cpp src/Empresa.cpp src/Empresa.h)
+add_executable(Project main.cpp src/Data.cpp src/Empresa.cpp src/Hora.cpp src/Reserva.cpp
+        src/Transacao.cpp src/Utilizador.cpp src/Veiculo.cpp)
