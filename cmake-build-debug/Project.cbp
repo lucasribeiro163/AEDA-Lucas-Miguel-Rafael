@@ -101,6 +101,12 @@
 		<Unit filename="C:/Users/migue/Desktop/FEUP/AEDA/Project/src/Hora.h">
 			<Option target="Project"/>
 		</Unit>
+		<Unit filename="C:/Users/migue/Desktop/FEUP/AEDA/Project/src/Menu.cpp">
+			<Option target="Project"/>
+		</Unit>
+		<Unit filename="C:/Users/migue/Desktop/FEUP/AEDA/Project/src/Menu.h">
+			<Option target="Project"/>
+		</Unit>
 		<Unit filename="C:/Users/migue/Desktop/FEUP/AEDA/Project/src/Reserva.cpp">
 			<Option target="Project"/>
 		</Unit>

@@ -5,6 +5,7 @@ CMakeFiles/Project.dir/main.cpp.obj: ../main.cpp
 CMakeFiles/Project.dir/main.cpp.obj: ../src/Data.h
 CMakeFiles/Project.dir/main.cpp.obj: ../src/Empresa.h
 CMakeFiles/Project.dir/main.cpp.obj: ../src/Hora.h
+CMakeFiles/Project.dir/main.cpp.obj: ../src/Menu.h
 CMakeFiles/Project.dir/main.cpp.obj: ../src/Reserva.h
 CMakeFiles/Project.dir/main.cpp.obj: ../src/Transacao.h
 CMakeFiles/Project.dir/main.cpp.obj: ../src/Utilizador.h
@@ -12,10 +13,12 @@ CMakeFiles/Project.dir/main.cpp.obj: ../src/Veiculo.h
 
 CMakeFiles/Project.dir/src/Data.cpp.obj: ../src/Data.cpp
 CMakeFiles/Project.dir/src/Data.cpp.obj: ../src/Data.h
+CMakeFiles/Project.dir/src/Data.cpp.obj: ../src/Hora.h
 
 CMakeFiles/Project.dir/src/Empresa.cpp.obj: ../src/Data.h
 CMakeFiles/Project.dir/src/Empresa.cpp.obj: ../src/Empresa.cpp
 CMakeFiles/Project.dir/src/Empresa.cpp.obj: ../src/Empresa.h
+CMakeFiles/Project.dir/src/Empresa.cpp.obj: ../src/Hora.h
 CMakeFiles/Project.dir/src/Empresa.cpp.obj: ../src/Reserva.h
 CMakeFiles/Project.dir/src/Empresa.cpp.obj: ../src/Transacao.h
 CMakeFiles/Project.dir/src/Empresa.cpp.obj: ../src/Utilizador.h
@@ -24,18 +27,31 @@ CMakeFiles/Project.dir/src/Empresa.cpp.obj: ../src/Veiculo.h
 CMakeFiles/Project.dir/src/Hora.cpp.obj: ../src/Hora.cpp
 CMakeFiles/Project.dir/src/Hora.cpp.obj: ../src/Hora.h
 
+CMakeFiles/Project.dir/src/Menu.cpp.obj: ../src/Data.h
+CMakeFiles/Project.dir/src/Menu.cpp.obj: ../src/Empresa.h
+CMakeFiles/Project.dir/src/Menu.cpp.obj: ../src/Hora.h
+CMakeFiles/Project.dir/src/Menu.cpp.obj: ../src/Menu.cpp
+CMakeFiles/Project.dir/src/Menu.cpp.obj: ../src/Menu.h
+CMakeFiles/Project.dir/src/Menu.cpp.obj: ../src/Reserva.h
+CMakeFiles/Project.dir/src/Menu.cpp.obj: ../src/Transacao.h
+CMakeFiles/Project.dir/src/Menu.cpp.obj: ../src/Utilizador.h
+CMakeFiles/Project.dir/src/Menu.cpp.obj: ../src/Veiculo.h
+
 CMakeFiles/Project.dir/src/Reserva.cpp.obj: ../src/Data.h
+CMakeFiles/Project.dir/src/Reserva.cpp.obj: ../src/Hora.h
 CMakeFiles/Project.dir/src/Reserva.cpp.obj: ../src/Reserva.cpp
 CMakeFiles/Project.dir/src/Reserva.cpp.obj: ../src/Reserva.h
 CMakeFiles/Project.dir/src/Reserva.cpp.obj: ../src/Transacao.h
 CMakeFiles/Project.dir/src/Reserva.cpp.obj: ../src/Veiculo.h
 
 CMakeFiles/Project.dir/src/Transacao.cpp.obj: ../src/Data.h
+CMakeFiles/Project.dir/src/Transacao.cpp.obj: ../src/Hora.h
 CMakeFiles/Project.dir/src/Transacao.cpp.obj: ../src/Transacao.cpp
 CMakeFiles/Project.dir/src/Transacao.cpp.obj: ../src/Transacao.h
 CMakeFiles/Project.dir/src/Transacao.cpp.obj: ../src/Veiculo.h
 
 CMakeFiles/Project.dir/src/Utilizador.cpp.obj: ../src/Data.h
+CMakeFiles/Project.dir/src/Utilizador.cpp.obj: ../src/Hora.h
 CMakeFiles/Project.dir/src/Utilizador.cpp.obj: ../src/Reserva.h
 CMakeFiles/Project.dir/src/Utilizador.cpp.obj: ../src/Transacao.h
 CMakeFiles/Project.dir/src/Utilizador.cpp.obj: ../src/Utilizador.cpp
@@ -43,6 +59,7 @@ CMakeFiles/Project.dir/src/Utilizador.cpp.obj: ../src/Utilizador.h
 CMakeFiles/Project.dir/src/Utilizador.cpp.obj: ../src/Veiculo.h
 
 CMakeFiles/Project.dir/src/Veiculo.cpp.obj: ../src/Data.h
+CMakeFiles/Project.dir/src/Veiculo.cpp.obj: ../src/Hora.h
 CMakeFiles/Project.dir/src/Veiculo.cpp.obj: ../src/Veiculo.cpp
 CMakeFiles/Project.dir/src/Veiculo.cpp.obj: ../src/Veiculo.h
 

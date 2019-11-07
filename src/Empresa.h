@@ -11,12 +11,13 @@
 using namespace std;
 
 class Empresa {
-    vector<Cliente *> clientes;
+    vector<VisitanteRegistado *> visitantesRegistados;
 
 public:
     Empresa();
-    vector<Cliente *> getClientes() const;
-    void addCliente(Cliente &cliente);
+    vector<VisitanteRegistado *> getVisitantesRegistados() const;
+    void addVisitanteRegistado(VisitanteRegistado &visitanteRegistado);
+    bool hasVisitanteRegistado(int id) const;
 };
 
 

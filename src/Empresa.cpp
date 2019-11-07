@@ -7,11 +7,22 @@
 Empresa::Empresa(){
 }
 
-vector<Cliente *> Empresa::getClientes() const{
-    return clientes;
+vector<VisitanteRegistado *> Empresa::getVisitantesRegistados() const{
+    return visitantesRegistados;
 }
-void Empresa::addCliente(Cliente &cliente){
-    Cliente *clientePtr;
-    clientePtr = &cliente;
-    clientes.push_back(clientePtr);
+
+void Empresa::addVisitanteRegistado(VisitanteRegistado &visitanteRegistado){
+    VisitanteRegistado *visitanteRegistadoPtr;
+    visitanteRegistadoPtr = &visitanteRegistado;
+    visitantesRegistados.push_back(visitanteRegistadoPtr);
+}
+
+bool Empresa::hasVisitanteRegistado(int id) const {
+    for(VisitanteRegistado *v : visitantesRegistados)
+    {
+        if(v->getId() == id){
+            return true;
+        }
+    }
+    return false;
 }
