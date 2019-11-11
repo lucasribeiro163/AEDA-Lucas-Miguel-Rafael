@@ -6,8 +6,7 @@
 #include "Menu.h"
 using namespace std;
 
-Menu::Menu(Empresa &empresa)
-{
+Menu::Menu(Empresa &empresa) : empresa(empresa) {
     this->empresa = empresa;
     cout << "Welcome to the agency" << endl;
     checkRegister();

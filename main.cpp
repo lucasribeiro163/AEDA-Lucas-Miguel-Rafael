@@ -2,7 +2,8 @@
 #include"src/Menu.h"
 
 int main() {
-    Empresa empresa;
+    string empresaFile = "empresa.txt";
+    Empresa empresa(empresaFile);
     Menu menu(empresa);
     return 0;
 }

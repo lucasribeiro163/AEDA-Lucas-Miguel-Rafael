@@ -12,12 +12,13 @@ using namespace std;
 
 class Empresa {
     vector<VisitanteRegistado *> visitantesRegistados;
-
+    string empresaFile, clientesFile, reservasFile;
 public:
-    Empresa();
+    explicit Empresa(string &empresaFile);
     vector<VisitanteRegistado *> getVisitantesRegistados() const;
     void addVisitanteRegistado(VisitanteRegistado &visitanteRegistado);
     bool hasVisitanteRegistado(int id) const;
+    void parseClientInfo();
 };
 
 

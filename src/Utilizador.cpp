@@ -5,6 +5,13 @@
 #include "Utilizador.h"
 #include "Veiculo.h"
 
+VisitanteRegistado::VisitanteRegistado(string nome, int id, int nif, string preferencias){
+    this->nome = nome;
+    this->id = id;
+    this->nif = nif;
+    this->preferencias = preferencias;
+}
+
 const int &VisitanteRegistado::getNif() const {
     return nif;
 }
@@ -21,8 +28,23 @@ void VisitanteRegistado::setId(int id) {
     this->id = id;
 }
 
-const int VisitanteRegistado::getPreferencias()const{
+const string VisitanteRegistado::getPreferencias()const{
     return preferencias;
+}
+
+void VisitanteRegistado::setPreferencias(const string &preferencias){
+    this->preferencias = preferencias;
+}
+
+const string VisitanteRegistado::getNome() const{
+    return this->nome;
+}
+
+void VisitanteRegistado::setNome(const string &nome){
+    this->nome = nome;
+}
+
+ClienteDono::ClienteDono(string nome, int id, int nif, string preferencias) : VisitanteRegistado(nome, id, nif, preferencias){
 }
 
 const vector<Veiculo *> &ClienteDono::getVeiculos() const {
@@ -31,6 +53,9 @@ const vector<Veiculo *> &ClienteDono::getVeiculos() const {
 
 void ClienteDono::setVeiculos(const vector<Veiculo *> &veiculos) {
     this->veiculos = veiculos;
+}
+
+Cliente::Cliente(string nome, int id, int nif, string preferencias) : VisitanteRegistado(nome, id, nif, preferencias){
 }
 
 const vector<Reserva *> &Cliente::getReservas() const {

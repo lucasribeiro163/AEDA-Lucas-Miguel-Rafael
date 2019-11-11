@@ -13,6 +13,10 @@ C:/Users/migue/Desktop/FEUP/AEDA/Project/src/Hora.h
 C:/Users/migue/Desktop/FEUP/AEDA/Project/src/Empresa.cpp
 Empresa.h
 C:/Users/migue/Desktop/FEUP/AEDA/Project/src/Empresa.h
+fstream
+-
+iostream
+-
 
 C:/Users/migue/Desktop/FEUP/AEDA/Project/src/Empresa.h
 vector
@@ -21,18 +25,6 @@ Utilizador.h
 C:/Users/migue/Desktop/FEUP/AEDA/Project/src/Utilizador.h
 
 C:/Users/migue/Desktop/FEUP/AEDA/Project/src/Hora.h
-
-C:/Users/migue/Desktop/FEUP/AEDA/Project/src/Menu.cpp
-iostream
--
-Menu.h
-C:/Users/migue/Desktop/FEUP/AEDA/Project/src/Menu.h
-
-C:/Users/migue/Desktop/FEUP/AEDA/Project/src/Menu.h
-Empresa.h
-C:/Users/migue/Desktop/FEUP/AEDA/Project/src/Empresa.h
-Utilizador.h
-C:/Users/migue/Desktop/FEUP/AEDA/Project/src/Utilizador.h
 
 C:/Users/migue/Desktop/FEUP/AEDA/Project/src/Reserva.h
 Transacao.h

@@ -18,9 +18,12 @@ class Visitante {
 
 class VisitanteRegistado : public Visitante{
 
-    int preferencias, id, nif;
+    int id, nif;
+    string preferencias, nome;
 
 public:
+
+    VisitanteRegistado(string nome, int id, int nif, string preferencias);
 
     virtual const int &getNif() const;
 
@@ -30,9 +33,13 @@ public:
 
     virtual void setId(int id);
 
-    virtual const int getPreferencias() const;
+    virtual const string getPreferencias() const;
 
-    void setPreferencias(const int &preferencias);
+    void setPreferencias(const string &preferencias);
+
+    virtual const string getNome() const;
+
+    void setNome(const string &nome);
 
 };
 
@@ -42,6 +49,8 @@ class Cliente : public VisitanteRegistado{
     vector<Reserva*> historico;
 
 public:
+
+    Cliente(string nome, int id, int nif, string preferencias);
 
     virtual const vector<Reserva *> &getReservas() const;
 
@@ -60,6 +69,8 @@ class ClienteDono : public VisitanteRegistado{
     vector<Veiculo*> veiculos;
 
 public:
+
+    ClienteDono(string nome, int id, int nif, string preferencias);
 
     const vector<Veiculo *> &getVeiculos() const;
 

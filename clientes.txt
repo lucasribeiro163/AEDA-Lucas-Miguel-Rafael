@@ -1,0 +1,53 @@
+VisitanteRegistado
+Rui Miguel
+1
+12345
+minhaspreferencias
+----------
+Joao Mario
+2
+398219
+minhaspreferencias2
+----------
+Fabio Rodrigues
+3
+1928392
+minhaspreferencias3
+----------
+Ricardo Rodrigues
+4
+9864392
+minhaspreferencias4
+----------
+Joana Gomes
+5
+19888132
+minhaspreferencias5
+----------
+Cliente
+Ricardo Rodrigues
+4
+9864392
+minhaspreferencias4
+----------
+Joana Gomes
+5
+19888132
+minhaspreferencias5
+----------
+ClienteDono
+Ricardo Rodrigues
+4
+9864392
+minhaspreferencias4
+----------
+Joana Gomes
+5
+19888132
+minhaspreferencias5
+----------
+Francisca Teixeira
+6
+987987
+minhaspreferencias6
+----------
