@@ -53,7 +53,11 @@ void VisitanteRegistado::setPassword(const string &password) {
     VisitanteRegistado::password = password;
 }
 
-ClienteDono::ClienteDono(string nome, int id, int nif, string preferencias, string password) : Cliente(nome, id, nif, preferencias, password){
+ClienteDono::ClienteDono(string nome, int id, int nif, string preferencias, string password)
+: Cliente(nome, id, nif, preferencias, password)
+{
+    Veiculo *veiculo = new Veiculo("opel", "astra", 1998);
+    this->veiculos.push_back(veiculo);
 }
 
 const vector<Veiculo *> &ClienteDono::getVeiculos() const {
@@ -64,7 +68,9 @@ void ClienteDono::setVeiculos(const vector<Veiculo *> &veiculos) {
     this->veiculos = veiculos;
 }
 
-Cliente::Cliente(string nome, int id, int nif, string preferencias, string password) : VisitanteRegistado(nome, id, nif, preferencias, password){
+Cliente::Cliente(string nome, int id, int nif, string preferencias, string password)
+: VisitanteRegistado(nome, id, nif, preferencias, password)
+{
 }
 
 const vector<Reserva *> &Cliente::getReservas() const {

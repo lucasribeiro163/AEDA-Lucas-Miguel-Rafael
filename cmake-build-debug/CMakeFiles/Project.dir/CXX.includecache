@@ -20,6 +20,16 @@ C:/Users/migue/Desktop/FEUP/AEDA/Project/src/Data.h
 Hora.h
 C:/Users/migue/Desktop/FEUP/AEDA/Project/src/Hora.h
 
+C:/Users/migue/Desktop/FEUP/AEDA/Project/src/Empresa.cpp
+Empresa.h
+C:/Users/migue/Desktop/FEUP/AEDA/Project/src/Empresa.h
+fstream
+-
+string
+-
+iostream
+-
+
 C:/Users/migue/Desktop/FEUP/AEDA/Project/src/Empresa.h
 vector
 -
@@ -30,17 +40,37 @@ C:/Users/migue/Desktop/FEUP/AEDA/Project/src/Utilizador.h
 
 C:/Users/migue/Desktop/FEUP/AEDA/Project/src/Hora.h
 
+C:/Users/migue/Desktop/FEUP/AEDA/Project/src/Menu.cpp
+iostream
+-
+Menu.h
+C:/Users/migue/Desktop/FEUP/AEDA/Project/src/Menu.h
+
 C:/Users/migue/Desktop/FEUP/AEDA/Project/src/Menu.h
 Empresa.h
 C:/Users/migue/Desktop/FEUP/AEDA/Project/src/Empresa.h
 Utilizador.h
 C:/Users/migue/Desktop/FEUP/AEDA/Project/src/Utilizador.h
 
+C:/Users/migue/Desktop/FEUP/AEDA/Project/src/Reserva.cpp
+Reserva.h
+C:/Users/migue/Desktop/FEUP/AEDA/Project/src/Reserva.h
+
 C:/Users/migue/Desktop/FEUP/AEDA/Project/src/Reserva.h
 Transacao.h
 C:/Users/migue/Desktop/FEUP/AEDA/Project/src/Transacao.h
 
+C:/Users/migue/Desktop/FEUP/AEDA/Project/src/Transacao.cpp
+Transacao.h
 C:/Users/migue/Desktop/FEUP/AEDA/Project/src/Transacao.h
+
+C:/Users/migue/Desktop/FEUP/AEDA/Project/src/Transacao.h
+Veiculo.h
+C:/Users/migue/Desktop/FEUP/AEDA/Project/src/Veiculo.h
+
+C:/Users/migue/Desktop/FEUP/AEDA/Project/src/Utilizador.cpp
+Utilizador.h
+C:/Users/migue/Desktop/FEUP/AEDA/Project/src/Utilizador.h
 Veiculo.h
 C:/Users/migue/Desktop/FEUP/AEDA/Project/src/Veiculo.h
 
@@ -54,8 +84,20 @@ C:/Users/migue/Desktop/FEUP/AEDA/Project/src/Veiculo.h
 Reserva.h
 C:/Users/migue/Desktop/FEUP/AEDA/Project/src/Reserva.h
 
+C:/Users/migue/Desktop/FEUP/AEDA/Project/src/Veiculo.cpp
+ostream
+-
+iostream
+-
+Veiculo.h
+C:/Users/migue/Desktop/FEUP/AEDA/Project/src/Veiculo.h
+Data.h
+C:/Users/migue/Desktop/FEUP/AEDA/Project/src/Data.h
+
 C:/Users/migue/Desktop/FEUP/AEDA/Project/src/Veiculo.h
 vector
+-
+string
 -
 Data.h
 C:/Users/migue/Desktop/FEUP/AEDA/Project/src/Data.h

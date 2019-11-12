@@ -23,7 +23,7 @@ void Menu::checkRegister() const{
     else {
         if ((isRegistered == "N") || (isRegistered == "n")) {
             cout << "Here are the company's offers: " << endl;
-            showOffers();
+            empresa.printVeiculos();
         } else {
             cout << "Sorry, wrong input" << endl;
             checkRegister();
@@ -76,11 +76,5 @@ void Menu::login() const{
         cout << "Sorry, that id doesn't match any client" << endl;
         login();
      }
-}
-
-void Menu::showOffers() const {
-    cout << "Here are some offers you can view: " << endl;
-    for(VisitanteRegistado *vr : empresa.getVisitantesRegistados()){
-    }
 }
 

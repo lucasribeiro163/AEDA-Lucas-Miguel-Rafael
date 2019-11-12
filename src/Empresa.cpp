@@ -18,6 +18,14 @@ vector<VisitanteRegistado *> Empresa::getVisitantesRegistados() const{
     return visitantesRegistados;
 }
 
+vector<Cliente *> Empresa::getClientes()const{
+    return clientes;
+}
+
+vector<ClienteDono *> Empresa::getClientesDono()const{
+    return clientesDono;
+}
+
 VisitanteRegistado* Empresa::getVisitanteRegistado(int id) const{
 
     for(int i = 0; i < this->visitantesRegistados.size(); i++){
@@ -110,4 +118,13 @@ void Empresa::parseClientInfo(){
     //for(int i =0; i < this->visitantesRegistados.size(); i++){
       //  cout << this->visitantesRegistados.at(i)->getId() << endl;
     //}
+}
+
+void Empresa::printVeiculos() const{
+    for(ClienteDono *cd : clientesDono){
+        for(Veiculo *v : cd->getVeiculos())
+        {
+            v->print();
+        }
+    }
 }

@@ -19,6 +19,8 @@ class Veiculo {
     vector<Data*> disponiblidade;
 public:
 
+    Veiculo(string marca, string modelo, int ano);
+
     virtual const vector<Data*> &getDisponiblidade() const;
 
     virtual void setDisponiblidade(const vector<Data*> &disponiblidade);
@@ -29,34 +31,41 @@ public:
 
     virtual string getModelo()const;
 
-    virtual string setModelo(string &modelo);
+    virtual void setModelo(string &modelo);
 
     virtual int getAno()const;
 
     virtual void setAno(int &ano);
 
+    virtual void print()const;
+
 };
 
 
-class VeiculoPassageiros{
+class VeiculoPassageiros : public Veiculo{
 
     int nrPassageiros;
 
 public:
 
+    VeiculoPassageiros(string marca, string modelo, int ano, int nrPassageiros);
     int getNrPassageiros() const;
     void setNrPassageiros(int nrPassageiros);
 
+    void print()const;
 };
 
 
-class VeiculoComercial{
+class VeiculoComercial : public Veiculo{
 
     double volume_carga;
     double peso_carga;
     bool refrigeracao;
 
 public:
+
+    VeiculoComercial(string marca, string modelo, int ano, double volume_carga,
+            double peso_carga, bool refrigeracao);
 
     double getVolumeCarga() const;
 
@@ -66,11 +75,11 @@ public:
 
     void setPesoCarga(double pesoCarga);
 
-    bool isRefrigeracao() const;
+    bool hasRefrigeracao() const;
 
     void setRefrigeracao(bool &refrigeracao);
 
-
+    void print()const;
 };
 
 #endif //UNTITLED_VEICULO_H

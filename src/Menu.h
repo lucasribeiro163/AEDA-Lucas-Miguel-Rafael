@@ -13,7 +13,6 @@ public:
     Menu(Empresa &empresa);
     void checkRegister() const;
     void login() const;
-    void showOffers() const;
 };
 
 
