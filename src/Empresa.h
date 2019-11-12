@@ -6,6 +6,7 @@
 #define PROJECT_EMPRESA_H
 
 #include <vector>
+#include <string>
 #include "Utilizador.h"
 
 using namespace std;
@@ -14,8 +15,9 @@ class Empresa {
     vector<VisitanteRegistado *> visitantesRegistados;
     string empresaFile, clientesFile, reservasFile;
 public:
-    explicit Empresa(string &empresaFile);
+    explicit Empresa(string empresaFile);
     vector<VisitanteRegistado *> getVisitantesRegistados() const;
+    VisitanteRegistado* getVisitanteRegistado(int id) const;
     void addVisitanteRegistado(VisitanteRegistado &visitanteRegistado);
     bool hasVisitanteRegistado(int id) const;
     void parseClientInfo();

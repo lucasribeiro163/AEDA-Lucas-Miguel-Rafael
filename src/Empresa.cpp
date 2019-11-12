@@ -4,9 +4,12 @@
 
 #include "Empresa.h"
 #include <fstream>
+#include <string>
 #include <iostream>
 
-Empresa::Empresa(string &empresaFile){
+using namespace std;
+
+Empresa::Empresa(string empresaFile){
     this->empresaFile = empresaFile;
     parseClientInfo();
 }
@@ -14,6 +17,21 @@ Empresa::Empresa(string &empresaFile){
 vector<VisitanteRegistado *> Empresa::getVisitantesRegistados() const{
     return visitantesRegistados;
 }
+
+VisitanteRegistado* Empresa::getVisitanteRegistado(int id) const{
+
+    for(int i = 0; i < this->visitantesRegistados.size(); i++){
+
+        if(this->visitantesRegistados.at(i)->getId() == id)
+            return this->visitantesRegistados.at(i);
+
+    }
+
+    return NULL;
+
+}
+
+
 
 void Empresa::addVisitanteRegistado(VisitanteRegistado &visitanteRegistado){
     VisitanteRegistado *visitanteRegistadoPtr;
@@ -34,14 +52,19 @@ bool Empresa::hasVisitanteRegistado(int id) const {
 void Empresa::parseClientInfo(){
     //clientes tem de estar na ordem: visitanteRegistado, Cliente, ClienteDono
     fstream readFile;
+    cout << "Criou fstream" << endl;
     readFile.open(this->empresaFile);
+    cout << "Abriu ficheiro" << endl;
     getline(readFile, this->clientesFile);//nome ficheiro clientes esta em empresa.txt
+
     getline(readFile, this->reservasFile);//nome ficheiro reservas esta em empresa.txt
+
     readFile.close();
 
     readFile.open(this->clientesFile);
 
-    string buffer, id, nif, preferencias, nome;
+    string buffer, id, nif, preferencias, nome, password;
+
     getline(readFile, buffer);//Nome da classe
     getline(readFile, nome);//nome do 1º Vr
 
@@ -50,12 +73,13 @@ void Empresa::parseClientInfo(){
         getline(readFile, id);
         getline(readFile, nif);
         getline(readFile, preferencias);
+        getline(readFile, password);
         getline(readFile, buffer);//limpar lixo
 
-        VisitanteRegistado vr(nome, stoi(id), stoi(nif), preferencias);
-        VisitanteRegistado *vrPointer;
-        vrPointer = &vr;
-        visitantesRegistados.push_back(vrPointer);
+
+
+        VisitanteRegistado *vr = new VisitanteRegistado(nome, stoi(id), stoi(nif), preferencias, password);
+        visitantesRegistados.push_back(vr);
 
         getline(readFile, nome);//limpar lixo
     }
@@ -67,12 +91,11 @@ void Empresa::parseClientInfo(){
         getline(readFile, id);
         getline(readFile, nif);
         getline(readFile, preferencias);
+        getline(readFile, password);
         getline(readFile, buffer);//limpar tracejado entre clientes
 
-        Cliente c(nome, stoi(id), stoi(nif), preferencias);
-        Cliente *cPointer;
-        cPointer = &c;
-        visitantesRegistados.push_back(cPointer);
+        Cliente *c = new Cliente(nome, stoi(id), stoi(nif), preferencias, password);
+        visitantesRegistados.push_back(c);
 
         getline(readFile, nome);//limpar lixo
     }
@@ -84,12 +107,21 @@ void Empresa::parseClientInfo(){
         getline(readFile, id);
         getline(readFile, nif);
         getline(readFile, preferencias);
+        getline(readFile, password);
 
-        ClienteDono cd(nome, stoi(id), stoi(nif), preferencias);
-        ClienteDono *cdPointer;
-        cdPointer = &cd;
-        visitantesRegistados.push_back(cdPointer);
+        ClienteDono *cd = new ClienteDono(nome, stoi(id), stoi(nif), preferencias, password);
+        visitantesRegistados.push_back(cd);
 
         getline(readFile, nome);//limpar lixo
+    }
+
+
+    //test
+
+    for(int i =0; i < this->visitantesRegistados.size(); i++){
+
+        cout << this->visitantesRegistados.at(i)->getId() << endl;
+
+
     }
 }

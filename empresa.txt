@@ -1,2 +1,2 @@
-clientes.txt
-reservas.txt
+..//clientes.txt
+..//reservas.txt

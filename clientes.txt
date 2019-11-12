@@ -3,51 +3,61 @@ Rui Miguel
 1
 12345
 minhaspreferencias
+pipipopo
 ----------
 Joao Mario
 2
 398219
 minhaspreferencias2
+laladidi
 ----------
 Fabio Rodrigues
 3
 1928392
 minhaspreferencias3
+nananene
 ----------
 Ricardo Rodrigues
 4
 9864392
 minhaspreferencias4
+bibibobo
 ----------
 Joana Gomes
 5
 19888132
 minhaspreferencias5
+pupupipi
 ----------
 Cliente
-Ricardo Rodrigues
-4
-9864392
+Ernesto Fabricio
+6
+6387654
 minhaspreferencias4
+apitaocomboio
 ----------
-Joana Gomes
-5
-19888132
+Florbela Estela
+7
+3628363
 minhaspreferencias5
+lavaiaapitar
 ----------
 ClienteDono
-Ricardo Rodrigues
-4
-9864392
+Bela Joaquina
+8
+2398547
 minhaspreferencias4
+abeiradomar
 ----------
-Joana Gomes
-5
-19888132
+Hugo Lugo
+9
+7625327
 minhaspreferencias5
+naoseiores
 ----------
-Francisca Teixeira
-6
-987987
+Francisca Pisca
+10
+1517181
 minhaspreferencias6
+todaletra
 ----------

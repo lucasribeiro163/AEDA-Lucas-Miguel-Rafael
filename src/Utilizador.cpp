@@ -5,11 +5,12 @@
 #include "Utilizador.h"
 #include "Veiculo.h"
 
-VisitanteRegistado::VisitanteRegistado(string nome, int id, int nif, string preferencias){
+VisitanteRegistado::VisitanteRegistado(string nome, int id, int nif, string preferencias, string password){
     this->nome = nome;
     this->id = id;
     this->nif = nif;
     this->preferencias = preferencias;
+    this->password = password;
 }
 
 const int &VisitanteRegistado::getNif() const {
@@ -44,7 +45,15 @@ void VisitanteRegistado::setNome(const string &nome){
     this->nome = nome;
 }
 
-ClienteDono::ClienteDono(string nome, int id, int nif, string preferencias) : VisitanteRegistado(nome, id, nif, preferencias){
+const string &VisitanteRegistado::getPassword() const {
+    return password;
+}
+
+void VisitanteRegistado::setPassword(const string &password) {
+    VisitanteRegistado::password = password;
+}
+
+ClienteDono::ClienteDono(string nome, int id, int nif, string preferencias, string password) : Cliente(nome, id, nif, preferencias, password){
 }
 
 const vector<Veiculo *> &ClienteDono::getVeiculos() const {
@@ -55,7 +64,7 @@ void ClienteDono::setVeiculos(const vector<Veiculo *> &veiculos) {
     this->veiculos = veiculos;
 }
 
-Cliente::Cliente(string nome, int id, int nif, string preferencias) : VisitanteRegistado(nome, id, nif, preferencias){
+Cliente::Cliente(string nome, int id, int nif, string preferencias, string password) : VisitanteRegistado(nome, id, nif, preferencias, password){
 }
 
 const vector<Reserva *> &Cliente::getReservas() const {
