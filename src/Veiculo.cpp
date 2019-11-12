@@ -5,6 +5,30 @@
 #include "Veiculo.h"
 #include "Data.h"
 
+virtual string Veiculo::getMarca()const{
+    return this->marca;
+}
+
+void Veiculo::setMarca(string &marca){
+    this->marca = marca;
+}
+
+string Veiculo::getModelo()const{
+    return this->modelo;
+}
+
+string Veiculo::setModelo(string &modelo){
+    this->modelo = modelo;
+}
+
+int Veiculo::getAno()const{
+    return this->ano;
+}
+
+void Veiculo::setAno(int &ano){
+    this->ano = ano;
+}
+
 
 const vector<Data*> &Veiculo::getDisponiblidade() const {
     return disponiblidade;

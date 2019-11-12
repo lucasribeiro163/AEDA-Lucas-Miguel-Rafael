@@ -45,6 +45,7 @@ public:
 
     void setPassword(const string &password);
 
+
 };
 
 class Cliente : public VisitanteRegistado{

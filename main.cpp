@@ -6,7 +6,7 @@
 using namespace std;
 
 int main() {
-    string empresaFile = "..//empresa.txt";
+    string empresaFile = "empresa.txt";
     Empresa empresa(empresaFile);
     Menu menu(empresa);
     return 0;

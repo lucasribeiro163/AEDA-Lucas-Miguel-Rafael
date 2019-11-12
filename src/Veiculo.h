@@ -6,19 +6,34 @@
 #define UNTITLED_VEICULO_H
 
 #include <vector>
+#include <string>
 #include "Data.h"
 
 using namespace std;
 
 class Veiculo {
 
-    vector<Data*> disponiblidade;
+    string marca, modelo;
+    int ano;
 
+    vector<Data*> disponiblidade;
 public:
 
     virtual const vector<Data*> &getDisponiblidade() const;
 
-    void setDisponiblidade(const vector<Data*> &disponiblidade);
+    virtual void setDisponiblidade(const vector<Data*> &disponiblidade);
+
+    virtual string getMarca()const;
+
+    virtual void setMarca(string &marca);
+
+    virtual string getModelo()const;
+
+    virtual string setModelo(string &modelo);
+
+    virtual int getAno()const;
+
+    virtual void setAno(int &ano);
 
 };
 

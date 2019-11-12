@@ -21,17 +21,12 @@ vector<VisitanteRegistado *> Empresa::getVisitantesRegistados() const{
 VisitanteRegistado* Empresa::getVisitanteRegistado(int id) const{
 
     for(int i = 0; i < this->visitantesRegistados.size(); i++){
-
         if(this->visitantesRegistados.at(i)->getId() == id)
             return this->visitantesRegistados.at(i);
-
     }
-
     return NULL;
 
 }
-
-
 
 void Empresa::addVisitanteRegistado(VisitanteRegistado &visitanteRegistado){
     VisitanteRegistado *visitanteRegistadoPtr;
@@ -56,7 +51,6 @@ void Empresa::parseClientInfo(){
     readFile.open(this->empresaFile);
     cout << "Abriu ficheiro" << endl;
     getline(readFile, this->clientesFile);//nome ficheiro clientes esta em empresa.txt
-
     getline(readFile, this->reservasFile);//nome ficheiro reservas esta em empresa.txt
 
     readFile.close();
@@ -75,8 +69,6 @@ void Empresa::parseClientInfo(){
         getline(readFile, preferencias);
         getline(readFile, password);
         getline(readFile, buffer);//limpar lixo
-
-
 
         VisitanteRegistado *vr = new VisitanteRegistado(nome, stoi(id), stoi(nif), preferencias, password);
         visitantesRegistados.push_back(vr);
@@ -100,7 +92,6 @@ void Empresa::parseClientInfo(){
         getline(readFile, nome);//limpar lixo
     }
 
-
     while(!readFile.eof())//ler todos os clientesDono
     {
         getline(readFile, nome);
@@ -114,14 +105,9 @@ void Empresa::parseClientInfo(){
 
         getline(readFile, nome);//limpar lixo
     }
-
-
     //test
 
-    for(int i =0; i < this->visitantesRegistados.size(); i++){
-
-        cout << this->visitantesRegistados.at(i)->getId() << endl;
-
-
-    }
+    //for(int i =0; i < this->visitantesRegistados.size(); i++){
+      //  cout << this->visitantesRegistados.at(i)->getId() << endl;
+    //}
 }
