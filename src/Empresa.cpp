@@ -6,6 +6,7 @@
 #include <fstream>
 #include <string>
 #include <iostream>
+#include <sstream>
 
 using namespace std;
 
@@ -95,7 +96,7 @@ void Empresa::parseClientInfo(){
         getline(readFile, buffer);//limpar tracejado entre clientes
 
         Cliente *c = new Cliente(nome, stoi(id), stoi(nif), preferencias, password);
-        visitantesRegistados.push_back(c);
+        clientes.push_back(c);
 
         getline(readFile, nome);//limpar lixo
     }
@@ -109,7 +110,7 @@ void Empresa::parseClientInfo(){
         getline(readFile, password);
 
         ClienteDono *cd = new ClienteDono(nome, stoi(id), stoi(nif), preferencias, password);
-        visitantesRegistados.push_back(cd);
+        clientesDono.push_back(cd);
 
         getline(readFile, nome);//limpar lixo
     }
@@ -118,6 +119,54 @@ void Empresa::parseClientInfo(){
     //for(int i =0; i < this->visitantesRegistados.size(); i++){
       //  cout << this->visitantesRegistados.at(i)->getId() << endl;
     //}
+}
+void Empresa::saveClientInfo(){
+    ofstream file;
+    stringstream line;
+
+    file.open(clientesFile);
+    line << "VisitanteRegistado" << endl;
+    for (size_t i = 0; i < visitantesRegistados.size();i++)
+    {
+        line << visitantesRegistados.at(i)->getNome() << endl;
+        line << visitantesRegistados.at(i)->getId() << endl;
+        line << visitantesRegistados.at(i)->getNif() << endl;
+        line << visitantesRegistados.at(i)->getPreferencias() << endl;
+        line << visitantesRegistados.at(i)->getPassword() << endl;
+        line << "----------" << endl;
+        file << line.str();
+        line.str("");
+
+    }
+    line << "Cliente" << endl;
+    for (size_t i = 0; i < clientes.size();i++)
+    {
+        line << clientes.at(i)->getNome() << endl;
+        line << clientes.at(i)->getId() << endl;
+        line << clientes.at(i)->getNif() << endl;
+        line << clientes.at(i)->getPreferencias() << endl;
+        line << clientes.at(i)->getPassword() << endl;
+        line << "----------" << endl;
+        file << line.str();
+        line.str("");
+    }
+
+    line << "ClienteDono" << endl;
+    for (size_t i = 0; i < clientesDono.size();i++)
+    {
+
+        line << clientesDono.at(i)->getNome() << endl;
+        line << clientesDono.at(i)->getId() << endl;
+        line << clientesDono.at(i)->getNif() << endl;
+        line << clientesDono.at(i)->getPreferencias() << endl;
+        line << clientesDono.at(i)->getPassword() << endl;
+        line << "----------";
+        if (i != clientesDono.size()-1)
+            line << endl;
+        file << line.str();
+        line.str("");
+    }
+    file.close();
 }
 
 void Empresa::printVeiculos() const{

@@ -25,6 +25,7 @@ public:
     void addVisitanteRegistado(VisitanteRegistado &visitanteRegistado);
     bool hasVisitanteRegistado(int id) const;
     void parseClientInfo();
+    void saveClientInfo();
     void printVeiculos() const;
 };
 
