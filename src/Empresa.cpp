@@ -95,6 +95,8 @@ void Empresa::parseClientInfo(){
         getline(readFile, password);
         getline(readFile, buffer);//limpar tracejado entre clientes
 
+
+
         Cliente *c = new Cliente(nome, stoi(id), stoi(nif), preferencias, password);
         clientes.push_back(c);
 
@@ -170,6 +172,9 @@ void Empresa::saveClientInfo(){
 }
 
 void Empresa::printVeiculos() const{
+
+    cout << "These are the available vehicles: "<< endl;
+
     for(ClienteDono *cd : clientesDono){
         for(Veiculo *v : cd->getVeiculos())
         {
