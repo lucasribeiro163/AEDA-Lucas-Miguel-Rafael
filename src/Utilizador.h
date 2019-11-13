@@ -14,24 +14,29 @@ using namespace std;
 
 class Visitante {
 
+    int id;
+
+public:
+    Visitante();
+
+    static int nrVisitantes;
+
+    int getId();
+
 };
 
 class VisitanteRegistado : public Visitante{
 
-    int id, nif;
+    int nif;
     string preferencias, nome, password;
 
 public:
 
-    VisitanteRegistado(string nome, int id, int nif, string preferencias, string password);
+    VisitanteRegistado(string nome, int nif, string preferencias, string password);
 
     virtual const int &getNif() const;
 
     virtual void setNif(const int &nif);
-
-    virtual int getId() const;
-
-    virtual void setId(int id);
 
     virtual const string getPreferencias() const;
 
@@ -55,7 +60,7 @@ class Cliente : public VisitanteRegistado{
 
 public:
 
-    Cliente(string nome, int id, int nif, string preferencias, string password);
+    Cliente(string nome, int nif, string preferencias, string password);
 
     virtual const vector<Reserva *> &getReservas() const;
 
@@ -75,13 +80,13 @@ class ClienteDono : public Cliente{
 
 public:
 
-    ClienteDono(string nome, int id, int nif, string preferencias, string password);
+    ClienteDono(string nome, int nif, string preferencias, string password);
 
     const vector<Veiculo *> &getVeiculos() const;
 
     void setVeiculos(const vector<Veiculo *> &veiculos);
 
-    void addVeiculo(Veiculo &veiculo);
+    void addVeiculo(Veiculo* veiculo);
 
 };
 

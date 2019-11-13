@@ -4,10 +4,28 @@
 
 #include "Utilizador.h"
 #include "Veiculo.h"
+#include <iostream>
 
-VisitanteRegistado::VisitanteRegistado(string nome, int id, int nif, string preferencias, string password){
+
+using namespace std;
+
+Visitante::Visitante() {
+
+    this->id = this->nrVisitantes++;
+
+    cout << "Id: " << this->id << endl;
+}
+
+int Visitante::nrVisitantes = 0;
+
+int Visitante::getId() {
+    return this->id;
+}
+
+
+
+VisitanteRegistado::VisitanteRegistado(string nome, int nif, string preferencias, string password) : Visitante() {
     this->nome = nome;
-    this->id = id;
     this->nif = nif;
     this->preferencias = preferencias;
     this->password = password;
@@ -19,14 +37,6 @@ const int &VisitanteRegistado::getNif() const {
 
 void VisitanteRegistado::setNif(const int &nif) {
     this->nif = nif;
-}
-
-int VisitanteRegistado::getId() const {
-    return id;
-}
-
-void VisitanteRegistado::setId(int id) {
-    this->id = id;
 }
 
 const string VisitanteRegistado::getPreferencias()const{
@@ -53,19 +63,9 @@ void VisitanteRegistado::setPassword(const string &password) {
     VisitanteRegistado::password = password;
 }
 
-ClienteDono::ClienteDono(string nome, int id, int nif, string preferencias, string password)
-: Cliente(nome, id, nif, preferencias, password){}
 
-const vector<Veiculo *> &ClienteDono::getVeiculos() const {
-    return veiculos;
-}
-
-void ClienteDono::setVeiculos(const vector<Veiculo *> &veiculos) {
-    this->veiculos = veiculos;
-}
-
-Cliente::Cliente(string nome, int id, int nif, string preferencias, string password)
-: VisitanteRegistado(nome, id, nif, preferencias, password)
+Cliente::Cliente(string nome, int nif, string preferencias, string password)
+: VisitanteRegistado(nome, nif, preferencias, password)
 {
 }
 
@@ -91,9 +91,20 @@ void Cliente::addToHistorico(Reserva &reserva) {
     historico.push_back(reservaPtr);
 }
 
-void ClienteDono::addVeiculo(Veiculo &veiculo) {
-    Veiculo *veiculoPtr;
-    veiculoPtr = &veiculo;
-    veiculos.push_back(veiculoPtr);
+
+ClienteDono::ClienteDono(string nome, int nif, string preferencias, string password)
+        : Cliente(nome, nif, preferencias, password){}
+
+const vector<Veiculo *> &ClienteDono::getVeiculos() const {
+    return veiculos;
+}
+
+void ClienteDono::setVeiculos(const vector<Veiculo *> &veiculos) {
+    this->veiculos = veiculos;
+}
+
+void ClienteDono::addVeiculo(Veiculo* veiculo) {
+
+    veiculos.push_back(veiculo);
 
 }

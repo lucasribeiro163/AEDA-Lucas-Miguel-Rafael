@@ -62,6 +62,7 @@ ClienteDono *Empresa::getClienteDono(int id){
             return cd;
         }
     }
+    return NULL;
 }
 
 void Empresa::parseClientInfo(){
@@ -78,20 +79,19 @@ void Empresa::parseClientInfo(){
 
     readFile.open(this->clientesFile);
 
-    string buffer, id, nif, preferencias, nome, password;
+    string buffer, nif, preferencias, nome, password;
 
     getline(readFile, buffer);//Nome da classe
     getline(readFile, nome);//nome do 1º Vr
 
     while(nome != "Cliente")//ler todos os visitantes registados
     {
-        getline(readFile, id);
         getline(readFile, nif);
         getline(readFile, preferencias);
         getline(readFile, password);
         getline(readFile, buffer);//limpar lixo
 
-        VisitanteRegistado *vr = new VisitanteRegistado(nome, stoi(id), stoi(nif), preferencias, password);
+        VisitanteRegistado *vr = new VisitanteRegistado(nome, stoi(nif), preferencias, password);
         visitantesRegistados.push_back(vr);
 
         getline(readFile, nome);//limpar lixo
@@ -101,7 +101,6 @@ void Empresa::parseClientInfo(){
 
     while(nome != "ClienteDono")//ler todos os clientes
     {
-        getline(readFile, id);
         getline(readFile, nif);
         getline(readFile, preferencias);
         getline(readFile, password);
@@ -109,7 +108,7 @@ void Empresa::parseClientInfo(){
 
 
 
-        Cliente *c = new Cliente(nome, stoi(id), stoi(nif), preferencias, password);
+        Cliente *c = new Cliente(nome, stoi(nif), preferencias, password);
         clientes.push_back(c);
 
         getline(readFile, nome);//limpar lixo
@@ -118,16 +117,18 @@ void Empresa::parseClientInfo(){
     while(!readFile.eof())//ler todos os clientesDono
     {
         getline(readFile, nome);
-        getline(readFile, id);
         getline(readFile, nif);
         getline(readFile, preferencias);
         getline(readFile, password);
 
-        ClienteDono *cd = new ClienteDono(nome, stoi(id), stoi(nif), preferencias, password);
+        ClienteDono *cd = new ClienteDono(nome, stoi(nif), preferencias, password);
         clientesDono.push_back(cd);
 
         getline(readFile, nome);//limpar lixo
     }
+
+
+    cout << "Leu os clientes com sucesso." << endl;
 }
 void Empresa::saveClientInfo(){
     ofstream file;
@@ -187,23 +188,11 @@ void Empresa::parseVehicleInfo() {
     string buffer, marca, modelo, ano, clientId, nrPass, volume, peso, refrig;
     bool refrigeracao;
 
+
     getline(readFile, buffer);//Nome da classe
-    getline(readFile, marca);//nome do 1º veiculo
-
-    while(marca != "VeiculoPassageiros")//ler todos os veiculo
-    {
-        getline(readFile, modelo);
-        getline(readFile, ano);
-        getline(readFile, clientId);
-        getline(readFile, buffer);//limpar lixo
-
-       Veiculo *v = new Veiculo(marca, modelo, stoi(ano), stoi(clientId));
-       getClienteDono(stoi(clientId))->addVeiculo(*v);//cliente tem de existir, por agora
-
-       getline(readFile, marca);//limpar lixo
-    }
-
     getline(readFile, marca);//limpar lixo
+
+
 
     while(marca != "VeiculoComercial")//ler todos os veiculoPassageiro
     {
@@ -214,7 +203,9 @@ void Empresa::parseVehicleInfo() {
         getline(readFile, buffer);//limpar tracejado entre veiculos
 
         VeiculoPassageiros *vp = new VeiculoPassageiros(marca, modelo, stoi(ano), stoi(clientId), stoi(nrPass));
-        getClienteDono(stoi(clientId))->addVeiculo(*vp);
+
+        getClienteDono(stoi(clientId))->addVeiculo(vp);
+
 
         getline(readFile, marca);//limpar lixo
     }
@@ -231,10 +222,12 @@ void Empresa::parseVehicleInfo() {
         refrigeracao = (refrig=="true");
 
         VeiculoComercial *vc = new VeiculoComercial(marca, modelo, stoi(ano), stoi(clientId),
-                                                    stof(volume), stof(peso), refrigeracao);
-        getClienteDono(stoi(clientId))->addVeiculo(*vc);
+                                                    stod(volume), stod(peso), refrigeracao);
+        getClienteDono(stoi(clientId))->addVeiculo(vc);
         getline(readFile, marca);//limpar lixo
     }
+
+    cout << "Leu os veiculos com sucesso." << endl;
 }
 
 void Empresa::printVeiculos() const{
@@ -244,6 +237,7 @@ void Empresa::printVeiculos() const{
     for(ClienteDono *cd : clientesDono){
         for(Veiculo *v : cd->getVeiculos())
         {
+            cout << "----------" << endl;
             v->print();
         }
     }

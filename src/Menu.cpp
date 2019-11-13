@@ -4,12 +4,15 @@
 
 #include <iostream>
 #include "Menu.h"
+#include "Veiculo.h"
+
 using namespace std;
 
 Menu::Menu(Empresa &empresa) : empresa(empresa) {
     this->empresa = empresa;
     cout << "Welcome to the agency" << endl;
     checkRegister();
+
 }
 
 void Menu::checkRegister(){
@@ -21,7 +24,8 @@ void Menu::checkRegister(){
     }
     else {
         if ((isRegistered == "N") || (isRegistered == "n")) {
-            cout << "Here are the company's offers: " << endl;
+            Visitante *v = new Visitante();
+            cout << "You are anonymous visitor number " << v->getId() << "\nHere are the company's offers: " << endl;
             empresa.printVeiculos();
         } else {
             cout << "Sorry, wrong input" << endl;
@@ -37,6 +41,7 @@ void Menu::login(){
     getline(cin, inputId);
         //NOTA: Fazer try catch, para evitar erro em stoi(inputId)
         VisitanteRegistado *v = this->empresa.getVisitanteRegistado(stoi(inputId));
+        this->visitanteAtual = v;
         int counter = 1;
         if(v != NULL){
 
@@ -78,7 +83,8 @@ void Menu::login(){
 void Menu::choose() {
     cout << "What would you like to do?\n"
     << "1 - See all the company's cars\n"
-    << "2 - Rent a vehicle" << endl;
+    << "2 - Rent a vehicle" << endl
+    << "3 - Advertise a vehicle" << endl;
 
     string option;
     cin.ignore();
@@ -99,6 +105,10 @@ void Menu::choose() {
                 cin.clear();
                 rentVehicle();
                 break;
+            case(3):
+                cin.clear();
+                advertiseVehicle();
+                break;
         }
     }
 }
@@ -107,15 +117,13 @@ void Menu::rentVehicle(){
     cout << "For how long would you like to rent?\n"
     << "1 - For one or more hours\n"
     << "2 - For one or more days\n"
-    << "3 - For one or more weeks\n"
-    << "4 - For one or more months\n"
-    << "5 - Go back" << endl;
+    << "3 - Go back" << endl;
 
     string option;
-    cin.ignore();
-    getline(cin, option);
+    cin >> option;
     if(option!="1" && option!="2" && option!="3" && option!="4" && option!="5")
     {
+        cout << "HERES the option:  " <<  option << endl;
         cout << "Sorry, wrong input" << endl;
         rentVehicle();
     }
@@ -128,28 +136,89 @@ void Menu::rentVehicle(){
                 dayRentVehicle();
                 break;
             case(3):
-                weekRentVehicle();
-                break;
-            case(4):
-                monthRentVehicle();
-                break;
-            case(5):
                 choose();
                 break;
         }
     }
 }
 
+
+void Menu::advertiseVehicle() {
+
+
+    cout << "Is your vehicle a passenger vehicle or a cargo vehicle? (1 or 2)";
+    int tipo;
+    cin >> tipo;
+
+    if(tipo != 1 && tipo != 2){
+        cout << "You've entered an unkown vehicle type. Try again." << endl;
+        advertiseVehicle();
+        return;
+    }
+
+    cout << "Please fill the following fields: " << endl;
+
+    cout << "Brand: ";
+    string marca;
+    cin >> marca;
+    cout << "Model: ";
+    string modelo;
+    cin >> modelo;
+    cout << "Year: ";
+    int ano;
+    cin >> ano;
+
+
+    if(tipo == 1) {
+        cout << "Number of passengers: ";
+        int nr_pass;
+        cin >> nr_pass;
+
+        VeiculoPassageiros *v = new VeiculoPassageiros(marca, modelo, ano, this->visitanteAtual->getId(), nr_pass);
+        
+    }
+    else if(tipo == 2){
+        cout << "Maximum Cargo Volume: ";
+        double volume_carga;
+        cin >> volume_carga;
+
+        cout << "Maximum Cargo Weight: ";
+        double peso_carga;
+        cin >> peso_carga;
+
+        cout << "Does it have Referigeration (Y-N): ";
+        char tmp;
+        cin >> tmp;
+
+        bool referigeracao;
+        if(tmp == 'Y')
+            referigeracao = true;
+        else if(tmp == 'N')
+            referigeracao = false;
+
+        VeiculoComercial *v = new VeiculoComercial(marca, modelo, ano, this->visitanteAtual->getId(), volume_carga, peso_carga, referigeracao);
+
+    }
+
+    cout << "You have advertised your car successfully!" << endl;
+
+    choose();
+
+}
+
 void Menu::hourRentVehicle(){
-    cout << "hourRent" << endl;
+
+    cout << "What day do you wanna rent the vehicle?" << endl << "Insert the day in the following format (dd-mm-aaaa): ";
+
+    string option;
+    cin >> option;
+
+
+
+
+
 }
-void Menu::dayRentVehicle(){
+void Menu::dayRentVehicle() {
     cout << "dayRent" << endl;
-}
-void Menu::weekRentVehicle(){
-    cout << "weekRent" << endl;
-}
-void Menu::monthRentVehicle(){
-    cout << "monthRent" << endl;
 }
 
