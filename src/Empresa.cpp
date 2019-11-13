@@ -133,7 +133,6 @@ void Empresa::parseClientInfo(){
 void Empresa::saveClientInfo(){
     ofstream file;
     stringstream line;
-
     file.open(clientesFile);
     line << "VisitanteRegistado" << endl;
     for (size_t i = 0; i < visitantesRegistados.size();i++)
@@ -193,7 +192,6 @@ void Empresa::parseVehicleInfo() {
     getline(readFile, marca);//limpar lixo
 
 
-
     while(marca != "VeiculoComercial")//ler todos os veiculoPassageiro
     {
         getline(readFile, modelo);
@@ -202,9 +200,15 @@ void Empresa::parseVehicleInfo() {
         getline(readFile, nrPass);
         getline(readFile, buffer);//limpar tracejado entre veiculos
 
+
+
         VeiculoPassageiros *vp = new VeiculoPassageiros(marca, modelo, stoi(ano), stoi(clientId), stoi(nrPass));
 
+
         getClienteDono(stoi(clientId))->addVeiculo(vp);
+
+
+        this->addVeiculo(vp);
 
 
         getline(readFile, marca);//limpar lixo
@@ -224,6 +228,8 @@ void Empresa::parseVehicleInfo() {
         VeiculoComercial *vc = new VeiculoComercial(marca, modelo, stoi(ano), stoi(clientId),
                                                     stod(volume), stod(peso), refrigeracao);
         getClienteDono(stoi(clientId))->addVeiculo(vc);
+        this->addVeiculo(vc);
+
         getline(readFile, marca);//limpar lixo
     }
 
@@ -234,11 +240,19 @@ void Empresa::printVeiculos() const{
 
     cout << "These are the available vehicles: "<< endl;
 
-    for(ClienteDono *cd : clientesDono){
-        for(Veiculo *v : cd->getVeiculos())
-        {
-            cout << "----------" << endl;
-            v->print();
-        }
+    for(Veiculo *v : getVeiculos())
+    {
+        cout << "----------" << endl;
+        v->print();
     }
+}
+
+void Empresa::addVeiculo(Veiculo *v) {
+
+    this->veiculos.push_back(v);
+
+}
+
+vector<Veiculo*> Empresa::getVeiculos() const{
+    return veiculos;
 }

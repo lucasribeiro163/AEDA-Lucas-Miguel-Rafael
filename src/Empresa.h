@@ -15,6 +15,7 @@ class Empresa {
     vector<VisitanteRegistado *> visitantesRegistados;
     vector<Cliente *> clientes;
     vector<ClienteDono *> clientesDono;
+    vector<Veiculo* > veiculos;
     string empresaFile, clientesFile, reservasFile, veiculosFile;
 public:
     explicit Empresa(string empresaFile);
@@ -29,7 +30,10 @@ public:
     void parseVehicleInfo();
     void saveClientInfo();
     void printVeiculos() const;
-};
+    void addVeiculo(Veiculo* v);
+    vector<Veiculo*> getVeiculos() const;
+
+    };
 
 
 #endif //PROJECT_EMPRESA_H

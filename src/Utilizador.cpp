@@ -16,7 +16,8 @@ Visitante::Visitante() {
     cout << "Id: " << this->id << endl;
 }
 
-int Visitante::nrVisitantes = 0;
+//Os carros da empresa levam clientId 0, sendo assim este comeca em 1
+int Visitante::nrVisitantes = 1;
 
 int Visitante::getId() {
     return this->id;

@@ -81,7 +81,7 @@ void Menu::login(){
 }
 
 void Menu::choose() {
-    cout << "What would you like to do?\n"
+    cout << "\nWhat would you like to do?\n"
     << "1 - See all the company's cars\n"
     << "2 - Rent a vehicle" << endl
     << "3 - Advertise a vehicle" << endl;
@@ -90,7 +90,7 @@ void Menu::choose() {
     cin.ignore();
     getline(cin, option);
 
-    if(option != "1" && option != "2") {
+    if(stoi(option) < 1 && stoi(option) > 3) {
         cout << "Invalid option" << endl;
         choose();
     }
@@ -145,8 +145,7 @@ void Menu::rentVehicle(){
 
 void Menu::advertiseVehicle() {
 
-
-    cout << "Is your vehicle a passenger vehicle or a cargo vehicle? (1 or 2)";
+    cout << "Is your vehicle a passenger vehicle or a cargo vehicle (1 or 2)?  ";
     int tipo;
     cin >> tipo;
 
@@ -158,7 +157,7 @@ void Menu::advertiseVehicle() {
 
     cout << "Please fill the following fields: " << endl;
 
-    cout << "Brand: ";
+    cout << " Brand: ";
     string marca;
     cin >> marca;
     cout << "Model: ";
@@ -168,14 +167,15 @@ void Menu::advertiseVehicle() {
     int ano;
     cin >> ano;
 
+    Veiculo *v;
 
     if(tipo == 1) {
         cout << "Number of passengers: ";
         int nr_pass;
         cin >> nr_pass;
 
-        VeiculoPassageiros *v = new VeiculoPassageiros(marca, modelo, ano, this->visitanteAtual->getId(), nr_pass);
-        
+        v = new VeiculoPassageiros(marca, modelo, ano, this->visitanteAtual->getId(), nr_pass);
+        this->empresa.addVeiculo(v);
     }
     else if(tipo == 2){
         cout << "Maximum Cargo Volume: ";
@@ -196,13 +196,49 @@ void Menu::advertiseVehicle() {
         else if(tmp == 'N')
             referigeracao = false;
 
-        VeiculoComercial *v = new VeiculoComercial(marca, modelo, ano, this->visitanteAtual->getId(), volume_carga, peso_carga, referigeracao);
+        v = new VeiculoComercial(marca, modelo, ano, this->visitanteAtual->getId(), volume_carga, peso_carga, referigeracao);
+        this->empresa.addVeiculo(v);
+        this->empresa.addVeiculo(v);
 
     }
 
-    cout << "You have advertised your car successfully!" << endl;
+    cout << "\nYou have advertised your car successfully!" << endl;
 
-    choose();
+
+
+    bool alreadyIsOwner = false;
+
+    for(int i =0; i < this->empresa.getClientesDono().size(); i++){
+
+        if(this->empresa.getClientesDono().at(i)->getId() == this->visitanteAtual->getId())
+            alreadyIsOwner = true;
+
+    }
+
+    if(!alreadyIsOwner){
+
+        ClienteDono *cd;
+
+        cout << "HERE" << endl;
+
+        cd = (ClienteDono*)visitanteAtual;
+
+        cout << "HERE" << endl;
+
+        cd->addVeiculo(v);
+
+        cout << cd->getNome() << endl;
+        cout << cd->getPassword() << endl;
+        cd->getVeiculos().at(0)->print();
+
+
+
+
+    }
+
+
+
+        choose();
 
 }
 
