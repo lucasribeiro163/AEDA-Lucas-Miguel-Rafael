@@ -24,8 +24,12 @@ public:
     vector<ClienteDono *> getClientesDono()const;
     ClienteDono *getClienteDono(int id);
     VisitanteRegistado* getVisitanteRegistado(int id) const;
+    Cliente* getCliente(int id) const;
     void addVisitanteRegistado(VisitanteRegistado &visitanteRegistado);
     bool hasVisitanteRegistado(int id) const;
+    void addCliente(Cliente &cliente);
+    void deleteVisitor(int id);
+    void addClienteDono(ClienteDono &clienteDono);
     void parseClientInfo();
     void parseVehicleInfo();
     void saveClientInfo();

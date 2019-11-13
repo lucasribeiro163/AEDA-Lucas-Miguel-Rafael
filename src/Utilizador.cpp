@@ -23,6 +23,11 @@ int Visitante::getId() {
     return this->id;
 }
 
+void Visitante::resetID(int id) {
+    nrVisitantes--;
+    this->id = id;
+}
+
 
 
 VisitanteRegistado::VisitanteRegistado(string nome, int nif, string preferencias, string password) : Visitante() {

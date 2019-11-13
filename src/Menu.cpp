@@ -41,6 +41,11 @@ void Menu::login(){
     getline(cin, inputId);
         //NOTA: Fazer try catch, para evitar erro em stoi(inputId)
         VisitanteRegistado *v = this->empresa.getVisitanteRegistado(stoi(inputId));
+        if (v == NULL)
+            v = dynamic_cast<Cliente*> (this->empresa.getCliente(stoi(inputId)));
+        if (v == NULL)
+            v = dynamic_cast<ClienteDono*> (this->empresa.getClienteDono(stoi(inputId)));
+
         this->visitanteAtual = v;
         int counter = 1;
         if(v != NULL){
@@ -204,8 +209,7 @@ void Menu::advertiseVehicle() {
 
     cout << "\nYou have advertised your car successfully!" << endl;
 
-
-
+    
     bool alreadyIsOwner = false;
 
     for(int i =0; i < this->empresa.getClientesDono().size(); i++){
@@ -216,30 +220,28 @@ void Menu::advertiseVehicle() {
     }
 
     if(!alreadyIsOwner){
-
         ClienteDono *cd;
-
-        cout << "HERE" << endl;
-
-        cd = (ClienteDono*)visitanteAtual;
-
-        cout << "HERE" << endl;
-
+        if(this->empresa.getCliente(this->visitanteAtual->getId()) == NULL)
+        {
+            VisitanteRegistado* v = this->empresa.getVisitanteRegistado(this->visitanteAtual->getId());
+            cd = new ClienteDono(v->getNome(), v->getNif(),v->getPreferencias(),
+                                              v->getPassword());
+        }
+        else{
+            Cliente* c = this->empresa.getCliente(this->visitanteAtual->getId());
+            cd = new ClienteDono(c->getNome(), c->getNif(),c->getPreferencias(),
+                                              c->getPassword());
+        }
+        cd->resetID(this->visitanteAtual->getId());
         cd->addVeiculo(v);
+        this->empresa.addClienteDono((*cd));
+        this->empresa.deleteVisitor(this->visitanteAtual->getId());
 
         cout << cd->getNome() << endl;
         cout << cd->getPassword() << endl;
         cd->getVeiculos().at(0)->print();
-
-
-
-
     }
-
-
-
         choose();
-
 }
 
 void Menu::hourRentVehicle(){

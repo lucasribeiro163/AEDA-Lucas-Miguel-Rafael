@@ -38,11 +38,66 @@ VisitanteRegistado* Empresa::getVisitanteRegistado(int id) const{
 
 }
 
+Cliente* Empresa::getCliente(int id) const {
+
+    for(int i = 0; i < this->clientes.size(); i++){
+        if(this->clientes.at(i)->getId() == id)
+            return this->clientes.at(i);
+    }
+    return NULL;
+
+}
+
+
 void Empresa::addVisitanteRegistado(VisitanteRegistado &visitanteRegistado){
     VisitanteRegistado *visitanteRegistadoPtr;
     visitanteRegistadoPtr = &visitanteRegistado;
     visitantesRegistados.push_back(visitanteRegistadoPtr);
 }
+
+void Empresa::addCliente(Cliente &cliente) {
+    Cliente *ptr;
+    ptr = &cliente;
+    clientes.push_back(ptr);
+}
+
+void Empresa::addClienteDono(ClienteDono &clienteDono) {
+    ClienteDono *ptr;
+    ptr = &clienteDono;
+    clientesDono.push_back(ptr);
+}
+
+void Empresa::deleteVisitor(int id) {
+    for ( int i = 0; i < clientes.size(); i++)
+    {
+        if(clientes.at(i)->getId() == id){
+            delete clientes.at(i);
+            clientes.erase(clientes.begin()+i);
+            break;
+        }
+
+    }
+    for ( int i = 0; i < clientesDono.size(); i++)
+    {
+        if(clientesDono.at(i)->getId() == id){
+            delete clientesDono.at(i);
+            clientesDono.erase(clientesDono.begin()+i);
+            break;
+        }
+
+    }
+
+    for ( int i = 0; i < visitantesRegistados.size(); i++)
+    {
+        if(visitantesRegistados.at(i)->getId() == id){
+            delete visitantesRegistados.at(i);
+            visitantesRegistados.erase(visitantesRegistados.begin()+i);
+            break;
+        }
+    }
+}
+
+
 
 bool Empresa::hasVisitanteRegistado(int id) const {
     for(VisitanteRegistado *v : visitantesRegistados)

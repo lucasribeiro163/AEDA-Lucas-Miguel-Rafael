@@ -22,6 +22,9 @@ public:
     static int nrVisitantes;
 
     int getId();
+    void resetID(int id);
+    virtual ~Visitante() {};
+
 
 };
 
@@ -71,6 +74,7 @@ public:
     virtual void setHistorico(const vector<Reserva *> &historico);
 
     virtual void addToHistorico(Reserva &reserva);
+
 };
 
 
@@ -87,7 +91,6 @@ public:
     void setVeiculos(const vector<Veiculo *> &veiculos);
 
     void addVeiculo(Veiculo* veiculo);
-
 };
 
 
