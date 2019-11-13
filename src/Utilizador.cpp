@@ -54,11 +54,7 @@ void VisitanteRegistado::setPassword(const string &password) {
 }
 
 ClienteDono::ClienteDono(string nome, int id, int nif, string preferencias, string password)
-: Cliente(nome, id, nif, preferencias, password)
-{
-    Veiculo *veiculo = new Veiculo("opel", "astra", 1998);
-    this->veiculos.push_back(veiculo);
-}
+: Cliente(nome, id, nif, preferencias, password){}
 
 const vector<Veiculo *> &ClienteDono::getVeiculos() const {
     return veiculos;

@@ -13,6 +13,7 @@ using namespace std;
 Empresa::Empresa(string empresaFile){
     this->empresaFile = empresaFile;
     parseClientInfo();
+    parseVehicleInfo();
 }
 
 vector<VisitanteRegistado *> Empresa::getVisitantesRegistados() const{
@@ -53,6 +54,16 @@ bool Empresa::hasVisitanteRegistado(int id) const {
     return false;
 }
 
+ClienteDono *Empresa::getClienteDono(int id){
+    for(ClienteDono *cd : clientesDono)
+    {
+        if(cd->getId()==id)
+        {
+            return cd;
+        }
+    }
+}
+
 void Empresa::parseClientInfo(){
     //clientes tem de estar na ordem: visitanteRegistado, Cliente, ClienteDono
     fstream readFile;
@@ -61,6 +72,7 @@ void Empresa::parseClientInfo(){
     cout << "Abriu ficheiro" << endl;
     getline(readFile, this->clientesFile);//nome ficheiro clientes esta em empresa.txt
     getline(readFile, this->reservasFile);//nome ficheiro reservas esta em empresa.txt
+    getline(readFile, this->veiculosFile);//nome ficheiro reservas esta em empresa.txt
 
     readFile.close();
 
@@ -114,11 +126,6 @@ void Empresa::parseClientInfo(){
 
         getline(readFile, nome);//limpar lixo
     }
-    //test
-
-    //for(int i =0; i < this->visitantesRegistados.size(); i++){
-      //  cout << this->visitantesRegistados.at(i)->getId() << endl;
-    //}
 }
 void Empresa::saveClientInfo(){
     ofstream file;
@@ -167,6 +174,65 @@ void Empresa::saveClientInfo(){
         line.str("");
     }
     file.close();
+}
+
+void Empresa::parseVehicleInfo() {
+    //veiculos tem de estar na ordem: Veiculo, VeiculoPassageiros, VeiculoComercial
+    fstream readFile;
+
+    readFile.open(this->veiculosFile);
+
+    string buffer, marca, modelo, ano, clientId, nrPass, volume, peso, refrig;
+    bool refrigeracao;
+
+    getline(readFile, buffer);//Nome da classe
+    getline(readFile, marca);//nome do 1º veiculo
+
+    while(marca != "VeiculoPassageiros")//ler todos os veiculo
+    {
+        getline(readFile, modelo);
+        getline(readFile, ano);
+        getline(readFile, clientId);
+        getline(readFile, buffer);//limpar lixo
+
+       Veiculo *v = new Veiculo(marca, modelo, stoi(ano), stoi(clientId));
+       getClienteDono(stoi(clientId))->addVeiculo(*v);//cliente tem de existir, por agora
+
+       getline(readFile, marca);//limpar lixo
+    }
+
+    getline(readFile, marca);//limpar lixo
+
+    while(marca != "VeiculoComercial")//ler todos os veiculoPassageiro
+    {
+        getline(readFile, modelo);
+        getline(readFile, ano);
+        getline(readFile, clientId);
+        getline(readFile, nrPass);
+        getline(readFile, buffer);//limpar tracejado entre veiculos
+
+        VeiculoPassageiros *vp = new VeiculoPassageiros(marca, modelo, stoi(ano), stoi(clientId), stoi(nrPass));
+        getClienteDono(stoi(clientId))->addVeiculo(*vp);
+
+        getline(readFile, marca);//limpar lixo
+    }
+
+    while(!readFile.eof())//ler todos os VeiculoComercial
+    {
+        getline(readFile, marca);
+        getline(readFile, modelo);
+        getline(readFile, ano);
+        getline(readFile, clientId);
+        getline(readFile, volume);
+        getline(readFile, peso);
+        getline(readFile, refrig);
+        refrigeracao = (refrig=="true");
+
+        VeiculoComercial *vc = new VeiculoComercial(marca, modelo, stoi(ano), stoi(clientId),
+                                                    stof(volume), stof(peso), refrigeracao);
+        getClienteDono(stoi(clientId))->addVeiculo(*vc);
+        getline(readFile, marca);//limpar lixo
+    }
 }
 
 void Empresa::printVeiculos() const{

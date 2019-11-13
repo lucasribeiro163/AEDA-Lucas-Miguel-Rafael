@@ -9,10 +9,11 @@
 
 using namespace std;
 
-Veiculo::Veiculo(string marca, string modelo, int ano){
+Veiculo::Veiculo(string marca, string modelo, int ano, int clientId){
     this->marca = marca;
     this->modelo = modelo;
     this->ano = ano;
+    this->clientId = clientId;
 }
 
 string Veiculo::getMarca()const{
@@ -47,14 +48,22 @@ void Veiculo::setDisponiblidade(const vector<Data*> &disponiblidade) {
     this->disponiblidade = disponiblidade;
 }
 
+int Veiculo::getClientId() const{
+    return this->clientId;
+}
+
+void Veiculo::setClientId(int &id){
+    this->clientId = clientId;
+}
+
 void Veiculo::print()const{
     cout << "Marca: " << marca << endl
     << "Modelo: " << modelo << endl
     << "Ano: " << ano << endl;
 }
 
-VeiculoPassageiros::VeiculoPassageiros(string marca, string modelo, int ano, int nrPassageiros)
-        : Veiculo(marca, modelo, ano){
+VeiculoPassageiros::VeiculoPassageiros(string marca, string modelo, int ano, int clientId, int nrPassageiros)
+        : Veiculo(marca, modelo, ano, clientId){
     this->nrPassageiros = nrPassageiros;
 };
 
@@ -68,12 +77,12 @@ void VeiculoPassageiros::setNrPassageiros(int nrPassageiros){
 
 void VeiculoPassageiros::print()const{
     Veiculo::print();
-    cout << "Nr passageiros: " << endl;
+    cout << "Nr passageiros: " << endl << endl;
 }
 
-VeiculoComercial::VeiculoComercial(string marca, string modelo, int ano,
-        double volume_carga, double peso_carga, bool refrigeracao)
-        : Veiculo(marca, modelo, ano) {
+VeiculoComercial::VeiculoComercial(string marca, string modelo, int ano, int clientId, double volume_carga, double peso_carga,
+                                   bool refrigeracao)
+        : Veiculo(marca, modelo, ano, clientId) {
     this->volume_carga = volume_carga;
     this->peso_carga = peso_carga;
     this->refrigeracao = refrigeracao;

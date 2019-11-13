@@ -14,12 +14,12 @@ using namespace std;
 class Veiculo {
 
     string marca, modelo;
-    int ano;
+    int ano, clientId;
 
     vector<Data*> disponiblidade;
 public:
 
-    Veiculo(string marca, string modelo, int ano);
+    Veiculo(string marca, string modelo, int ano, int clientId);
 
     virtual const vector<Data*> &getDisponiblidade() const;
 
@@ -37,6 +37,10 @@ public:
 
     virtual void setAno(int &ano);
 
+    virtual int getClientId() const;
+
+    virtual void setClientId(int &id);
+
     virtual void print()const;
 
 };
@@ -48,7 +52,7 @@ class VeiculoPassageiros : public Veiculo{
 
 public:
 
-    VeiculoPassageiros(string marca, string modelo, int ano, int nrPassageiros);
+    VeiculoPassageiros(string marca, string modelo, int ano, int clientId, int nrPassageiros);
     int getNrPassageiros() const;
     void setNrPassageiros(int nrPassageiros);
 
@@ -64,8 +68,7 @@ class VeiculoComercial : public Veiculo{
 
 public:
 
-    VeiculoComercial(string marca, string modelo, int ano, double volume_carga,
-            double peso_carga, bool refrigeracao);
+    VeiculoComercial(string marca, string modelo, int ano, int clientId, double volume_carga, double peso_carga, bool refrigeracao);
 
     double getVolumeCarga() const;
 

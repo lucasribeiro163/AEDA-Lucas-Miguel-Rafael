@@ -15,16 +15,18 @@ class Empresa {
     vector<VisitanteRegistado *> visitantesRegistados;
     vector<Cliente *> clientes;
     vector<ClienteDono *> clientesDono;
-    string empresaFile, clientesFile, reservasFile;
+    string empresaFile, clientesFile, reservasFile, veiculosFile;
 public:
     explicit Empresa(string empresaFile);
     vector<VisitanteRegistado *> getVisitantesRegistados() const;
     vector<Cliente *> getClientes()const;
     vector<ClienteDono *> getClientesDono()const;
+    ClienteDono *getClienteDono(int id);
     VisitanteRegistado* getVisitanteRegistado(int id) const;
     void addVisitanteRegistado(VisitanteRegistado &visitanteRegistado);
     bool hasVisitanteRegistado(int id) const;
     void parseClientInfo();
+    void parseVehicleInfo();
     void saveClientInfo();
     void printVeiculos() const;
 };
