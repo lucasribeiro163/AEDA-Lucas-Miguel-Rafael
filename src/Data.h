@@ -6,6 +6,9 @@
 #define UNTITLED_DATA_H
 
 #include "Hora.h"
+#include <string>
+
+using namespace std;
 
 class Data {
 
@@ -15,6 +18,8 @@ class Data {
     Hora hora;
 
 public:
+
+    Data(string data);
 
     int getAno() const;
 

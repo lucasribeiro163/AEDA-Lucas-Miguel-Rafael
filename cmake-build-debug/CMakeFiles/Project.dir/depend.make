@@ -37,8 +37,6 @@ CMakeFiles/Project.dir/src/Menu.cpp.obj: ../src/Transacao.h
 CMakeFiles/Project.dir/src/Menu.cpp.obj: ../src/Utilizador.h
 CMakeFiles/Project.dir/src/Menu.cpp.obj: ../src/Veiculo.h
 
-CMakeFiles/Project.dir/src/Preferencia.cpp.obj: ../src/Data.h
-CMakeFiles/Project.dir/src/Preferencia.cpp.obj: ../src/Hora.h
 CMakeFiles/Project.dir/src/Preferencia.cpp.obj: ../src/Preferencia.cpp
 CMakeFiles/Project.dir/src/Preferencia.cpp.obj: ../src/Preferencia.h
 

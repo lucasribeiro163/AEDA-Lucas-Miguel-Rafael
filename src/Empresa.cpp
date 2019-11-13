@@ -302,6 +302,34 @@ void Empresa::printVeiculos() const{
     }
 }
 
+void Empresa::parseReservasInfo() {
+    fstream readFile;
+
+    readFile.open(this->reservasFile);
+
+    string buffer, dataInicio, dataFim, horaInicio, horaFim, veiculoId, preco, completado;
+
+    while(!readFile.eof())
+    {
+        getline(readFile, dataInicio);
+        getline(readFile, horaInicio);
+        getline(readFile, dataFim);
+        getline(readFile, horaFim);
+        getline(readFile, veiculoId);
+        getline(readFile, preco);
+        getline(readFile, completado);
+
+        //VeiculoComercial *vc = new VeiculoComercial(marca, modelo, stoi(ano), stoi(clientId),
+        //stod(volume), stod(peso), refrigeracao);
+        //getClienteDono(stoi(clientId))->addVeiculo(vc);
+        //this->addVeiculo(vc);
+
+        //getline(readFile, marca);//limpar lixo
+    }
+
+    cout << "Leu os veiculos com sucesso." << endl;
+}
+
 void Empresa::addVeiculo(Veiculo *v) {
 
     this->veiculos.push_back(v);
