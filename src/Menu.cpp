@@ -66,12 +66,10 @@ void Menu::login() const{
 
             }
 
-            if(password_match)
-                cout << "Welcome!"
-                << "What would you like to do?" << endl;
-            else
-                cout << "Better luck next time" << endl;
-
+            if(password_match) {
+                cout << "Welcome!" << endl;
+                empresa.printVeiculos();
+            }
         }
      else{
         cout << "Sorry, that id doesn't match any client" << endl;
