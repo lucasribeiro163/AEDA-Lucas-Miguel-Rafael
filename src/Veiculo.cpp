@@ -77,7 +77,7 @@ void VeiculoPassageiros::setNrPassageiros(int nrPassageiros){
 
 void VeiculoPassageiros::print()const{
     Veiculo::print();
-    cout << "Nr passageiros: " << endl << endl;
+    cout << "Nr passageiros: " << nrPassageiros << endl;
 }
 
 VeiculoComercial::VeiculoComercial(string marca, string modelo, int ano, int clientId, double volume_carga, double peso_carga,
@@ -116,6 +116,6 @@ void VeiculoComercial::print() const{
     cout << "Volume carga: " << volume_carga << endl
     << "Peso carga: " << peso_carga << endl;
     if(hasRefrigeracao()){
-        cout << "Tem refrigeração" << endl;
+        cout << "Tem refrigeracao" << endl;
     }
 }

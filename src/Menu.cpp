@@ -12,12 +12,11 @@ Menu::Menu(Empresa &empresa) : empresa(empresa) {
     checkRegister();
 }
 
-void Menu::checkRegister() const{
+void Menu::checkRegister(){
     cout << "Are you registered? (Y/N)" << endl;
     string isRegistered;
     getline(cin, isRegistered);
     if ((isRegistered == "Y") || (isRegistered == "y")) {
-        cout << "Welcome" << endl;
         login();
     }
     else {
@@ -31,7 +30,7 @@ void Menu::checkRegister() const{
     }
 }
 
-void Menu::login() const{
+void Menu::login(){
     string inputId;
     bool password_match = false;
     cout << "What is your id?" << endl;
@@ -63,17 +62,94 @@ void Menu::login() const{
                     cout << "\nWrong password." << endl;
 
                 counter++;
-
             }
 
             if(password_match) {
                 cout << "Welcome!" << endl;
-                empresa.printVeiculos();
+                choose();
             }
         }
      else{
         cout << "Sorry, that id doesn't match any client" << endl;
         login();
      }
+}
+
+void Menu::choose() {
+    cout << "What would you like to do?\n"
+    << "1 - See all the company's cars\n"
+    << "2 - Rent a vehicle" << endl;
+
+    string option;
+    cin.ignore();
+    getline(cin, option);
+
+    if(option != "1" && option != "2") {
+        cout << "Invalid option" << endl;
+        choose();
+    }
+    else{
+        switch(stoi(option)){
+            case(1):
+                cin.clear();
+                empresa.printVeiculos();
+                choose();
+                break;
+            case(2):
+                cin.clear();
+                rentVehicle();
+                break;
+        }
+    }
+}
+
+void Menu::rentVehicle(){
+    cout << "For how long would you like to rent?\n"
+    << "1 - For one or more hours\n"
+    << "2 - For one or more days\n"
+    << "3 - For one or more weeks\n"
+    << "4 - For one or more months\n"
+    << "5 - Go back" << endl;
+
+    string option;
+    cin.ignore();
+    getline(cin, option);
+    if(option!="1" && option!="2" && option!="3" && option!="4" && option!="5")
+    {
+        cout << "Sorry, wrong input" << endl;
+        rentVehicle();
+    }
+    else{
+        switch(stoi(option)){
+            case(1):
+                hourRentVehicle();
+                break;
+            case(2):
+                dayRentVehicle();
+                break;
+            case(3):
+                weekRentVehicle();
+                break;
+            case(4):
+                monthRentVehicle();
+                break;
+            case(5):
+                choose();
+                break;
+        }
+    }
+}
+
+void Menu::hourRentVehicle(){
+    cout << "hourRent" << endl;
+}
+void Menu::dayRentVehicle(){
+    cout << "dayRent" << endl;
+}
+void Menu::weekRentVehicle(){
+    cout << "weekRent" << endl;
+}
+void Menu::monthRentVehicle(){
+    cout << "monthRent" << endl;
 }
 

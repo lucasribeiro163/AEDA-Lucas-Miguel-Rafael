@@ -11,8 +11,14 @@ class Menu {
     Empresa empresa;
 public:
     Menu(Empresa &empresa);
-    void checkRegister() const;
-    void login() const;
+    void checkRegister();
+    void login();
+    void choose();
+    void rentVehicle();
+    void hourRentVehicle();
+    void dayRentVehicle();
+    void weekRentVehicle();
+    void monthRentVehicle();
 };
 
 
