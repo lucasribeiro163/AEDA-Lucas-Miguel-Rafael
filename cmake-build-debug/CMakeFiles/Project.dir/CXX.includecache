@@ -10,51 +10,13 @@ C:/Users/migue/Desktop/FEUP/AEDA/Project/src/Data.h
 Hora.h
 C:/Users/migue/Desktop/FEUP/AEDA/Project/src/Hora.h
 
-C:/Users/migue/Desktop/FEUP/AEDA/Project/src/Empresa.h
-vector
--
-string
--
-Utilizador.h
-C:/Users/migue/Desktop/FEUP/AEDA/Project/src/Utilizador.h
-
 C:/Users/migue/Desktop/FEUP/AEDA/Project/src/Hora.h
 
-C:/Users/migue/Desktop/FEUP/AEDA/Project/src/Menu.cpp
-iostream
--
-Menu.h
-C:/Users/migue/Desktop/FEUP/AEDA/Project/src/Menu.h
+C:/Users/migue/Desktop/FEUP/AEDA/Project/src/Preferencia.cpp
+Preferencia.h
+C:/Users/migue/Desktop/FEUP/AEDA/Project/src/Preferencia.h
 
-C:/Users/migue/Desktop/FEUP/AEDA/Project/src/Menu.h
-Empresa.h
-C:/Users/migue/Desktop/FEUP/AEDA/Project/src/Empresa.h
-Utilizador.h
-C:/Users/migue/Desktop/FEUP/AEDA/Project/src/Utilizador.h
-
-C:/Users/migue/Desktop/FEUP/AEDA/Project/src/Reserva.h
-Transacao.h
-C:/Users/migue/Desktop/FEUP/AEDA/Project/src/Transacao.h
-
-C:/Users/migue/Desktop/FEUP/AEDA/Project/src/Transacao.h
-Veiculo.h
-C:/Users/migue/Desktop/FEUP/AEDA/Project/src/Veiculo.h
-
-C:/Users/migue/Desktop/FEUP/AEDA/Project/src/Utilizador.h
-string
--
-vector
--
-Veiculo.h
-C:/Users/migue/Desktop/FEUP/AEDA/Project/src/Veiculo.h
-Reserva.h
-C:/Users/migue/Desktop/FEUP/AEDA/Project/src/Reserva.h
-
-C:/Users/migue/Desktop/FEUP/AEDA/Project/src/Veiculo.h
-vector
--
-string
--
+C:/Users/migue/Desktop/FEUP/AEDA/Project/src/Preferencia.h
 Data.h
 C:/Users/migue/Desktop/FEUP/AEDA/Project/src/Data.h
 

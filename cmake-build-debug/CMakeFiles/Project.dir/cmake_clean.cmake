@@ -4,6 +4,7 @@ file(REMOVE_RECURSE
   "CMakeFiles/Project.dir/src/Empresa.cpp.obj"
   "CMakeFiles/Project.dir/src/Hora.cpp.obj"
   "CMakeFiles/Project.dir/src/Menu.cpp.obj"
+  "CMakeFiles/Project.dir/src/Preferencia.cpp.obj"
   "CMakeFiles/Project.dir/src/Reserva.cpp.obj"
   "CMakeFiles/Project.dir/src/Transacao.cpp.obj"
   "CMakeFiles/Project.dir/src/Utilizador.cpp.obj"

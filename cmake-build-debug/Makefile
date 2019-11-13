@@ -257,6 +257,33 @@ src/Menu.cpp.s:
 	$(MAKE) -f CMakeFiles\Project.dir\build.make CMakeFiles/Project.dir/src/Menu.cpp.s
 .PHONY : src/Menu.cpp.s
 
+src/Preferencia.obj: src/Preferencia.cpp.obj
+
+.PHONY : src/Preferencia.obj
+
+# target to build an object file
+src/Preferencia.cpp.obj:
+	$(MAKE) -f CMakeFiles\Project.dir\build.make CMakeFiles/Project.dir/src/Preferencia.cpp.obj
+.PHONY : src/Preferencia.cpp.obj
+
+src/Preferencia.i: src/Preferencia.cpp.i
+
+.PHONY : src/Preferencia.i
+
+# target to preprocess a source file
+src/Preferencia.cpp.i:
+	$(MAKE) -f CMakeFiles\Project.dir\build.make CMakeFiles/Project.dir/src/Preferencia.cpp.i
+.PHONY : src/Preferencia.cpp.i
+
+src/Preferencia.s: src/Preferencia.cpp.s
+
+.PHONY : src/Preferencia.s
+
+# target to generate assembly for a file
+src/Preferencia.cpp.s:
+	$(MAKE) -f CMakeFiles\Project.dir\build.make CMakeFiles/Project.dir/src/Preferencia.cpp.s
+.PHONY : src/Preferencia.cpp.s
+
 src/Reserva.obj: src/Reserva.cpp.obj
 
 .PHONY : src/Reserva.obj
@@ -389,6 +416,9 @@ help:
 	@echo ... src/Menu.obj
 	@echo ... src/Menu.i
 	@echo ... src/Menu.s
+	@echo ... src/Preferencia.obj
+	@echo ... src/Preferencia.i
+	@echo ... src/Preferencia.s
 	@echo ... src/Reserva.obj
 	@echo ... src/Reserva.i
 	@echo ... src/Reserva.s
