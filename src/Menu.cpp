@@ -179,7 +179,7 @@ void Menu::advertiseVehicle() {
         int nr_pass;
         cin >> nr_pass;
 
-        v = new VeiculoPassageiros(marca, modelo, ano, this->visitanteAtual->getId(), nr_pass);
+        v = new VeiculoPassageiros(marca, modelo, ano, this->visitanteAtual->getId(), this->empresa.getVeiculos().size(), nr_pass);
         this->empresa.addVeiculo(v);
     }
     else if(tipo == 2){
@@ -201,7 +201,8 @@ void Menu::advertiseVehicle() {
         else if(tmp == 'N')
             referigeracao = false;
 
-        v = new VeiculoComercial(marca, modelo, ano, this->visitanteAtual->getId(), volume_carga, peso_carga, referigeracao);
+        v = new VeiculoComercial(marca, modelo, ano, this->visitanteAtual->getId(), this->empresa.getVeiculos().size(),
+                volume_carga, peso_carga, referigeracao);
         this->empresa.addVeiculo(v);
         this->empresa.addVeiculo(v);
 

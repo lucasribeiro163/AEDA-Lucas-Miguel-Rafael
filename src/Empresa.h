@@ -37,7 +37,7 @@ public:
     void printVeiculos() const;
     void addVeiculo(Veiculo* v);
     vector<Veiculo*> getVeiculos() const;
-
+    Veiculo *getVeiculo(int &veiculoId);
     };
 
 

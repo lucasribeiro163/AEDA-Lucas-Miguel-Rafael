@@ -9,12 +9,13 @@
 using namespace std;
 
 class Hora {
-
     int hora;
     int minuto;
     int segundo;
 
 public:
+
+    Hora(string &horaRecebida);
 
     int getHora() const;
 

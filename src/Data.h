@@ -11,7 +11,6 @@
 using namespace std;
 
 class Data {
-
     int ano;
     int mes;
     int dia;
@@ -19,7 +18,7 @@ class Data {
 
 public:
 
-    Data(string data);
+    Data(string data, string hora);
 
     int getAno() const;
 
@@ -32,6 +31,10 @@ public:
     int getDia() const;
 
     void setDia(int dia);
+
+    Hora &getHora();
+
+    void setHora(Hora &hora);
 
     bool operator<=(Data data);
 };

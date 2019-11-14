@@ -2,13 +2,15 @@ VeiculoPassageiros
 Toyota
 Yaris
 2015
-7
+8
+1
 5
 ----------
 Renault
 Megane
 2010
 9
+2
 7
 ----------
 VeiculoComercial
@@ -16,6 +18,7 @@ Mazda
 mx5
 2011
 9
+3
 50
 100
 true
@@ -23,7 +26,8 @@ true
 Toyota
 Auris
 2006
-7
+8
+4
 70
 180
 false

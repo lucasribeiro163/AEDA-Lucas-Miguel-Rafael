@@ -121,22 +121,9 @@ CMakeFiles/Project.dir/src/Reserva.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Project.dir/src/Reserva.cpp.s"
 	C:\PROGRA~1\MINGW-~1\X86_64~1.0-P\mingw64\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\migue\Desktop\FEUP\AEDA\Project\src\Reserva.cpp -o CMakeFiles\Project.dir\src\Reserva.cpp.s
 
-CMakeFiles/Project.dir/src/Transacao.cpp.obj: CMakeFiles/Project.dir/flags.make
-CMakeFiles/Project.dir/src/Transacao.cpp.obj: ../src/Transacao.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\migue\Desktop\FEUP\AEDA\Project\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/Project.dir/src/Transacao.cpp.obj"
-	C:\PROGRA~1\MINGW-~1\X86_64~1.0-P\mingw64\bin\G__~1.EXE  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\Project.dir\src\Transacao.cpp.obj -c C:\Users\migue\Desktop\FEUP\AEDA\Project\src\Transacao.cpp
-
-CMakeFiles/Project.dir/src/Transacao.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Project.dir/src/Transacao.cpp.i"
-	C:\PROGRA~1\MINGW-~1\X86_64~1.0-P\mingw64\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\migue\Desktop\FEUP\AEDA\Project\src\Transacao.cpp > CMakeFiles\Project.dir\src\Transacao.cpp.i
-
-CMakeFiles/Project.dir/src/Transacao.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Project.dir/src/Transacao.cpp.s"
-	C:\PROGRA~1\MINGW-~1\X86_64~1.0-P\mingw64\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\migue\Desktop\FEUP\AEDA\Project\src\Transacao.cpp -o CMakeFiles\Project.dir\src\Transacao.cpp.s
-
 CMakeFiles/Project.dir/src/Utilizador.cpp.obj: CMakeFiles/Project.dir/flags.make
 CMakeFiles/Project.dir/src/Utilizador.cpp.obj: ../src/Utilizador.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\migue\Desktop\FEUP\AEDA\Project\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/Project.dir/src/Utilizador.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\migue\Desktop\FEUP\AEDA\Project\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/Project.dir/src/Utilizador.cpp.obj"
 	C:\PROGRA~1\MINGW-~1\X86_64~1.0-P\mingw64\bin\G__~1.EXE  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\Project.dir\src\Utilizador.cpp.obj -c C:\Users\migue\Desktop\FEUP\AEDA\Project\src\Utilizador.cpp
 
 CMakeFiles/Project.dir/src/Utilizador.cpp.i: cmake_force
@@ -149,7 +136,7 @@ CMakeFiles/Project.dir/src/Utilizador.cpp.s: cmake_force
 
 CMakeFiles/Project.dir/src/Veiculo.cpp.obj: CMakeFiles/Project.dir/flags.make
 CMakeFiles/Project.dir/src/Veiculo.cpp.obj: ../src/Veiculo.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\migue\Desktop\FEUP\AEDA\Project\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/Project.dir/src/Veiculo.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\migue\Desktop\FEUP\AEDA\Project\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/Project.dir/src/Veiculo.cpp.obj"
 	C:\PROGRA~1\MINGW-~1\X86_64~1.0-P\mingw64\bin\G__~1.EXE  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\Project.dir\src\Veiculo.cpp.obj -c C:\Users\migue\Desktop\FEUP\AEDA\Project\src\Veiculo.cpp
 
 CMakeFiles/Project.dir/src/Veiculo.cpp.i: cmake_force
@@ -162,7 +149,7 @@ CMakeFiles/Project.dir/src/Veiculo.cpp.s: cmake_force
 
 CMakeFiles/Project.dir/src/Menu.cpp.obj: CMakeFiles/Project.dir/flags.make
 CMakeFiles/Project.dir/src/Menu.cpp.obj: ../src/Menu.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\migue\Desktop\FEUP\AEDA\Project\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object CMakeFiles/Project.dir/src/Menu.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\migue\Desktop\FEUP\AEDA\Project\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/Project.dir/src/Menu.cpp.obj"
 	C:\PROGRA~1\MINGW-~1\X86_64~1.0-P\mingw64\bin\G__~1.EXE  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\Project.dir\src\Menu.cpp.obj -c C:\Users\migue\Desktop\FEUP\AEDA\Project\src\Menu.cpp
 
 CMakeFiles/Project.dir/src/Menu.cpp.i: cmake_force
@@ -175,7 +162,7 @@ CMakeFiles/Project.dir/src/Menu.cpp.s: cmake_force
 
 CMakeFiles/Project.dir/src/Preferencia.cpp.obj: CMakeFiles/Project.dir/flags.make
 CMakeFiles/Project.dir/src/Preferencia.cpp.obj: ../src/Preferencia.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\migue\Desktop\FEUP\AEDA\Project\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object CMakeFiles/Project.dir/src/Preferencia.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\migue\Desktop\FEUP\AEDA\Project\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object CMakeFiles/Project.dir/src/Preferencia.cpp.obj"
 	C:\PROGRA~1\MINGW-~1\X86_64~1.0-P\mingw64\bin\G__~1.EXE  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\Project.dir\src\Preferencia.cpp.obj -c C:\Users\migue\Desktop\FEUP\AEDA\Project\src\Preferencia.cpp
 
 CMakeFiles/Project.dir/src/Preferencia.cpp.i: cmake_force
@@ -193,7 +180,6 @@ Project_OBJECTS = \
 "CMakeFiles/Project.dir/src/Empresa.cpp.obj" \
 "CMakeFiles/Project.dir/src/Hora.cpp.obj" \
 "CMakeFiles/Project.dir/src/Reserva.cpp.obj" \
-"CMakeFiles/Project.dir/src/Transacao.cpp.obj" \
 "CMakeFiles/Project.dir/src/Utilizador.cpp.obj" \
 "CMakeFiles/Project.dir/src/Veiculo.cpp.obj" \
 "CMakeFiles/Project.dir/src/Menu.cpp.obj" \
@@ -207,7 +193,6 @@ Project.exe: CMakeFiles/Project.dir/src/Data.cpp.obj
 Project.exe: CMakeFiles/Project.dir/src/Empresa.cpp.obj
 Project.exe: CMakeFiles/Project.dir/src/Hora.cpp.obj
 Project.exe: CMakeFiles/Project.dir/src/Reserva.cpp.obj
-Project.exe: CMakeFiles/Project.dir/src/Transacao.cpp.obj
 Project.exe: CMakeFiles/Project.dir/src/Utilizador.cpp.obj
 Project.exe: CMakeFiles/Project.dir/src/Veiculo.cpp.obj
 Project.exe: CMakeFiles/Project.dir/src/Menu.cpp.obj
@@ -216,7 +201,7 @@ Project.exe: CMakeFiles/Project.dir/build.make
 Project.exe: CMakeFiles/Project.dir/linklibs.rsp
 Project.exe: CMakeFiles/Project.dir/objects1.rsp
 Project.exe: CMakeFiles/Project.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=C:\Users\migue\Desktop\FEUP\AEDA\Project\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Linking CXX executable Project.exe"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=C:\Users\migue\Desktop\FEUP\AEDA\Project\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Linking CXX executable Project.exe"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles\Project.dir\link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

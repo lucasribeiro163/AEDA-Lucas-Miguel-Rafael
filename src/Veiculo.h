@@ -8,22 +8,23 @@
 #include <vector>
 #include <string>
 #include "Data.h"
+#include "Reserva.h"
 
 using namespace std;
 
 class Veiculo {
 
     string marca, modelo;
-    int ano, clientId;
+    int ano, clientId, veiculoId;
 
-    vector<Data*> disponiblidade;
+    vector<Reserva*> reservas;
 public:
 
-    Veiculo(string marca, string modelo, int ano, int clientId);
+    Veiculo(string marca, string modelo, int ano, int clientId, int veiculoId);
 
-    virtual const vector<Data*> &getDisponiblidade() const;
+    virtual const vector<Reserva*> &getReservas() const;
 
-    virtual void setDisponiblidade(const vector<Data*> &disponiblidade);
+    virtual void addReserva(Reserva *reserva);
 
     virtual string getMarca()const;
 
@@ -41,6 +42,10 @@ public:
 
     virtual void setClientId(int &id);
 
+    virtual int getVeiculoId() const;
+
+    virtual void setVeiculoId(int &id);
+
     virtual void print()const;
 
 };
@@ -52,7 +57,7 @@ class VeiculoPassageiros : public Veiculo{
 
 public:
 
-    VeiculoPassageiros(string marca, string modelo, int ano, int clientId, int nrPassageiros);
+    VeiculoPassageiros(string marca, string modelo, int ano, int clientId, int VeiculoId, int nrPassageiros);
     int getNrPassageiros() const;
     void setNrPassageiros(int nrPassageiros);
 
@@ -68,7 +73,7 @@ class VeiculoComercial : public Veiculo{
 
 public:
 
-    VeiculoComercial(string marca, string modelo, int ano, int clientId, double volume_carga, double peso_carga, bool refrigeracao);
+    VeiculoComercial(string marca, string modelo, int ano, int clientId, int VeiculoId, double volume_carga, double peso_carga, bool refrigeracao);
 
     double getVolumeCarga() const;
 

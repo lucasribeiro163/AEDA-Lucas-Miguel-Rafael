@@ -311,33 +311,6 @@ src/Reserva.cpp.s:
 	$(MAKE) -f CMakeFiles\Project.dir\build.make CMakeFiles/Project.dir/src/Reserva.cpp.s
 .PHONY : src/Reserva.cpp.s
 
-src/Transacao.obj: src/Transacao.cpp.obj
-
-.PHONY : src/Transacao.obj
-
-# target to build an object file
-src/Transacao.cpp.obj:
-	$(MAKE) -f CMakeFiles\Project.dir\build.make CMakeFiles/Project.dir/src/Transacao.cpp.obj
-.PHONY : src/Transacao.cpp.obj
-
-src/Transacao.i: src/Transacao.cpp.i
-
-.PHONY : src/Transacao.i
-
-# target to preprocess a source file
-src/Transacao.cpp.i:
-	$(MAKE) -f CMakeFiles\Project.dir\build.make CMakeFiles/Project.dir/src/Transacao.cpp.i
-.PHONY : src/Transacao.cpp.i
-
-src/Transacao.s: src/Transacao.cpp.s
-
-.PHONY : src/Transacao.s
-
-# target to generate assembly for a file
-src/Transacao.cpp.s:
-	$(MAKE) -f CMakeFiles\Project.dir\build.make CMakeFiles/Project.dir/src/Transacao.cpp.s
-.PHONY : src/Transacao.cpp.s
-
 src/Utilizador.obj: src/Utilizador.cpp.obj
 
 .PHONY : src/Utilizador.obj
@@ -422,9 +395,6 @@ help:
 	@echo ... src/Reserva.obj
 	@echo ... src/Reserva.i
 	@echo ... src/Reserva.s
-	@echo ... src/Transacao.obj
-	@echo ... src/Transacao.i
-	@echo ... src/Transacao.s
 	@echo ... src/Utilizador.obj
 	@echo ... src/Utilizador.i
 	@echo ... src/Utilizador.s

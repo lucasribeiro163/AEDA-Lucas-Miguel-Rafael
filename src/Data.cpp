@@ -4,7 +4,7 @@
 
 #include "Data.h"
 
-Data::Data(string data){
+Data::Data(string data, string hora) : hora(hora) {
     string buffer;
     int ano, mes, dia;
 
@@ -50,6 +50,14 @@ void Data::setDia(int dia) {
     this->dia = dia;
 }
 
+Hora &Data::getHora(){
+    return hora;
+}
+
+void Data::setHora(Hora &hora){
+    this->hora = hora;
+}
+
 bool Data::operator<=(Data data) {
     if(this->ano > data.ano) return false;
     if(this->ano < data.ano) return true;
@@ -62,7 +70,9 @@ bool Data::operator<=(Data data) {
     if(this->dia > data.dia) return false;
     if(this->dia < data.dia) return true;
 
+    return true;
+
     //se chega aqui, o dia e igual
-    return (this->hora<=data.hora);
+    //return (this->hora<=data.hora);
 }
 

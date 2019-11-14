@@ -5,34 +5,33 @@
 #ifndef UNTITLED_RESERVA_H
 #define UNTITLED_RESERVA_H
 
-
-#include "Transacao.h"
+#include "Data.h"
 
 class Reserva {
 
-    Data data;
-    Veiculo veiculo;
-    Transacao pagamento;
+    Data dataInicio, dataFim;
     bool concretizacao;
+    int preco;
 
 public:
 
-    const Data &getData() const;
+    Reserva(Data &dataInicio, Data &dataFim, int preco, bool concretizacao);
 
-    void setData(const Data &data);
+    const Data &getDataInicio() const;
 
-    const Veiculo &getVeiculo() const;
+    void setDataInicio(const Data &dataInicio);
 
-    void setVeiculo(const Veiculo &veiculo);
+    const Data &getDataFim() const;
 
-    const Transacao &getPagamento() const;
+    void setDataFim(const Data &dataFim);
 
-    void setPagamento(const Transacao &pagamento);
+    const int getPreco();
+
+    const void setPreco(int &preco);
 
     bool isConcretizacao() const;
 
     void setConcretizacao(const bool concretizacao);
-
 
 };
 

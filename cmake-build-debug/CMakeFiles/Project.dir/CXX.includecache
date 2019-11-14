@@ -6,18 +6,6 @@
 
 #IncludeRegexTransform: 
 
-C:/Users/migue/Desktop/FEUP/AEDA/Project/main.cpp
-src/Empresa.h
-C:/Users/migue/Desktop/FEUP/AEDA/Project/src/Empresa.h
-src/Menu.h
-C:/Users/migue/Desktop/FEUP/AEDA/Project/src/Menu.h
-iostream
--
-string
--
-src/Data.h
-C:/Users/migue/Desktop/FEUP/AEDA/Project/src/Data.h
-
 C:/Users/migue/Desktop/FEUP/AEDA/Project/src/Data.h
 Hora.h
 C:/Users/migue/Desktop/FEUP/AEDA/Project/src/Hora.h
@@ -48,21 +36,9 @@ C:/Users/migue/Desktop/FEUP/AEDA/Project/src/Hora.h
 string
 -
 
-C:/Users/migue/Desktop/FEUP/AEDA/Project/src/Menu.h
-Empresa.h
-C:/Users/migue/Desktop/FEUP/AEDA/Project/src/Empresa.h
-Utilizador.h
-C:/Users/migue/Desktop/FEUP/AEDA/Project/src/Utilizador.h
-Veiculo.h
-C:/Users/migue/Desktop/FEUP/AEDA/Project/src/Veiculo.h
-
 C:/Users/migue/Desktop/FEUP/AEDA/Project/src/Reserva.h
-Transacao.h
-C:/Users/migue/Desktop/FEUP/AEDA/Project/src/Transacao.h
-
-C:/Users/migue/Desktop/FEUP/AEDA/Project/src/Transacao.h
-Veiculo.h
-C:/Users/migue/Desktop/FEUP/AEDA/Project/src/Veiculo.h
+Data.h
+C:/Users/migue/Desktop/FEUP/AEDA/Project/src/Data.h
 
 C:/Users/migue/Desktop/FEUP/AEDA/Project/src/Utilizador.h
 string
@@ -81,4 +57,6 @@ string
 -
 Data.h
 C:/Users/migue/Desktop/FEUP/AEDA/Project/src/Data.h
+Reserva.h
+C:/Users/migue/Desktop/FEUP/AEDA/Project/src/Reserva.h
 

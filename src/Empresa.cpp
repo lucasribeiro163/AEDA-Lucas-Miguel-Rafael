@@ -14,6 +14,7 @@ Empresa::Empresa(string empresaFile){
     this->empresaFile = empresaFile;
     parseClientInfo();
     parseVehicleInfo();
+    parseReservasInfo();
 }
 
 vector<VisitanteRegistado *> Empresa::getVisitantesRegistados() const{
@@ -127,8 +128,8 @@ void Empresa::parseClientInfo(){
     readFile.open(this->empresaFile);
     cout << "Abriu ficheiro" << endl;
     getline(readFile, this->clientesFile);//nome ficheiro clientes esta em empresa.txt
-    getline(readFile, this->reservasFile);//nome ficheiro reservas esta em empresa.txt
     getline(readFile, this->veiculosFile);//nome ficheiro reservas esta em empresa.txt
+    getline(readFile, this->reservasFile);//nome ficheiro reservas esta em empresa.txt
 
     readFile.close();
 
@@ -181,7 +182,7 @@ void Empresa::parseClientInfo(){
 
         getline(readFile, nome);//limpar lixo
     }
-
+    readFile.close();
 
     cout << "Leu os clientes com sucesso." << endl;
 }
@@ -239,7 +240,7 @@ void Empresa::parseVehicleInfo() {
 
     readFile.open(this->veiculosFile);
 
-    string buffer, marca, modelo, ano, clientId, nrPass, volume, peso, refrig;
+    string buffer, marca, modelo, ano, clientId, veiculoId, nrPass, volume, peso, refrig;
     bool refrigeracao;
 
 
@@ -252,12 +253,13 @@ void Empresa::parseVehicleInfo() {
         getline(readFile, modelo);
         getline(readFile, ano);
         getline(readFile, clientId);
+        getline(readFile, veiculoId);
         getline(readFile, nrPass);
         getline(readFile, buffer);//limpar tracejado entre veiculos
 
 
 
-        VeiculoPassageiros *vp = new VeiculoPassageiros(marca, modelo, stoi(ano), stoi(clientId), stoi(nrPass));
+        VeiculoPassageiros *vp = new VeiculoPassageiros(marca, modelo, stoi(ano), stoi(clientId), stoi(veiculoId), stoi(nrPass));
 
 
         getClienteDono(stoi(clientId))->addVeiculo(vp);
@@ -275,12 +277,13 @@ void Empresa::parseVehicleInfo() {
         getline(readFile, modelo);
         getline(readFile, ano);
         getline(readFile, clientId);
+        getline(readFile, veiculoId);
         getline(readFile, volume);
         getline(readFile, peso);
         getline(readFile, refrig);
         refrigeracao = (refrig=="true");
 
-        VeiculoComercial *vc = new VeiculoComercial(marca, modelo, stoi(ano), stoi(clientId),
+        VeiculoComercial *vc = new VeiculoComercial(marca, modelo, stoi(ano), stoi(clientId), stoi(veiculoId),
                                                     stod(volume), stod(peso), refrigeracao);
         getClienteDono(stoi(clientId))->addVeiculo(vc);
         this->addVeiculo(vc);
@@ -307,7 +310,9 @@ void Empresa::parseReservasInfo() {
 
     readFile.open(this->reservasFile);
 
-    string buffer, dataInicio, dataFim, horaInicio, horaFim, veiculoId, preco, completado;
+    string buffer, dataInicio, dataFim, horaInicio, horaFim, preco, completado;
+    int veiculoId;
+    bool completed;
 
     while(!readFile.eof())
     {
@@ -315,27 +320,42 @@ void Empresa::parseReservasInfo() {
         getline(readFile, horaInicio);
         getline(readFile, dataFim);
         getline(readFile, horaFim);
-        getline(readFile, veiculoId);
+        getline(readFile, buffer);
         getline(readFile, preco);
         getline(readFile, completado);
 
-        //VeiculoComercial *vc = new VeiculoComercial(marca, modelo, stoi(ano), stoi(clientId),
-        //stod(volume), stod(peso), refrigeracao);
-        //getClienteDono(stoi(clientId))->addVeiculo(vc);
-        //this->addVeiculo(vc);
+        Data dataI = Data(dataInicio, horaInicio);
+        Data dataF = Data(dataFim, horaFim);
 
-        //getline(readFile, marca);//limpar lixo
+        veiculoId = stoi(buffer);
+
+        completed = (completado =="true");
+
+        Reserva *reserva = new Reserva(dataI, dataF, stoi(preco), completed);
+
+        Veiculo *veiculo = getVeiculo(veiculoId);
+
+        veiculo->addReserva(reserva);
+
+        getline(readFile, buffer);
     }
 
     cout << "Leu os veiculos com sucesso." << endl;
 }
 
 void Empresa::addVeiculo(Veiculo *v) {
-
     this->veiculos.push_back(v);
-
 }
 
 vector<Veiculo*> Empresa::getVeiculos() const{
     return veiculos;
+}
+
+Veiculo *Empresa::getVeiculo(int &veiculoId){
+    for(int i = 0; i < veiculos.size(); i++)
+    {
+        if(veiculos[i]->getVeiculoId() == veiculoId)
+            return veiculos[i];
+    }
+    return veiculos[0];//TODO
 }

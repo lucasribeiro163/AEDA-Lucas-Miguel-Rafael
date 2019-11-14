@@ -9,11 +9,12 @@
 
 using namespace std;
 
-Veiculo::Veiculo(string marca, string modelo, int ano, int clientId){
+Veiculo::Veiculo(string marca, string modelo, int ano, int clientId, int veiculoId){
     this->marca = marca;
     this->modelo = modelo;
     this->ano = ano;
     this->clientId = clientId;
+    this->veiculoId = veiculoId;
 }
 
 string Veiculo::getMarca()const{
@@ -40,12 +41,12 @@ void Veiculo::setAno(int &ano){
     this->ano = ano;
 }
 
-const vector<Data*> &Veiculo::getDisponiblidade() const {
-    return disponiblidade;
+const vector<Reserva*> &Veiculo::getReservas() const{
+    return reservas;
 }
 
-void Veiculo::setDisponiblidade(const vector<Data*> &disponiblidade) {
-    this->disponiblidade = disponiblidade;
+void Veiculo::addReserva(Reserva *reserva){
+    this->reservas.push_back(reserva);
 }
 
 int Veiculo::getClientId() const{
@@ -56,14 +57,22 @@ void Veiculo::setClientId(int &id){
     this->clientId = clientId;
 }
 
+int Veiculo::getVeiculoId() const{
+    return veiculoId;
+}
+
+void Veiculo::setVeiculoId(int &id){
+    this->veiculoId = id;
+}
+
 void Veiculo::print()const{
     cout << "Marca: " << marca << endl
     << "Modelo: " << modelo << endl
     << "Ano: " << ano << endl;
 }
 
-VeiculoPassageiros::VeiculoPassageiros(string marca, string modelo, int ano, int clientId, int nrPassageiros)
-        : Veiculo(marca, modelo, ano, clientId){
+VeiculoPassageiros::VeiculoPassageiros(string marca, string modelo, int ano, int clientId, int veiculoId, int nrPassageiros)
+        : Veiculo(marca, modelo, ano, clientId, veiculoId){
     this->nrPassageiros = nrPassageiros;
 };
 
@@ -80,9 +89,9 @@ void VeiculoPassageiros::print()const{
     cout << "Nr passageiros: " << nrPassageiros << endl;
 }
 
-VeiculoComercial::VeiculoComercial(string marca, string modelo, int ano, int clientId, double volume_carga, double peso_carga,
+VeiculoComercial::VeiculoComercial(string marca, string modelo, int ano, int clientId, int veiculoId, double volume_carga, double peso_carga,
                                    bool refrigeracao)
-        : Veiculo(marca, modelo, ano, clientId) {
+        : Veiculo(marca, modelo, ano, clientId, veiculoId) {
     this->volume_carga = volume_carga;
     this->peso_carga = peso_carga;
     this->refrigeracao = refrigeracao;

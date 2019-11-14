@@ -119,12 +119,6 @@
 		<Unit filename="C:/Users/migue/Desktop/FEUP/AEDA/Project/src/Reserva.h">
 			<Option target="Project"/>
 		</Unit>
-		<Unit filename="C:/Users/migue/Desktop/FEUP/AEDA/Project/src/Transacao.cpp">
-			<Option target="Project"/>
-		</Unit>
-		<Unit filename="C:/Users/migue/Desktop/FEUP/AEDA/Project/src/Transacao.h">
-			<Option target="Project"/>
-		</Unit>
 		<Unit filename="C:/Users/migue/Desktop/FEUP/AEDA/Project/src/Utilizador.cpp">
 			<Option target="Project"/>
 		</Unit>

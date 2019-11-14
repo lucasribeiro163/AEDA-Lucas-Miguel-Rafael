@@ -4,6 +4,28 @@
 
 #include "Hora.h"
 
+Hora::Hora(string &horaRecebida){
+    string buffer;
+    int hor, min, seg;
+
+    buffer = horaRecebida;
+    buffer.erase(2, 8);
+    hor = stoi(buffer);
+
+    buffer = horaRecebida;
+    buffer.erase(0, 3);
+    buffer.erase(2, 6);
+    min = stoi(buffer);
+
+    buffer=horaRecebida;
+    buffer.erase(0, 6);
+    seg = stoi(buffer);
+
+    this->hora = hor;
+    this->minuto = min;
+    this->segundo = seg;
+}
+
 int Hora::getHora() const {
     return hora;
 }

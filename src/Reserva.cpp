@@ -4,29 +4,39 @@
 
 #include "Reserva.h"
 
-const Data &Reserva::getData() const {
-    return data;
+Reserva::Reserva(Data &dataInicio, Data &dataFim, int preco, bool concretizacao) :
+        dataInicio(dataInicio), dataFim(dataFim)
+{
+    this->dataInicio = dataInicio;
+    this->dataFim = dataFim;
+    this->preco = preco;
+    this->concretizacao = concretizacao;
 }
 
-void Reserva::setData(const Data &data) {
-    Reserva::data = data;
+const Data &Reserva::getDataInicio() const{
+    return dataInicio;
 }
 
-const Veiculo &Reserva::getVeiculo() const {
-    return veiculo;
+void Reserva::setDataInicio(const Data &dataInicio){
+    this->dataInicio = dataInicio;
 }
 
-void Reserva::setVeiculo(const Veiculo &veiculo) {
-    Reserva::veiculo = veiculo;
+const Data &Reserva::getDataFim() const{
+    return dataFim;
 }
 
-const Transacao &Reserva::getPagamento() const {
-    return pagamento;
+void Reserva::setDataFim(const Data &dataFim){
+    this->dataFim = dataFim;
 }
 
-void Reserva::setPagamento(const Transacao &pagamento) {
-    Reserva::pagamento = pagamento;
+const int Reserva::getPreco(){
+    return preco;
 }
+
+const void Reserva::setPreco(int &preco){
+    this->preco = preco;
+}
+
 
 bool Reserva::isConcretizacao() const {
     return concretizacao;

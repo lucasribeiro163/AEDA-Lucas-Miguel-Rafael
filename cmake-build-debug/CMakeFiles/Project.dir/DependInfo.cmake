@@ -11,7 +11,6 @@ set(CMAKE_DEPENDS_CHECK_CXX
   "C:/Users/migue/Desktop/FEUP/AEDA/Project/src/Menu.cpp" "C:/Users/migue/Desktop/FEUP/AEDA/Project/cmake-build-debug/CMakeFiles/Project.dir/src/Menu.cpp.obj"
   "C:/Users/migue/Desktop/FEUP/AEDA/Project/src/Preferencia.cpp" "C:/Users/migue/Desktop/FEUP/AEDA/Project/cmake-build-debug/CMakeFiles/Project.dir/src/Preferencia.cpp.obj"
   "C:/Users/migue/Desktop/FEUP/AEDA/Project/src/Reserva.cpp" "C:/Users/migue/Desktop/FEUP/AEDA/Project/cmake-build-debug/CMakeFiles/Project.dir/src/Reserva.cpp.obj"
-  "C:/Users/migue/Desktop/FEUP/AEDA/Project/src/Transacao.cpp" "C:/Users/migue/Desktop/FEUP/AEDA/Project/cmake-build-debug/CMakeFiles/Project.dir/src/Transacao.cpp.obj"
   "C:/Users/migue/Desktop/FEUP/AEDA/Project/src/Utilizador.cpp" "C:/Users/migue/Desktop/FEUP/AEDA/Project/cmake-build-debug/CMakeFiles/Project.dir/src/Utilizador.cpp.obj"
   "C:/Users/migue/Desktop/FEUP/AEDA/Project/src/Veiculo.cpp" "C:/Users/migue/Desktop/FEUP/AEDA/Project/cmake-build-debug/CMakeFiles/Project.dir/src/Veiculo.cpp.obj"
   )
