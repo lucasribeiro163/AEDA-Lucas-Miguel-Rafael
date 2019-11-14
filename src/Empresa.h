@@ -32,6 +32,7 @@ public:
     void addClienteDono(ClienteDono &clienteDono);
     void parseClientInfo();
     void parseVehicleInfo();
+    void parseReservasInfo();
     void saveClientInfo();
     void printVeiculos() const;
     void addVeiculo(Veiculo* v);

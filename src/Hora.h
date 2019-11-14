@@ -4,7 +4,9 @@
 
 #ifndef UNTITLED_HORA_H
 #define UNTITLED_HORA_H
+#include <string>
 
+using namespace std;
 
 class Hora {
 
