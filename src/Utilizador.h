@@ -81,16 +81,30 @@ public:
 class ClienteDono : public Cliente{
 
     vector<Veiculo*> veiculos;
+    vector<VeiculoPassageiros*> veiculosPassageiros;
+    vector<VeiculoComercial*> veiculosComerciais;
+
 
 public:
 
     ClienteDono(string nome, int nif, string preferencias, string password);
 
-    const vector<Veiculo *> &getVeiculos() const;
+    vector<Veiculo *>* getVeiculos();
+
+    vector<VeiculoComercial *>* getVeiculosComerciais();
+
+    vector<VeiculoPassageiros *>* getVeiculosPassageiros();
 
     void setVeiculos(const vector<Veiculo *> &veiculos);
 
     void addVeiculo(Veiculo* veiculo);
+
+    void addVeiculoComercial(VeiculoComercial* veiculo);
+
+    void addVeiculoPassageiros(VeiculoPassageiros* veiculo);
+
+
+    void printCars();
 };
 
 

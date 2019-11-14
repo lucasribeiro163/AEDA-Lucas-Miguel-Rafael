@@ -29,6 +29,11 @@ public:
     string askHourIn();
     string askHourOut();
     void manageFleet();
+    void removeCar();
+    void viewCars();
+    void updateCar();
+    void updateCargoVehicle();
+    void updatePassengerVehicle();
 
     };
 

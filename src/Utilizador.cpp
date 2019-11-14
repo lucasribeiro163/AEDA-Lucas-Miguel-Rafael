@@ -101,9 +101,19 @@ void Cliente::addToHistorico(Reserva &reserva) {
 ClienteDono::ClienteDono(string nome, int nif, string preferencias, string password)
         : Cliente(nome, nif, preferencias, password){}
 
-const vector<Veiculo *> &ClienteDono::getVeiculos() const {
-    return veiculos;
+vector<Veiculo *>* ClienteDono::getVeiculos(){
+    return &veiculos;
 }
+
+vector<VeiculoComercial *>* ClienteDono::getVeiculosComerciais() {
+    return &veiculosComerciais;
+}
+
+vector<VeiculoPassageiros *>* ClienteDono::getVeiculosPassageiros() {
+    return &veiculosPassageiros;
+
+}
+
 
 void ClienteDono::setVeiculos(const vector<Veiculo *> &veiculos) {
     this->veiculos = veiculos;
@@ -112,5 +122,28 @@ void ClienteDono::setVeiculos(const vector<Veiculo *> &veiculos) {
 void ClienteDono::addVeiculo(Veiculo* veiculo) {
 
     veiculos.push_back(veiculo);
+
+}
+
+void ClienteDono::addVeiculoPassageiros(VeiculoPassageiros *veiculo) {
+
+    veiculosPassageiros.push_back(veiculo);
+
+}
+void ClienteDono::addVeiculoComercial(VeiculoComercial *veiculo) {
+
+    veiculosComerciais.push_back(veiculo);
+
+}
+
+void ClienteDono::printCars() {
+
+    for(int i=0; i < this->veiculos.size(); i++){
+
+        this->veiculos.at(i)->print();
+        cout << "----------" << endl;
+
+    }
+
 
 }

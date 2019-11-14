@@ -263,8 +263,10 @@ void Empresa::parseVehicleInfo() {
 
 
         getClienteDono(stoi(clientId))->addVeiculo(vp);
+        getClienteDono(stoi(clientId))->addVeiculoPassageiros(vp);
 
         this->veiculosPassageiros.push_back(vp);
+
         this->addVeiculo(vp);
 
 
@@ -286,6 +288,7 @@ void Empresa::parseVehicleInfo() {
         VeiculoComercial *vc = new VeiculoComercial(marca, modelo, stoi(ano), stoi(veiculoId),
                                                     stod(volume), stod(peso), refrigeracao);
         getClienteDono(stoi(clientId))->addVeiculo(vc);
+        getClienteDono(stoi(clientId))->addVeiculoComercial(vc);
         this->addVeiculo(vc);
         this->veiculosComerciais.push_back(vc);
 
@@ -351,7 +354,6 @@ void Empresa::addVeiculo(Veiculo *v) {
 vector<Veiculo*> Empresa::getVeiculos() const{
     return veiculos;
 }
-
 
 void Empresa::saveVehicleInfo(){
     ofstream file;

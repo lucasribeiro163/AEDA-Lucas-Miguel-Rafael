@@ -246,7 +246,7 @@ void Menu::advertiseVehicle() {
 
         cout << cd->getNome() << endl;
         cout << cd->getPassword() << endl;
-        cd->getVeiculos().at(0)->print();
+        cd->getVeiculos()->at(0)->print();
     }
         choose();
 }
@@ -365,25 +365,244 @@ void Menu::dayRentVehicle() {
 void Menu::manageFleet(){
 
     cout << "\nWhat would you like to do?\n"
-         << "1 - Remove a car from fleet\n";
+         << "1 - View all cars on your fleet\n"
+         << "2 - Remove a car from fleet\n"
+         << "3 - Update the info of a car from fleet\n";
 
-    string option;
-    cin.ignore();
-    getline(cin, option);
+    char option;
+    cin >> option;
 
-    if(stoi(option) < 1 && stoi(option) > 3) {
+    if(option < '1' && option > '3') {
         cout << "Invalid option" << endl;
         choose();
     }
     else{
-        switch(stoi(option)){
-            case(1):
+        switch(option){
+            case('1'):
                 cin.clear();
-                //removeCarFromFleet();
+                viewCars();
+                break;
+            case('2'):
+                cin.clear();
+                removeCar();
+                break;
+            case('3'):
+                cin.clear();
+                updateCar();
                 break;
         }
+
+    }
+}
+
+void Menu::removeCar() {
+
+    ClienteDono *cd = this->empresa.getClienteDono(this->visitanteAtual->getId());
+
+    cout << "What's the id of the car you wanna remove from your fleet? ";
+    int id;
+    cin >> id;
+
+    for (int i = 0; i < cd->getVeiculos()->size(); i++) {
+
+        if (cd->getVeiculos()->at(i)->getId() == id)
+            cd->getVeiculos()->erase(cd->getVeiculos()->begin() + i);
+
     }
 
 
+    cout << "Do you want to see what cars you have left in your fleet? (Y-N)";
+    char option;
+    cin >> option;
+
+    if (option == 'Y'){
+        cd->printCars();
+        cout << "\nPress any key to go back to your management options?";
+        cin.get();
+        manageFleet();
+    }
+    else
+        choose();
+
+
+}
+
+void Menu::viewCars() {
+
+    ClienteDono *cd = this->empresa.getClienteDono(this->visitanteAtual->getId());
+    cd->printCars();
+
+    cout << "\nPress any key to go back to your management options?";
+    cin.get();
+    manageFleet();
+
+}
+
+
+void Menu::updateCar() {
+
+
+    ClienteDono *cd = this->empresa.getClienteDono(this->visitanteAtual->getId());
+
+    cout << "What's the type of the car whose info you wanna edit? (1-2)";
+    int option;
+    cin >> option;
+
+    if(option == 1)
+        updatePassengerVehicle();
+    else if(option == 2)
+        updateCargoVehicle();
+
+    cout << "Do you want to see what cars you have left in your fleet? (Y-N)";
+    char option2;
+    cin >> option2;
+
+    if (option2 == 'Y'){
+        cd->printCars();
+        cout << "\nPress any key to go back to your management options?";
+        cin.get();
+        manageFleet();
+    }
+    else
+        choose();
+}
+
+void Menu::updateCargoVehicle() {
+
+    ClienteDono *cd = this->empresa.getClienteDono(this->visitanteAtual->getId());
+
+    VeiculoComercial *v;
+
+    cout << "What's the id of the car whose info you wanna edit? ";
+    int id;
+    cin >> id;
+
+
+    for (int i = 0; i < cd->getVeiculosComerciais()->size(); i++) {
+
+        if (cd->getVeiculosComerciais()->at(i)->getId() == id)
+            v = cd->getVeiculosComerciais()->at(i);
+
+    }
+
+    bool done = false;
+
+    while(!done) {
+
+        cout << "What detail do you wanna change? \n"
+                "1-Brand\n"
+                "2-Model\n"
+                "3-Year\n"
+                "4-Maximum Cargo volume\n"
+                "5-Maximum cargo weight\n"
+                "6-Referigeration ability\n";
+
+        char option;
+        cin >> option;
+
+        cout << "Insert new value: ";
+
+        if (option == ('1')) {
+            string marca;
+            cin >> marca;
+            v->setMarca(marca);
+        } else if (option == ('2')) {
+            string modelo;
+            cin >> modelo;
+            v->setModelo(modelo);
+        } else if (option == ('3')) {
+            int ano;
+            cin >> ano;
+            v->setAno(ano);
+        } else if (option == ('4')) {
+            int volume;
+            cin >> volume;
+            v->setVolumeCarga(volume);
+        } else if (option == ('5')) {
+            int peso;
+            cin >> peso;
+            v->setPesoCarga(peso);
+        } else if (option == ('6')) {
+            cout << "(0-1) ";
+            bool refri;
+            cin >> refri;
+            v->setRefrigeracao(refri);
+        }
+
+        char option2;
+        cout << "\nDo you wanna edit anything else? (Y-N) ";
+        cin >> option2;
+
+        if (option2 != 'Y')
+            done = true;
+
+
+    }
+
+
+}
+
+void Menu::updatePassengerVehicle() {
+
+
+    ClienteDono *cd = this->empresa.getClienteDono(this->visitanteAtual->getId());
+
+
+    VeiculoPassageiros *v;
+
+    cout << "What's the id of the car whose info you wanna edit? ";
+    int id;
+    cin >> id;
+
+
+    for (int i = 0; i < cd->getVeiculosPassageiros()->size(); i++) {
+
+        if (cd->getVeiculosPassageiros()->at(i)->getId() == id)
+            v = cd->getVeiculosPassageiros()->at(i);
+
+    }
+
+    bool done = false;
+
+    while(!done) {
+
+        cout << "What detail do you wanna change? \n"
+                "1-Brand\n"
+                "2-Model\n"
+                "3-Year\n"
+                "4-Number of Passengers\n";
+
+        char option;
+        cin >> option;
+
+        cout << "Insert new value: ";
+
+        if (option == ('1')) {
+            string marca;
+            cin >> marca;
+            v->setMarca(marca);
+        } else if (option == ('2')) {
+            string modelo;
+            cin >> modelo;
+            v->setModelo(modelo);
+        } else if (option == ('3')) {
+            int ano;
+            cin >> ano;
+            v->setAno(ano);
+        } else if (option == ('4')) {
+            int nrpass;
+            cin >> nrpass;
+            v->setNrPassageiros(nrpass);
+        }
+
+        char option2;
+        cout << "\nDo you wanna edit anything else? (Y-N) ";
+        cin >> option2;
+
+        if(option2 != 'Y')
+            done = true;
+
+
+    }
 
 }
