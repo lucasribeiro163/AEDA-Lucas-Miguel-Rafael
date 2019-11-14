@@ -128,3 +128,4 @@ void VeiculoComercial::print() const{
         cout << "Tem refrigeracao" << endl;
     }
 }
+

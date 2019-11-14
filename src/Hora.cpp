@@ -26,6 +26,8 @@ Hora::Hora(string &horaRecebida){
     this->segundo = seg;
 }
 
+
+
 int Hora::getHora() const {
     return hora;
 }

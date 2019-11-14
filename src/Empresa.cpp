@@ -264,7 +264,7 @@ void Empresa::parseVehicleInfo() {
 
         getClienteDono(stoi(clientId))->addVeiculo(vp);
 
-
+        this->veiculosPassageiros.push_back(vp);
         this->addVeiculo(vp);
 
 
@@ -287,6 +287,7 @@ void Empresa::parseVehicleInfo() {
                                                     stod(volume), stod(peso), refrigeracao);
         getClienteDono(stoi(clientId))->addVeiculo(vc);
         this->addVeiculo(vc);
+        this->veiculosComerciais.push_back(vc);
 
         getline(readFile, marca);//limpar lixo
     }
@@ -349,6 +350,46 @@ void Empresa::addVeiculo(Veiculo *v) {
 
 vector<Veiculo*> Empresa::getVeiculos() const{
     return veiculos;
+}
+
+
+void Empresa::saveVehicleInfo(){
+    ofstream file;
+    stringstream line;
+    file.open(veiculosFile);
+    Veiculo *v;
+    line << "VeiculoPassageiros" << endl;
+    for (size_t i = 0; i < veiculosPassageiros.size();i++)
+    {
+        line << veiculosPassageiros.at(i)->getMarca() << endl;
+        line << veiculosPassageiros.at(i)->getModelo() << endl;
+        line << veiculosPassageiros.at(i)->getAno() << endl;
+        line << veiculosPassageiros.at(i)->getClientId() << endl;
+        line << veiculosPassageiros.at(i)->getNrPassageiros() << endl;
+        line << "----------" << endl;
+        file << line.str();
+        line.str("");
+    }
+    line << "VeiculoComercial" << endl;
+
+    for (size_t i = 0; i < veiculosComerciais.size();i++)
+    {
+        line << veiculosComerciais.at(i)->getMarca() << endl;
+        line << veiculosComerciais.at(i)->getModelo() << endl;
+        line << veiculosComerciais.at(i)->getAno() << endl;
+        line << veiculosComerciais.at(i)->getClientId() << endl;
+        line << veiculosComerciais.at(i)->getVolumeCarga() << endl;
+        line << veiculosComerciais.at(i)->getPesoCarga() << endl;
+        if(veiculosComerciais.at(i)->hasRefrigeracao())
+            line << "true" << endl;
+        else line << "false" << endl;
+        line << "----------";
+        if (i != veiculosComerciais.size()-1)
+            line << endl;
+        file << line.str();
+        line.str("");
+    }
+    file.close();
 }
 
 Veiculo *Empresa::getVeiculo(int &veiculoId){

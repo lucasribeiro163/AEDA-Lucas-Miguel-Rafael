@@ -87,6 +87,7 @@ public:
     void setRefrigeracao(bool &refrigeracao);
 
     void print()const;
+
 };
 
 #endif //UNTITLED_VEICULO_H
