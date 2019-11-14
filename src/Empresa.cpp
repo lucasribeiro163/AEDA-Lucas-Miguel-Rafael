@@ -259,7 +259,7 @@ void Empresa::parseVehicleInfo() {
 
 
 
-        VeiculoPassageiros *vp = new VeiculoPassageiros(marca, modelo, stoi(ano), stoi(clientId), stoi(veiculoId), stoi(nrPass));
+        VeiculoPassageiros *vp = new VeiculoPassageiros(marca, modelo, stoi(ano), stoi(veiculoId), stoi(nrPass));
 
 
         getClienteDono(stoi(clientId))->addVeiculo(vp);
@@ -283,7 +283,7 @@ void Empresa::parseVehicleInfo() {
         getline(readFile, refrig);
         refrigeracao = (refrig=="true");
 
-        VeiculoComercial *vc = new VeiculoComercial(marca, modelo, stoi(ano), stoi(clientId), stoi(veiculoId),
+        VeiculoComercial *vc = new VeiculoComercial(marca, modelo, stoi(ano), stoi(veiculoId),
                                                     stod(volume), stod(peso), refrigeracao);
         getClienteDono(stoi(clientId))->addVeiculo(vc);
         this->addVeiculo(vc);
@@ -354,7 +354,7 @@ vector<Veiculo*> Empresa::getVeiculos() const{
 Veiculo *Empresa::getVeiculo(int &veiculoId){
     for(int i = 0; i < veiculos.size(); i++)
     {
-        if(veiculos[i]->getVeiculoId() == veiculoId)
+        if(veiculos[i]->getId() == veiculoId)
             return veiculos[i];
     }
     return veiculos[0];//TODO

@@ -5,6 +5,7 @@
 #include <iostream>
 #include "Menu.h"
 #include "Veiculo.h"
+#include <ctype.h>
 
 using namespace std;
 
@@ -89,30 +90,36 @@ void Menu::choose() {
     cout << "\nWhat would you like to do?\n"
     << "1 - See all the company's cars\n"
     << "2 - Rent a vehicle" << endl
-    << "3 - Advertise a vehicle" << endl;
+    << "3 - Advertise a vehicle" << endl
+    << "4 - Manage your fleet" << endl;
 
-    string option;
-    cin.ignore();
-    getline(cin, option);
+    char option;
+    cin >> option;
+    cin.clear();
 
-    if(stoi(option) < 1 && stoi(option) > 3) {
+    if(option < '1' || option > '4') {
+        cin.clear();
         cout << "Invalid option" << endl;
         choose();
     }
     else{
-        switch(stoi(option)){
-            case(1):
+        switch(option){
+            case('1'):
                 cin.clear();
                 empresa.printVeiculos();
                 choose();
                 break;
-            case(2):
+            case('2'):
                 cin.clear();
                 rentVehicle();
                 break;
-            case(3):
+            case('3'):
                 cin.clear();
                 advertiseVehicle();
+                break;
+            case('4'):
+                cin.clear();
+                manageFleet();
                 break;
         }
     }
@@ -179,7 +186,7 @@ void Menu::advertiseVehicle() {
         int nr_pass;
         cin >> nr_pass;
 
-        v = new VeiculoPassageiros(marca, modelo, ano, this->visitanteAtual->getId(), this->empresa.getVeiculos().size(), nr_pass);
+        v = new VeiculoPassageiros(marca, modelo, ano, this->visitanteAtual->getId(), nr_pass);
         this->empresa.addVeiculo(v);
     }
     else if(tipo == 2){
@@ -201,8 +208,7 @@ void Menu::advertiseVehicle() {
         else if(tmp == 'N')
             referigeracao = false;
 
-        v = new VeiculoComercial(marca, modelo, ano, this->visitanteAtual->getId(), this->empresa.getVeiculos().size(),
-                volume_carga, peso_carga, referigeracao);
+        v = new VeiculoComercial(marca, modelo, ano, this->visitanteAtual->getId(), volume_carga, peso_carga, referigeracao);
         this->empresa.addVeiculo(v);
         this->empresa.addVeiculo(v);
 
@@ -245,19 +251,139 @@ void Menu::advertiseVehicle() {
         choose();
 }
 
-void Menu::hourRentVehicle(){
+bool Menu::checkHourFormat(string hora){
 
-    cout << "What day do you wanna rent the vehicle?" << endl << "Insert the day in the following format (dd-mm-aaaa): ";
+    if(hora.size() > 5)
+        return false;
 
-    string option;
-    cin >> option;
+    for(int i=0; i < hora.size(); i++){
 
+        if(i==2){
+            if(hora.at(i) != ':') {
+                cout << "ERRO1 " << i;
+                return false;
+            }
+        }
+        else if(!isdigit(hora.at(i))) {
+            cout << "ERRO2 " << i;
+            return false;
+        }
+    }
 
+    return true;
 
+}
+
+bool Menu::checkDateFormat(string data){
+
+    if(data.size() > 10)
+        return false;
+
+    for(int i=0; i < data.size(); i++) {
+
+        if (i == 2 || i == 5){
+            if(data.at(i) != '-'){
+                return false;
+            }
+        }
+        else if(!isdigit(data.at(i))) {
+            return false;
+        }
+    }
+
+    return true;
+
+}
+
+string Menu::askDate(){
+
+    cout << "\nWhat day do you wanna rent the vehicle?" << endl << "Insert the day in the following format (dd-mm-aaaa): ";
+    string data;
+    cin >> data;
+
+    if(!checkDateFormat(data)) {
+        cout << "\nFormato de data invalido. Try again." << endl;
+        askDate();
+    }
+
+    return data;
 
 
 }
+
+string Menu::askHourIn(){
+
+    cout << "\nWhat time would you like to pick up the vehicle? "<< endl << "Insert the hour in the following format (hh:mm): ";
+    string hora;
+    cin >> hora;
+
+    if(!checkHourFormat(hora)) {
+        cout << "\nFormato de hora invalido. Try again." << endl;
+        askHourIn();
+    }
+
+    return hora;
+
+}
+
+string Menu::askHourOut(){
+
+    cout << "\nWhat time would you like to drop off the vehicle? "<< endl << "Insert the hour in the following format (hh:mm): ";
+    string hora;
+    cin >> hora;
+
+    if(!checkHourFormat(hora)) {
+        cout << "\nFormato de hora invalido. Try again." << endl;
+        askHourOut();
+    }
+
+    return hora;
+
+}
+
+
+void Menu::hourRentVehicle(){
+
+    string data = askDate();
+    string horaIn = askHourIn();
+    string horaOut = askHourOut();
+
+    cout << endl << data << endl << horaIn << endl << horaOut << endl << endl;
+
+
+
+    //verificar reservas e encontrar lista de carros disponiveis, dar display, pessoa escolhe id do carro que quer e pow
+
+
+}
+
+
 void Menu::dayRentVehicle() {
     cout << "dayRent" << endl;
 }
 
+void Menu::manageFleet(){
+
+    cout << "\nWhat would you like to do?\n"
+         << "1 - Remove a car from fleet\n";
+
+    string option;
+    cin.ignore();
+    getline(cin, option);
+
+    if(stoi(option) < 1 && stoi(option) > 3) {
+        cout << "Invalid option" << endl;
+        choose();
+    }
+    else{
+        switch(stoi(option)){
+            case(1):
+                cin.clear();
+                //removeCarFromFleet();
+                break;
+        }
+    }
+
+
+
+}

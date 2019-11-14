@@ -9,13 +9,15 @@
 
 using namespace std;
 
-Veiculo::Veiculo(string marca, string modelo, int ano, int clientId, int veiculoId){
+Veiculo::Veiculo(string marca, string modelo, int ano, int clientId){
     this->marca = marca;
     this->modelo = modelo;
     this->ano = ano;
     this->clientId = clientId;
-    this->veiculoId = veiculoId;
+    this->id = this->nrVeiculos++;
 }
+
+int Veiculo::nrVeiculos = 1;
 
 string Veiculo::getMarca()const{
     return this->marca;
@@ -31,6 +33,12 @@ string Veiculo::getModelo()const{
 
 void Veiculo::setModelo(string &modelo){
     this->modelo = modelo;
+}
+
+int Veiculo::getId() const {
+
+    return id;
+
 }
 
 int Veiculo::getAno()const{
@@ -57,22 +65,14 @@ void Veiculo::setClientId(int &id){
     this->clientId = clientId;
 }
 
-int Veiculo::getVeiculoId() const{
-    return veiculoId;
-}
-
-void Veiculo::setVeiculoId(int &id){
-    this->veiculoId = id;
-}
-
 void Veiculo::print()const{
     cout << "Marca: " << marca << endl
     << "Modelo: " << modelo << endl
     << "Ano: " << ano << endl;
 }
 
-VeiculoPassageiros::VeiculoPassageiros(string marca, string modelo, int ano, int clientId, int veiculoId, int nrPassageiros)
-        : Veiculo(marca, modelo, ano, clientId, veiculoId){
+VeiculoPassageiros::VeiculoPassageiros(string marca, string modelo, int ano, int clientId, int nrPassageiros)
+        : Veiculo(marca, modelo, ano, clientId){
     this->nrPassageiros = nrPassageiros;
 };
 
@@ -89,9 +89,9 @@ void VeiculoPassageiros::print()const{
     cout << "Nr passageiros: " << nrPassageiros << endl;
 }
 
-VeiculoComercial::VeiculoComercial(string marca, string modelo, int ano, int clientId, int veiculoId, double volume_carga, double peso_carga,
+VeiculoComercial::VeiculoComercial(string marca, string modelo, int ano, int clientId, double volume_carga, double peso_carga,
                                    bool refrigeracao)
-        : Veiculo(marca, modelo, ano, clientId, veiculoId) {
+        : Veiculo(marca, modelo, ano, clientId) {
     this->volume_carga = volume_carga;
     this->peso_carga = peso_carga;
     this->refrigeracao = refrigeracao;

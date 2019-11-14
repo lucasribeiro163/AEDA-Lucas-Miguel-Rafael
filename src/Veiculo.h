@@ -15,12 +15,13 @@ using namespace std;
 class Veiculo {
 
     string marca, modelo;
-    int ano, clientId, veiculoId;
-
+    int ano, clientId, id;
     vector<Reserva*> reservas;
 public:
 
-    Veiculo(string marca, string modelo, int ano, int clientId, int veiculoId);
+    static int nrVeiculos;
+
+    Veiculo(string marca, string modelo, int ano, int clientId);
 
     virtual const vector<Reserva*> &getReservas() const;
 
@@ -42,9 +43,7 @@ public:
 
     virtual void setClientId(int &id);
 
-    virtual int getVeiculoId() const;
-
-    virtual void setVeiculoId(int &id);
+    virtual int getId() const;
 
     virtual void print()const;
 
@@ -57,7 +56,7 @@ class VeiculoPassageiros : public Veiculo{
 
 public:
 
-    VeiculoPassageiros(string marca, string modelo, int ano, int clientId, int VeiculoId, int nrPassageiros);
+    VeiculoPassageiros(string marca, string modelo, int ano, int clientId, int nrPassageiros);
     int getNrPassageiros() const;
     void setNrPassageiros(int nrPassageiros);
 
@@ -73,7 +72,7 @@ class VeiculoComercial : public Veiculo{
 
 public:
 
-    VeiculoComercial(string marca, string modelo, int ano, int clientId, int VeiculoId, double volume_carga, double peso_carga, bool refrigeracao);
+    VeiculoComercial(string marca, string modelo, int ano, int clientId, double volume_carga, double peso_carga, bool refrigeracao);
 
     double getVolumeCarga() const;
 

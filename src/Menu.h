@@ -23,7 +23,14 @@ public:
     void dayRentVehicle();
     void weekRentVehicle();
     void monthRentVehicle();
-};
+    bool checkDateFormat(string data);
+    bool checkHourFormat(string hora);
+    string askDate();
+    string askHourIn();
+    string askHourOut();
+    void manageFleet();
+
+    };
 
 
 #endif //PROJECT_MENU_H
