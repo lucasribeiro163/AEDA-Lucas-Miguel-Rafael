@@ -4,28 +4,6 @@
 
 #include "Data.h"
 
-Data::Data(string data){
-    string buffer;
-    int ano, mes, dia;
-
-    buffer = data;
-    buffer.erase(2, 8);
-    dia = stoi(buffer);
-
-    buffer = data;
-    buffer.erase(0, 3);
-    buffer.erase(2, 6);
-    mes = stoi(buffer);
-
-    buffer=data;
-    buffer.erase(0, 6);
-    ano = stoi(buffer);
-
-    this->ano = ano;
-    this->mes = mes;
-    this->dia = dia;
-}
-
 int Data::getAno() const {
     return ano;
 }
