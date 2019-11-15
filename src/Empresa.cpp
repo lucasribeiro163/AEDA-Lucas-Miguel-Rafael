@@ -124,9 +124,7 @@ ClienteDono *Empresa::getClienteDono(int id){
 void Empresa::parseClientInfo(){
     //clientes tem de estar na ordem: visitanteRegistado, Cliente, ClienteDono
     fstream readFile;
-    cout << "Criou fstream" << endl;
     readFile.open(this->empresaFile);
-    cout << "Abriu ficheiro" << endl;
     getline(readFile, this->clientesFile);//nome ficheiro clientes esta em empresa.txt
     getline(readFile, this->veiculosFile);//nome ficheiro reservas esta em empresa.txt
     getline(readFile, this->reservasFile);//nome ficheiro reservas esta em empresa.txt
@@ -184,7 +182,6 @@ void Empresa::parseClientInfo(){
     }
     readFile.close();
 
-    cout << "Leu os clientes com sucesso." << endl;
 }
 void Empresa::saveClientInfo(){
     ofstream file;
@@ -295,7 +292,6 @@ void Empresa::parseVehicleInfo() {
         getline(readFile, marca);//limpar lixo
     }
 
-    cout << "Leu os veiculos com sucesso." << endl;
 }
 
 void Empresa::printVeiculos() const{
@@ -344,7 +340,6 @@ void Empresa::parseReservasInfo() {
         getline(readFile, buffer);
     }
 
-    cout << "Leu os veiculos com sucesso." << endl;
 }
 
 void Empresa::addVeiculo(Veiculo *v) {
@@ -354,6 +349,31 @@ void Empresa::addVeiculo(Veiculo *v) {
 vector<Veiculo*> Empresa::getVeiculos() const{
     return veiculos;
 }
+
+vector<VeiculoComercial*> Empresa::getVeiculosComerciais() const{
+    return veiculosComerciais;
+}
+
+
+vector<VeiculoPassageiros*> Empresa::getVeiculosPassageiros() const {
+    return veiculosPassageiros;
+}
+
+void removeByNrPassengers(vector<VeiculoPassageiros* >* veiculosPassageiros, int min_pass){
+
+    for(int i =0; i < veiculosPassageiros->size(); i++){
+
+        if(veiculosPassageiros->at(i)->getNrPassageiros() <= min_pass)
+            veiculosPassageiros->erase(veiculosPassageiros->begin() + i);
+
+    }
+
+}
+
+
+
+
+
 
 void Empresa::saveVehicleInfo(){
     ofstream file;

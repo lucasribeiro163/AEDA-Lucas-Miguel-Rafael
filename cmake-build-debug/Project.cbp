@@ -8,18 +8,18 @@
 		<Option virtualFolders="CMake Files\;"/>
 		<Build>
 			<Target title="all">
-				<Option working_dir="C:/Users/migue/Desktop/FEUP/AEDA/Project/cmake-build-debug"/>
+				<Option working_dir="C:/Users/Lucas/Desktop/AEDA-Lucas-Miguel-Rafael/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="C:/PROGRA~1/MINGW-~1/X86_64~1.0-P/mingw64/bin/mingw32-make.exe -f &quot;C:/Users/migue/Desktop/FEUP/AEDA/Project/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
-					<CompileFile command="C:/PROGRA~1/MINGW-~1/X86_64~1.0-P/mingw64/bin/mingw32-make.exe -f &quot;C:/Users/migue/Desktop/FEUP/AEDA/Project/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="C:/PROGRA~1/MINGW-~1/X86_64~1.0-P/mingw64/bin/mingw32-make.exe -f &quot;C:/Users/migue/Desktop/FEUP/AEDA/Project/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="C:/PROGRA~1/MINGW-~1/X86_64~1.0-P/mingw64/bin/mingw32-make.exe -f &quot;C:/Users/migue/Desktop/FEUP/AEDA/Project/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="C:/PROGRA~1/MINGW-~1/X86_64~1.0-P/mingw64/bin/mingw32-make.exe -f &quot;C:/Users/Lucas/Desktop/AEDA-Lucas-Miguel-Rafael/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="C:/PROGRA~1/MINGW-~1/X86_64~1.0-P/mingw64/bin/mingw32-make.exe -f &quot;C:/Users/Lucas/Desktop/AEDA-Lucas-Miguel-Rafael/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="C:/PROGRA~1/MINGW-~1/X86_64~1.0-P/mingw64/bin/mingw32-make.exe -f &quot;C:/Users/Lucas/Desktop/AEDA-Lucas-Miguel-Rafael/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="C:/PROGRA~1/MINGW-~1/X86_64~1.0-P/mingw64/bin/mingw32-make.exe -f &quot;C:/Users/Lucas/Desktop/AEDA-Lucas-Miguel-Rafael/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="Project">
-				<Option output="C:/Users/migue/Desktop/FEUP/AEDA/Project/cmake-build-debug/Project.exe" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="C:/Users/migue/Desktop/FEUP/AEDA/Project/cmake-build-debug"/>
+				<Option output="C:/Users/Lucas/Desktop/AEDA-Lucas-Miguel-Rafael/cmake-build-debug/Project.exe" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="C:/Users/Lucas/Desktop/AEDA-Lucas-Miguel-Rafael/cmake-build-debug"/>
 				<Option object_output="./"/>
 				<Option type="1"/>
 				<Option compiler="gcc"/>
@@ -32,15 +32,15 @@
 					<Add directory="C:/Program Files/mingw-w64/x86_64-8.1.0-posix-seh-rt_v6-rev0/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/8.1.0/../../../../x86_64-w64-mingw32/include"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="C:/PROGRA~1/MINGW-~1/X86_64~1.0-P/mingw64/bin/mingw32-make.exe -f &quot;C:/Users/migue/Desktop/FEUP/AEDA/Project/cmake-build-debug/Makefile&quot;  VERBOSE=1 Project"/>
-					<CompileFile command="C:/PROGRA~1/MINGW-~1/X86_64~1.0-P/mingw64/bin/mingw32-make.exe -f &quot;C:/Users/migue/Desktop/FEUP/AEDA/Project/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="C:/PROGRA~1/MINGW-~1/X86_64~1.0-P/mingw64/bin/mingw32-make.exe -f &quot;C:/Users/migue/Desktop/FEUP/AEDA/Project/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="C:/PROGRA~1/MINGW-~1/X86_64~1.0-P/mingw64/bin/mingw32-make.exe -f &quot;C:/Users/migue/Desktop/FEUP/AEDA/Project/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="C:/PROGRA~1/MINGW-~1/X86_64~1.0-P/mingw64/bin/mingw32-make.exe -f &quot;C:/Users/Lucas/Desktop/AEDA-Lucas-Miguel-Rafael/cmake-build-debug/Makefile&quot;  VERBOSE=1 Project"/>
+					<CompileFile command="C:/PROGRA~1/MINGW-~1/X86_64~1.0-P/mingw64/bin/mingw32-make.exe -f &quot;C:/Users/Lucas/Desktop/AEDA-Lucas-Miguel-Rafael/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="C:/PROGRA~1/MINGW-~1/X86_64~1.0-P/mingw64/bin/mingw32-make.exe -f &quot;C:/Users/Lucas/Desktop/AEDA-Lucas-Miguel-Rafael/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="C:/PROGRA~1/MINGW-~1/X86_64~1.0-P/mingw64/bin/mingw32-make.exe -f &quot;C:/Users/Lucas/Desktop/AEDA-Lucas-Miguel-Rafael/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="Project/fast">
-				<Option output="C:/Users/migue/Desktop/FEUP/AEDA/Project/cmake-build-debug/Project.exe" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="C:/Users/migue/Desktop/FEUP/AEDA/Project/cmake-build-debug"/>
+				<Option output="C:/Users/Lucas/Desktop/AEDA-Lucas-Miguel-Rafael/cmake-build-debug/Project.exe" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="C:/Users/Lucas/Desktop/AEDA-Lucas-Miguel-Rafael/cmake-build-debug"/>
 				<Option object_output="./"/>
 				<Option type="1"/>
 				<Option compiler="gcc"/>
@@ -53,85 +53,85 @@
 					<Add directory="C:/Program Files/mingw-w64/x86_64-8.1.0-posix-seh-rt_v6-rev0/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/8.1.0/../../../../x86_64-w64-mingw32/include"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="C:/PROGRA~1/MINGW-~1/X86_64~1.0-P/mingw64/bin/mingw32-make.exe -f &quot;C:/Users/migue/Desktop/FEUP/AEDA/Project/cmake-build-debug/Makefile&quot;  VERBOSE=1 Project/fast"/>
-					<CompileFile command="C:/PROGRA~1/MINGW-~1/X86_64~1.0-P/mingw64/bin/mingw32-make.exe -f &quot;C:/Users/migue/Desktop/FEUP/AEDA/Project/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="C:/PROGRA~1/MINGW-~1/X86_64~1.0-P/mingw64/bin/mingw32-make.exe -f &quot;C:/Users/migue/Desktop/FEUP/AEDA/Project/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="C:/PROGRA~1/MINGW-~1/X86_64~1.0-P/mingw64/bin/mingw32-make.exe -f &quot;C:/Users/migue/Desktop/FEUP/AEDA/Project/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="C:/PROGRA~1/MINGW-~1/X86_64~1.0-P/mingw64/bin/mingw32-make.exe -f &quot;C:/Users/Lucas/Desktop/AEDA-Lucas-Miguel-Rafael/cmake-build-debug/Makefile&quot;  VERBOSE=1 Project/fast"/>
+					<CompileFile command="C:/PROGRA~1/MINGW-~1/X86_64~1.0-P/mingw64/bin/mingw32-make.exe -f &quot;C:/Users/Lucas/Desktop/AEDA-Lucas-Miguel-Rafael/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="C:/PROGRA~1/MINGW-~1/X86_64~1.0-P/mingw64/bin/mingw32-make.exe -f &quot;C:/Users/Lucas/Desktop/AEDA-Lucas-Miguel-Rafael/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="C:/PROGRA~1/MINGW-~1/X86_64~1.0-P/mingw64/bin/mingw32-make.exe -f &quot;C:/Users/Lucas/Desktop/AEDA-Lucas-Miguel-Rafael/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="edit_cache">
-				<Option working_dir="C:/Users/migue/Desktop/FEUP/AEDA/Project/cmake-build-debug"/>
+				<Option working_dir="C:/Users/Lucas/Desktop/AEDA-Lucas-Miguel-Rafael/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="C:/PROGRA~1/MINGW-~1/X86_64~1.0-P/mingw64/bin/mingw32-make.exe -f &quot;C:/Users/migue/Desktop/FEUP/AEDA/Project/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
-					<CompileFile command="C:/PROGRA~1/MINGW-~1/X86_64~1.0-P/mingw64/bin/mingw32-make.exe -f &quot;C:/Users/migue/Desktop/FEUP/AEDA/Project/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="C:/PROGRA~1/MINGW-~1/X86_64~1.0-P/mingw64/bin/mingw32-make.exe -f &quot;C:/Users/migue/Desktop/FEUP/AEDA/Project/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="C:/PROGRA~1/MINGW-~1/X86_64~1.0-P/mingw64/bin/mingw32-make.exe -f &quot;C:/Users/migue/Desktop/FEUP/AEDA/Project/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="C:/PROGRA~1/MINGW-~1/X86_64~1.0-P/mingw64/bin/mingw32-make.exe -f &quot;C:/Users/Lucas/Desktop/AEDA-Lucas-Miguel-Rafael/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="C:/PROGRA~1/MINGW-~1/X86_64~1.0-P/mingw64/bin/mingw32-make.exe -f &quot;C:/Users/Lucas/Desktop/AEDA-Lucas-Miguel-Rafael/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="C:/PROGRA~1/MINGW-~1/X86_64~1.0-P/mingw64/bin/mingw32-make.exe -f &quot;C:/Users/Lucas/Desktop/AEDA-Lucas-Miguel-Rafael/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="C:/PROGRA~1/MINGW-~1/X86_64~1.0-P/mingw64/bin/mingw32-make.exe -f &quot;C:/Users/Lucas/Desktop/AEDA-Lucas-Miguel-Rafael/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="rebuild_cache">
-				<Option working_dir="C:/Users/migue/Desktop/FEUP/AEDA/Project/cmake-build-debug"/>
+				<Option working_dir="C:/Users/Lucas/Desktop/AEDA-Lucas-Miguel-Rafael/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="C:/PROGRA~1/MINGW-~1/X86_64~1.0-P/mingw64/bin/mingw32-make.exe -f &quot;C:/Users/migue/Desktop/FEUP/AEDA/Project/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
-					<CompileFile command="C:/PROGRA~1/MINGW-~1/X86_64~1.0-P/mingw64/bin/mingw32-make.exe -f &quot;C:/Users/migue/Desktop/FEUP/AEDA/Project/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="C:/PROGRA~1/MINGW-~1/X86_64~1.0-P/mingw64/bin/mingw32-make.exe -f &quot;C:/Users/migue/Desktop/FEUP/AEDA/Project/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="C:/PROGRA~1/MINGW-~1/X86_64~1.0-P/mingw64/bin/mingw32-make.exe -f &quot;C:/Users/migue/Desktop/FEUP/AEDA/Project/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="C:/PROGRA~1/MINGW-~1/X86_64~1.0-P/mingw64/bin/mingw32-make.exe -f &quot;C:/Users/Lucas/Desktop/AEDA-Lucas-Miguel-Rafael/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="C:/PROGRA~1/MINGW-~1/X86_64~1.0-P/mingw64/bin/mingw32-make.exe -f &quot;C:/Users/Lucas/Desktop/AEDA-Lucas-Miguel-Rafael/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="C:/PROGRA~1/MINGW-~1/X86_64~1.0-P/mingw64/bin/mingw32-make.exe -f &quot;C:/Users/Lucas/Desktop/AEDA-Lucas-Miguel-Rafael/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="C:/PROGRA~1/MINGW-~1/X86_64~1.0-P/mingw64/bin/mingw32-make.exe -f &quot;C:/Users/Lucas/Desktop/AEDA-Lucas-Miguel-Rafael/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 		</Build>
-		<Unit filename="C:/Users/migue/Desktop/FEUP/AEDA/Project/main.cpp">
+		<Unit filename="C:/Users/Lucas/Desktop/AEDA-Lucas-Miguel-Rafael/main.cpp">
 			<Option target="Project"/>
 		</Unit>
-		<Unit filename="C:/Users/migue/Desktop/FEUP/AEDA/Project/src/Data.cpp">
+		<Unit filename="C:/Users/Lucas/Desktop/AEDA-Lucas-Miguel-Rafael/src/Data.cpp">
 			<Option target="Project"/>
 		</Unit>
-		<Unit filename="C:/Users/migue/Desktop/FEUP/AEDA/Project/src/Data.h">
+		<Unit filename="C:/Users/Lucas/Desktop/AEDA-Lucas-Miguel-Rafael/src/Data.h">
 			<Option target="Project"/>
 		</Unit>
-		<Unit filename="C:/Users/migue/Desktop/FEUP/AEDA/Project/src/Empresa.cpp">
+		<Unit filename="C:/Users/Lucas/Desktop/AEDA-Lucas-Miguel-Rafael/src/Empresa.cpp">
 			<Option target="Project"/>
 		</Unit>
-		<Unit filename="C:/Users/migue/Desktop/FEUP/AEDA/Project/src/Empresa.h">
+		<Unit filename="C:/Users/Lucas/Desktop/AEDA-Lucas-Miguel-Rafael/src/Empresa.h">
 			<Option target="Project"/>
 		</Unit>
-		<Unit filename="C:/Users/migue/Desktop/FEUP/AEDA/Project/src/Hora.cpp">
+		<Unit filename="C:/Users/Lucas/Desktop/AEDA-Lucas-Miguel-Rafael/src/Hora.cpp">
 			<Option target="Project"/>
 		</Unit>
-		<Unit filename="C:/Users/migue/Desktop/FEUP/AEDA/Project/src/Hora.h">
+		<Unit filename="C:/Users/Lucas/Desktop/AEDA-Lucas-Miguel-Rafael/src/Hora.h">
 			<Option target="Project"/>
 		</Unit>
-		<Unit filename="C:/Users/migue/Desktop/FEUP/AEDA/Project/src/Menu.cpp">
+		<Unit filename="C:/Users/Lucas/Desktop/AEDA-Lucas-Miguel-Rafael/src/Menu.cpp">
 			<Option target="Project"/>
 		</Unit>
-		<Unit filename="C:/Users/migue/Desktop/FEUP/AEDA/Project/src/Menu.h">
+		<Unit filename="C:/Users/Lucas/Desktop/AEDA-Lucas-Miguel-Rafael/src/Menu.h">
 			<Option target="Project"/>
 		</Unit>
-		<Unit filename="C:/Users/migue/Desktop/FEUP/AEDA/Project/src/Preferencia.cpp">
+		<Unit filename="C:/Users/Lucas/Desktop/AEDA-Lucas-Miguel-Rafael/src/Preferencia.cpp">
 			<Option target="Project"/>
 		</Unit>
-		<Unit filename="C:/Users/migue/Desktop/FEUP/AEDA/Project/src/Preferencia.h">
+		<Unit filename="C:/Users/Lucas/Desktop/AEDA-Lucas-Miguel-Rafael/src/Preferencia.h">
 			<Option target="Project"/>
 		</Unit>
-		<Unit filename="C:/Users/migue/Desktop/FEUP/AEDA/Project/src/Reserva.cpp">
+		<Unit filename="C:/Users/Lucas/Desktop/AEDA-Lucas-Miguel-Rafael/src/Reserva.cpp">
 			<Option target="Project"/>
 		</Unit>
-		<Unit filename="C:/Users/migue/Desktop/FEUP/AEDA/Project/src/Reserva.h">
+		<Unit filename="C:/Users/Lucas/Desktop/AEDA-Lucas-Miguel-Rafael/src/Reserva.h">
 			<Option target="Project"/>
 		</Unit>
-		<Unit filename="C:/Users/migue/Desktop/FEUP/AEDA/Project/src/Utilizador.cpp">
+		<Unit filename="C:/Users/Lucas/Desktop/AEDA-Lucas-Miguel-Rafael/src/Utilizador.cpp">
 			<Option target="Project"/>
 		</Unit>
-		<Unit filename="C:/Users/migue/Desktop/FEUP/AEDA/Project/src/Utilizador.h">
+		<Unit filename="C:/Users/Lucas/Desktop/AEDA-Lucas-Miguel-Rafael/src/Utilizador.h">
 			<Option target="Project"/>
 		</Unit>
-		<Unit filename="C:/Users/migue/Desktop/FEUP/AEDA/Project/src/Veiculo.cpp">
+		<Unit filename="C:/Users/Lucas/Desktop/AEDA-Lucas-Miguel-Rafael/src/Veiculo.cpp">
 			<Option target="Project"/>
 		</Unit>
-		<Unit filename="C:/Users/migue/Desktop/FEUP/AEDA/Project/src/Veiculo.h">
+		<Unit filename="C:/Users/Lucas/Desktop/AEDA-Lucas-Miguel-Rafael/src/Veiculo.h">
 			<Option target="Project"/>
 		</Unit>
-		<Unit filename="C:/Users/migue/Desktop/FEUP/AEDA/Project/CMakeLists.txt">
+		<Unit filename="C:/Users/Lucas/Desktop/AEDA-Lucas-Miguel-Rafael/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\"/>
 		</Unit>
 	</Project>

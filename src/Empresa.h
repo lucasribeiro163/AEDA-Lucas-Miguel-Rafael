@@ -42,6 +42,9 @@ public:
     void addVeiculo(Veiculo* v);
     vector<Veiculo*> getVeiculos() const;
     Veiculo *getVeiculo(int &veiculoId);
+    vector<VeiculoPassageiros*> getVeiculosPassageiros() const;
+    vector<VeiculoComercial*> getVeiculosComerciais() const;
+    void removeByNrPassengers(vector<VeiculoPassageiros* >* veiculosPassageiros, int min_pass);
     };
 
 

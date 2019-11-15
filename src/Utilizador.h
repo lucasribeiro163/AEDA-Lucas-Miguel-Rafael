@@ -69,6 +69,8 @@ public:
 
     virtual void setReservas(const vector<Reserva *> &reservas);
 
+    void addReservas(Reserva * r);
+
     virtual const vector<Reserva *> &getHistorico() const;
 
     virtual void setHistorico(const vector<Reserva *> &historico);

@@ -188,6 +188,8 @@ void Menu::advertiseVehicle() {
 
         v = new VeiculoPassageiros(marca, modelo, ano, this->visitanteAtual->getId(), nr_pass);
         this->empresa.addVeiculo(v);
+
+
     }
     else if(tipo == 2){
         cout << "Maximum Cargo Volume: ";
@@ -348,12 +350,36 @@ void Menu::hourRentVehicle(){
     string horaIn = askHourIn();
     string horaOut = askHourOut();
 
+    cout << "\nWhat type of vehicle do you need, Passenger or Cargo (1-2)? ";
+    int type;
+    cin >> type;
+
+    cout << "\nWhat's the minimum number of passengers? ";
+    int min_pass;
+    cin >> min_pass;
+
     cout << endl << data << endl << horaIn << endl << horaOut << endl << endl;
 
 
+    if(type == 1) {
 
+        vector<VeiculoPassageiros *> res = this->empresa.getVeiculosPassageiros();
+        //this->empresa.removeByNrPassengers(&res, min_pass);
+
+        for(VeiculoPassageiros *v : res){
+
+            v->print();
+            cout << "--------" << endl;
+
+        }
+
+
+
+
+    }
     //verificar reservas e encontrar lista de carros disponiveis, dar display, pessoa escolhe id do carro que quer e pow
 
+    //Reserva *r = new Reserva(data, data, )
 
 }
 
@@ -489,13 +515,7 @@ void Menu::updateCargoVehicle() {
 
     while(!done) {
 
-        cout << "What detail do you wanna change? \n"
-                "1-Brand\n"
-                "2-Model\n"
-                "3-Year\n"
-                "4-Maximum Cargo volume\n"
-                "5-Maximum cargo weight\n"
-                "6-Referigeration ability\n";
+        cout << "What do you wanna change? \n1-Brand\n2-Model\n3-Year\n4-Maximum Cargo volume\n5-Maximum cargo weight\n6-Referigeration ability\n";
 
         char option;
         cin >> option;
@@ -566,11 +586,8 @@ void Menu::updatePassengerVehicle() {
 
     while(!done) {
 
-        cout << "What detail do you wanna change? \n"
-                "1-Brand\n"
-                "2-Model\n"
-                "3-Year\n"
-                "4-Number of Passengers\n";
+
+        cout << "\nWhat do you wanna change? \n1-Brand\n2-Model\n3-Year\n4-Number of Passengers\n";
 
         char option;
         cin >> option;

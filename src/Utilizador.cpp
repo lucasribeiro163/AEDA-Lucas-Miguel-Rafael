@@ -13,7 +13,6 @@ Visitante::Visitante() {
 
     this->id = this->nrVisitantes++;
 
-    cout << "Id: " << this->id << endl;
 }
 
 //Os carros da empresa levam clientId 0, sendo assim este comeca em 1
@@ -78,6 +77,13 @@ Cliente::Cliente(string nome, int nif, string preferencias, string password)
 const vector<Reserva *> &Cliente::getReservas() const {
     return reservas;
 }
+
+void Cliente::addReservas(Reserva * r){
+
+    reservas.push_back(r);
+
+}
+
 
 void Cliente::setReservas(const vector<Reserva *> &reservas) {
     this->reservas = reservas;
