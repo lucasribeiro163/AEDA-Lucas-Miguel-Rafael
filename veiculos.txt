@@ -3,21 +3,18 @@ Toyota
 Yaris
 2015
 8
-1
 5
 ----------
 Lamborghini
 Gallardo
 2006
 8
-5
 2
 ----------
 Renault
 Megane
 2010
 9
-2
 7
 ----------
 VeiculoComercial
@@ -25,7 +22,6 @@ Mazda
 mx5
 2011
 9
-3
 50
 100
 true
@@ -34,7 +30,6 @@ Toyota
 Auris
 2006
 8
-4
 70
 180
 false
