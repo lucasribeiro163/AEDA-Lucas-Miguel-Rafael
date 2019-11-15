@@ -2,7 +2,11 @@
 // Created by Lucas on 11/2/2019.
 //
 
+#include <iostream>
 #include "Data.h"
+
+
+using namespace std;
 
 Data::Data(string data, string hora) : hora(hora) {
     string buffer;
@@ -12,14 +16,18 @@ Data::Data(string data, string hora) : hora(hora) {
     buffer.erase(2, 8);
     dia = stoi(buffer);
 
+
     buffer = data;
     buffer.erase(0, 3);
     buffer.erase(2, 6);
     mes = stoi(buffer);
 
+
+
     buffer=data;
     buffer.erase(0, 6);
     ano = stoi(buffer);
+
 
     this->ano = ano;
     this->mes = mes;
@@ -70,9 +78,29 @@ bool Data::operator<=(Data data) {
     if(this->dia > data.dia) return false;
     if(this->dia < data.dia) return true;
 
+    //se chega aqui, o dia e igual
+    if(this->hora.getHora() > data.hora.getHora() ) return false;
+    if(this->hora.getHora()  < data.hora.getHora() ) return true;
+
+    //se chega aqui, o hora e igual
+    if(this->hora.getMinuto() > data.hora.getMinuto() ) return false;
+    if(this->hora.getMinuto()  < data.hora.getMinuto() ) return true;
+
     return true;
 
     //se chega aqui, o dia e igual
     //return (this->hora<=data.hora);
+}
+
+
+bool Data::operator==(Data data){
+
+    if(this->getAno() == data.getAno() && this->getMes() == data.getMes() && this->getDia() == data.getDia() && this->getHora() == data.getHora())
+        return true;
+    else
+        return false;
+
+
+
 }
 

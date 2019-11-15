@@ -93,13 +93,14 @@ void Menu::choose() {
     << "1 - See all the company's cars\n"
     << "2 - Rent a vehicle" << endl
     << "3 - Advertise a vehicle" << endl
-    << "4 - Manage your fleet" << endl;
+    << "4 - Manage your fleet" << endl
+    << "5 - See all of my reservations" << endl;
 
     char option;
     cin >> option;
     cin.clear();
 
-    if(option < '1' || option > '4') {
+    if(option < '1' || option > '5') {
         cin.clear();
         cout << "Invalid option" << endl;
         choose();
@@ -122,6 +123,10 @@ void Menu::choose() {
             case('4'):
                 cin.clear();
                 manageFleet();
+                break;
+            case('5'):
+                cin.clear();
+                seeReservations();
                 break;
         }
     }
@@ -220,7 +225,7 @@ void Menu::advertiseVehicle() {
 
     cout << "\nYou have advertised your car successfully!" << endl;
 
-
+    
     bool alreadyIsOwner = false;
 
     for(int i =0; i < this->empresa.getClientesDono().size(); i++){
@@ -264,12 +269,10 @@ bool Menu::checkHourFormat(string hora){
 
         if(i==2){
             if(hora.at(i) != ':') {
-                cout << "ERRO1 " << i;
                 return false;
             }
         }
         else if(!isdigit(hora.at(i))) {
-            cout << "ERRO2 " << i;
             return false;
         }
     }
@@ -286,7 +289,7 @@ bool Menu::checkDateFormat(string data){
     for(int i=0; i < data.size(); i++) {
 
         if (i == 2 || i == 5){
-            if(data.at(i) != '-'){
+            if(data.at(i) != '/'){
                 return false;
             }
         }
@@ -301,7 +304,7 @@ bool Menu::checkDateFormat(string data){
 
 string Menu::askDate(){
 
-    cout << "\nWhat day do you wanna rent the vehicle?" << endl << "Insert the day in the following format (dd-mm-aaaa): ";
+    cout << "\nWhat day do you wanna rent the vehicle?" << endl << "Insert the day in the following format (dd/mm/aaaa): ";
     string data;
     cin >> data;
 
@@ -356,33 +359,81 @@ void Menu::hourRentVehicle(){
     int type;
     cin >> type;
 
-    cout << "\nWhat's the minimum number of passengers? ";
-    int min_pass;
-    cin >> min_pass;
-
-    cout << endl << data << endl << horaIn << endl << horaOut << endl << endl;
-
-
     if(type == 1) {
 
-        vector<VeiculoPassageiros *> res = this->empresa.getVeiculosPassageiros();
-        //this->empresa.removeByNrPassengers(&res, min_pass);
+        cout << "\nWhat's the minimum number of passengers? ";
+        int min_pass;
+        cin >> min_pass;
 
-        for(VeiculoPassageiros *v : res){
+        vector<VeiculoPassageiros *> res = this->empresa.getVeiculosPassageiros();
+        this->empresa.removeByNrPassengers(&res, min_pass);
+        this->empresa.removeByReservaPassengers(&res, data, data, horaIn, horaOut);
+
+
+        if(res.empty())
+            cout << "\n\nNo vehicles available with that criteria\n";
+        else {
+            for (VeiculoPassageiros *v : res) {
+
+                v->print();
+                cout << "--------" << endl;
+            }
+        }
+    }
+    else if(type == 2){
+
+        cout << "\nWhat's the minimum weight capacity required? ";
+        int min_weight;
+        cin >> min_weight;
+
+        cout << "\nWhat's the minimum volume capacity required? ";
+        int min_vol;
+        cin >> min_vol;
+
+        cout << "\nIs referigeration required?(Y-N) ";
+        char answer;
+        cin >> answer;
+        bool refri;
+        if(answer == 'Y' || answer == 'y')
+            refri = true;
+        else if(answer == 'Y' || answer == 'y')
+            refri = false;
+
+        vector<VeiculoComercial *> res = this->empresa.getVeiculosComerciais();
+        this->empresa.removeByWeight(&res, min_weight);
+        this->empresa.removeByVolume(&res, min_vol);
+        this->empresa.removeByRefri(&res, refri);
+        this->empresa.removeByReservaComerciais(&res, data, data, horaIn, horaOut);
+
+
+        for(VeiculoComercial *v : res){
 
             v->print();
             cout << "--------" << endl;
-
         }
 
+    }
+
+    cout << "Enter the id of the car you would like to rent: ";
+    int id;
+    cin >> id;
+
+    Data in(data, horaIn);
+    Data out(data, horaOut);
+
+    //precos nao definidos para já
+    Reserva *r = new Reserva(in,out, 100, false);
 
 
+    for(int i =0; i < this->empresa.getClientes().size(); i++){
+
+        if(this->empresa.getClientes().at(i)->getId() == this->visitanteAtual->getId())
+            this->empresa.getClientes().at(i)->addReservas(r);
 
     }
-    //verificar reservas e encontrar lista de carros disponiveis, dar display, pessoa escolhe id do carro que quer e pow
 
-    //Reserva *r = new Reserva(data, data, )
-
+    cout << "\n\nYour vehicle has been reservedd\n\n";
+    choose();
 }
 
 
@@ -626,6 +677,49 @@ void Menu::updatePassengerVehicle() {
 
 }
 
+void Menu::seeReservations(){
+
+    cout << "\n\nHere are your reservations: \n\n";
+
+    Cliente *c;
+
+    for(int i =0; i < this->empresa.getClientes().size(); i++){
+
+        if(this->empresa.getClientes().at(i)->getId() == this->visitanteAtual->getId()) {
+            c = this->empresa.getClientes().at(i);
+        }
+
+    }
+
+
+
+    if(c->getReservas().empty())
+        cout << "\nThere are no reservations.\n";
+    else {
+
+        for (int j = 0; j < c->getReservas().size(); j++) {
+
+            cout << "\n\nReserva " << j << ": " << endl;
+
+            for (Veiculo *v : this->empresa.getVeiculos()) {
+
+                //Carro nao esta a imprimir
+                for (Reserva *r : v->getReservas())
+                    if (r == c->getReservas().at(j))
+                        cout << "Carro: " << v->getMarca() << " " << v->getModelo() << " " << v->getAno() << endl;
+
+            }
+
+            c->getReservas().at(j)->print();
+
+        }
+
+    }
+
+    choose();
+
+}
+
 int Menu::validCinInt()
 {
     {
@@ -647,36 +741,33 @@ int Menu::validCinInt()
     }
 }
 void Menu::registerClient() {
-    string name,password, passConfirm;
+    string name, password, passConfirm;
     int nif, type, price, passengers, volume, weight, year;
     bool valid = false;
     bool fridge;
-    cout << "Please insert your Name: " ;
-    getline(cin,name);
+    cout << "Please insert your Name: ";
+    getline(cin, name);
     cout << "Please enter your NIF: ";
     nif = validCinInt();
-    while(!valid){
+    while (!valid) {
         cout << "Please enter your password: ";
-        getline(cin,password);
+        getline(cin, password);
         cout << "Please enter your password again.";
-        getline(cin,passConfirm);
-        if(password == passConfirm){
+        getline(cin, passConfirm);
+        if (password == passConfirm) {
             valid = true;
-        }
-        else
+        } else
             cout << "The passwords dont match, please try again." << endl;
     }
     valid = false;
-    cout << "Do you want to rent passenger or commercial vehicles ?"<< endl;
+    cout << "Do you want to rent passenger or commercial vehicles ?" << endl;
     cout << "Enter 1 for passenger vehicle" << endl;
-    cout << "Enter 2 for comercial vehicle"<< endl;
-    while (!valid)
-    {
+    cout << "Enter 2 for comercial vehicle" << endl;
+    while (!valid) {
         type = validCinInt();
-        if( type == 1 || type == 2)
+        if (type == 1 || type == 2)
             valid = true;
-        else
-        {
+        else {
             cout << "Invalid value. Please try again.\n";
         }
     }
@@ -686,13 +777,11 @@ void Menu::registerClient() {
     cout << "Enter 1 for less than 20" << endl;
     cout << "Enter 2 for 20 to 40" << endl;
     cout << "Enter 3 over 40" << endl;
-    while (!valid)
-    {
+    while (!valid) {
         price = validCinInt();
-        if( price == 1 || price == 2 || price == 3)
+        if (price == 1 || price == 2 || price == 3)
             valid = true;
-        else
-        {
+        else {
             cout << "Invalid value. Please try again.\n";
         }
     }
@@ -701,43 +790,37 @@ void Menu::registerClient() {
     cout << "Enter 1 for older than 2000" << endl;
     cout << "Enter 2 for 2000 to 2010" << endl;
     cout << "Enter 3 newer than 2010" << endl;
-    while (!valid)
-    {
+    while (!valid) {
         year = validCinInt();
-        if( price == 1 || price == 2 || price == 3)
+        if (price == 1 || price == 2 || price == 3)
             valid = true;
-        else
-        {
+        else {
             cout << "Invalid value. Please try again.\n";
         }
     }
     valid = false;
 
-    if( type == 1)
-        {
-            cout << "How many passengers do you usually travel with?" << endl;
-            cout << "Enter 1 for Up to 1" << endl;
-            cout << "Enter 2 for up to 4" << endl;
-            cout << "Enter 3 for more than 5" << endl;
-            while (!valid)
-            {
-                passengers = validCinInt();
-                if( price == 1 || price == 2 || price == 3)
-                    valid = true;
-                else
-                {
-                    cout << "Invalid value. Please try again.\n";
-                }
+    if (type == 1) {
+        cout << "How many passengers do you usually travel with?" << endl;
+        cout << "Enter 1 for Up to 1" << endl;
+        cout << "Enter 2 for up to 4" << endl;
+        cout << "Enter 3 for more than 5" << endl;
+        while (!valid) {
+            passengers = validCinInt();
+            if (price == 1 || price == 2 || price == 3)
+                valid = true;
+            else {
+                cout << "Invalid value. Please try again.\n";
             }
-            valid = false;
-            string preferencias = to_string(type) + to_string(price) + to_string(year) + to_string(passengers);
-            VisitanteRegistado *vr = new VisitanteRegistado(name, nif, preferencias, password);
-
-            empresa.addVisitanteRegistado((*vr));
-            cout << "Thank you for registering!" << endl;
-            cout << "Your ID is: " << visitanteAtual->nrVisitantes -1 << endl;
         }
-    else {
+        valid = false;
+        string preferencias = to_string(type) + to_string(price) + to_string(year) + to_string(passengers);
+        VisitanteRegistado *vr = new VisitanteRegistado(name, nif, preferencias, password);
+
+        empresa.addVisitanteRegistado((*vr));
+        cout << "Thank you for registering!" << endl;
+        cout << "Your ID is: " << visitanteAtual->nrVisitantes - 1 << endl;
+    } else {
         cout << "How much cargo weight do you usually travel with?" << endl;
         cout << "Enter 1 for Up to 50 " << endl;
         cout << "Enter 2 for between 50 and 150 " << endl;
@@ -778,11 +861,13 @@ void Menu::registerClient() {
             }
         }
 
-        string preferencias = to_string(type) + to_string(price) + to_string(year) + to_string(weight) + to_string(volume) + to_string(fridge);
+        string preferencias =
+                to_string(type) + to_string(price) + to_string(year) + to_string(weight) + to_string(volume) +
+                to_string(fridge);
         VisitanteRegistado vr = VisitanteRegistado(name, nif, preferencias, password);
         empresa.addVisitanteRegistado(vr);
         cout << "Thank you for registering!" << endl;
-        cout << "Your ID is: " << visitanteAtual->nrVisitantes -1 << endl;
+        cout << "Your ID is: " << visitanteAtual->nrVisitantes - 1 << endl;
     }
     checkRegister();
 }

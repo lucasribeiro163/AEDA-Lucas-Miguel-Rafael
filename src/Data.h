@@ -37,6 +37,8 @@ public:
     void setHora(Hora &hora);
 
     bool operator<=(Data data);
+
+    bool operator==(Data data);
 };
 
 

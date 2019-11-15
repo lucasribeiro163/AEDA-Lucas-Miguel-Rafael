@@ -17,11 +17,11 @@ public:
 
     Reserva(Data &dataInicio, Data &dataFim, int preco, bool concretizacao);
 
-    const Data &getDataInicio() const;
+    Data &getDataInicio();
 
     void setDataInicio(const Data &dataInicio);
 
-    const Data &getDataFim() const;
+    Data &getDataFim();
 
     void setDataFim(const Data &dataFim);
 
@@ -32,6 +32,10 @@ public:
     bool isConcretizacao() const;
 
     void setConcretizacao(const bool concretizacao);
+
+    void print();
+
+    bool operator==(Reserva r);
 
 };
 

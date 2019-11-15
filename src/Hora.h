@@ -11,7 +11,6 @@ using namespace std;
 class Hora {
     int hora;
     int minuto;
-    int segundo;
 
 public:
 
@@ -25,12 +24,11 @@ public:
 
     void setMinuto(int minuto);
 
-    int getSegundo() const;
-
-    void setSegundo(int segundo);
-
     bool operator<=(Hora hora);
-};
+
+    bool operator==(Hora hora);
+
+    };
 
 
 #endif //UNTITLED_HORA_H

@@ -45,6 +45,11 @@ public:
     vector<VeiculoPassageiros*> getVeiculosPassageiros() const;
     vector<VeiculoComercial*> getVeiculosComerciais() const;
     void removeByNrPassengers(vector<VeiculoPassageiros* >* veiculosPassageiros, int min_pass);
+    void removeByWeight(vector<VeiculoComercial* >* veiculosComerciais, int min_weight);
+    void removeByVolume(vector<VeiculoComercial* >* veiculosComerciais, int min_vol);
+    void removeByRefri(vector<VeiculoComercial* >* veiculosComerciais, bool refri);
+    void removeByReservaPassengers(vector<VeiculoPassageiros* >* veiculos, string dataIn, string dataOut, string horaIn, string horaOut);
+    void removeByReservaComerciais(vector<VeiculoComercial* >* veiculos, string dataIn, string dataOut, string horaIn, string horaOut);
     };
 
 

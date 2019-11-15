@@ -2,6 +2,7 @@
 // Created by Lucas on 11/2/2019.
 //
 
+#include <iostream>
 #include "Reserva.h"
 
 Reserva::Reserva(Data &dataInicio, Data &dataFim, int preco, bool concretizacao) :
@@ -13,7 +14,7 @@ Reserva::Reserva(Data &dataInicio, Data &dataFim, int preco, bool concretizacao)
     this->concretizacao = concretizacao;
 }
 
-const Data &Reserva::getDataInicio() const{
+Data &Reserva::getDataInicio(){
     return dataInicio;
 }
 
@@ -21,7 +22,7 @@ void Reserva::setDataInicio(const Data &dataInicio){
     this->dataInicio = dataInicio;
 }
 
-const Data &Reserva::getDataFim() const{
+Data &Reserva::getDataFim(){
     return dataFim;
 }
 
@@ -44,4 +45,25 @@ bool Reserva::isConcretizacao() const {
 
 void Reserva::setConcretizacao(const bool concretizacao) {
     Reserva::concretizacao = concretizacao;
+}
+
+
+void Reserva::print() {
+
+    cout << "Fim: "  << this->getDataFim().getDia() << '/' << this->getDataFim().getMes() << '/' << this->getDataFim().getAno() << '/' << this->getDataFim().getHora().getHora()
+         << "\nInicio: "  << this->getDataInicio().getDia() << '/' << this->getDataInicio().getMes() << '/' << this->getDataInicio().getAno() << '/' << this->getDataInicio().getHora().getHora() << endl;
+
+}
+
+
+bool Reserva::operator==(Reserva r){
+
+    //completar, tem de ser mais que a data para ser igual
+
+    if(this->getDataFim() == r.getDataFim() && this->getDataInicio() == r.getDataInicio())
+        return true;
+    else
+        return false;
+
+
 }

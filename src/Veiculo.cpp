@@ -66,7 +66,7 @@ void Veiculo::setClientId(int &id){
 }
 
 void Veiculo::print()const{
-    cout << "Marca: " << marca << endl
+    cout << "Id: " << id << endl << "Marca: " << marca << endl
     << "Modelo: " << modelo << endl
     << "Ano: " << ano << endl;
 }

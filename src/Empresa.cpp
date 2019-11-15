@@ -177,6 +177,7 @@ void Empresa::parseClientInfo(){
 
         ClienteDono *cd = new ClienteDono(nome, stoi(nif), preferencias, password);
         clientesDono.push_back(cd);
+        clientes.push_back(cd);
 
         getline(readFile, nome);//limpar lixo
     }
@@ -250,13 +251,12 @@ void Empresa::parseVehicleInfo() {
         getline(readFile, modelo);
         getline(readFile, ano);
         getline(readFile, clientId);
-        getline(readFile, veiculoId);
         getline(readFile, nrPass);
         getline(readFile, buffer);//limpar tracejado entre veiculos
 
 
 
-        VeiculoPassageiros *vp = new VeiculoPassageiros(marca, modelo, stoi(ano), stoi(veiculoId), stoi(nrPass));
+        VeiculoPassageiros *vp = new VeiculoPassageiros(marca, modelo, stoi(ano), stoi(clientId), stoi(nrPass));
 
 
         getClienteDono(stoi(clientId))->addVeiculo(vp);
@@ -276,13 +276,12 @@ void Empresa::parseVehicleInfo() {
         getline(readFile, modelo);
         getline(readFile, ano);
         getline(readFile, clientId);
-        getline(readFile, veiculoId);
         getline(readFile, volume);
         getline(readFile, peso);
         getline(readFile, refrig);
         refrigeracao = (refrig=="true");
 
-        VeiculoComercial *vc = new VeiculoComercial(marca, modelo, stoi(ano), stoi(veiculoId),
+        VeiculoComercial *vc = new VeiculoComercial(marca, modelo, stoi(ano), stoi(clientId),
                                                     stod(volume), stod(peso), refrigeracao);
         getClienteDono(stoi(clientId))->addVeiculo(vc);
         getClienteDono(stoi(clientId))->addVeiculoComercial(vc);
@@ -342,6 +341,8 @@ void Empresa::parseReservasInfo() {
 
 }
 
+
+
 void Empresa::addVeiculo(Veiculo *v) {
     this->veiculos.push_back(v);
 }
@@ -359,17 +360,123 @@ vector<VeiculoPassageiros*> Empresa::getVeiculosPassageiros() const {
     return veiculosPassageiros;
 }
 
-void removeByNrPassengers(vector<VeiculoPassageiros* >* veiculosPassageiros, int min_pass){
+void Empresa::removeByNrPassengers(vector<VeiculoPassageiros* >* veiculosPassageiros, int min_pass){
 
     for(int i =0; i < veiculosPassageiros->size(); i++){
 
-        if(veiculosPassageiros->at(i)->getNrPassageiros() <= min_pass)
+        if(veiculosPassageiros->at(i)->getNrPassageiros() <= min_pass) {
             veiculosPassageiros->erase(veiculosPassageiros->begin() + i);
+            i--;
+        }
 
     }
 
 }
 
+
+void Empresa::removeByWeight(vector<VeiculoComercial *> *veiculosComerciais, int min_weight) {
+
+    for(int i =0; i < veiculosComerciais->size(); i++){
+
+        if(veiculosComerciais->at(i)->getPesoCarga() <= min_weight) {
+            veiculosComerciais->erase(veiculosComerciais->begin() + i);
+            i--;
+        }
+    }
+
+}
+
+void Empresa::removeByVolume(vector<VeiculoComercial *> *veiculosComerciais, int min_vol) {
+
+
+    for(int i =0; i < veiculosComerciais->size(); i++){
+
+        if(veiculosComerciais->at(i)->getVolumeCarga() <= min_vol) {
+            veiculosComerciais->erase(veiculosComerciais->begin() + i);
+            i--;
+        }
+    }
+}
+
+void Empresa::removeByRefri(vector<VeiculoComercial* >* veiculosComerciais, bool refri) {
+
+
+    for(int i =0; i < veiculosComerciais->size(); i++){
+
+        if(veiculosComerciais->at(i)->hasRefrigeracao() != refri) {
+            veiculosComerciais->erase(veiculosComerciais->begin() + i);
+            i--;
+        }
+    }
+}
+
+void Empresa::removeByReservaPassengers(vector<VeiculoPassageiros* >* veiculos, string dataIn, string dataOut, string horaIn, string horaOut){
+
+    Data in(dataIn, horaIn);
+    Data out(dataOut, horaOut);
+
+    bool erase = false;
+
+
+    for(int i =0; i < veiculos->size(); i++){
+
+
+        for(int j=0; j < veiculos->at(i)->getReservas().size(); j++) {
+
+
+            if( (veiculos->at(i)->getReservas().at(j)->getDataInicio() <= in && in <= veiculos->at(i)->getReservas().at(j)->getDataFim()) ||
+                (veiculos->at(i)->getReservas().at(j)->getDataInicio() <= out && out <= veiculos->at(i)->getReservas().at(j)->getDataFim()) ) {
+
+                erase = true;
+            }
+
+        }
+
+        if(erase) {
+            veiculos->erase(veiculos->begin() + i);
+            erase = false;
+            i--;
+        }
+
+
+
+    }
+}
+
+
+
+void Empresa::removeByReservaComerciais(vector<VeiculoComercial* >* veiculos, string dataIn, string dataOut, string horaIn, string horaOut){
+
+    Data in(dataIn, horaIn);
+    Data out(dataOut, horaOut);
+
+    bool erase = false;
+
+
+    for(int i =0; i < veiculos->size(); i++){
+
+
+        for(int j=0; j < veiculos->at(i)->getReservas().size(); j++) {
+
+
+            if( (veiculos->at(i)->getReservas().at(j)->getDataInicio() <= in && in <= veiculos->at(i)->getReservas().at(j)->getDataFim()) ||
+                (veiculos->at(i)->getReservas().at(j)->getDataInicio() <= out && out <= veiculos->at(i)->getReservas().at(j)->getDataFim()) ) {
+
+                erase = true;
+            }
+
+        }
+
+        if(erase) {
+            veiculos->erase(veiculos->begin() + i);
+            erase = false;
+            i--;
+        }
+
+
+
+    }
+}
 
 
 
