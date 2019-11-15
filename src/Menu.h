@@ -34,6 +34,8 @@ public:
     void updateCar();
     void updateCargoVehicle();
     void updatePassengerVehicle();
+    int validCinInt();
+    void registerClient();
 
     };
 

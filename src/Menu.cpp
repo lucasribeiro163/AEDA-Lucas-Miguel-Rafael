@@ -28,6 +28,8 @@ void Menu::checkRegister(){
             Visitante *v = new Visitante();
             cout << "You are anonymous visitor number " << v->getId() << "\nHere are the company's offers: " << endl;
             empresa.printVeiculos();
+            //registerClient();
+            //empresa.saveClientInfo();
         } else {
             cout << "Sorry, wrong input" << endl;
             checkRegister();
@@ -218,7 +220,7 @@ void Menu::advertiseVehicle() {
 
     cout << "\nYou have advertised your car successfully!" << endl;
 
-    
+
     bool alreadyIsOwner = false;
 
     for(int i =0; i < this->empresa.getClientesDono().size(); i++){
@@ -622,4 +624,165 @@ void Menu::updatePassengerVehicle() {
 
     }
 
+}
+
+int Menu::validCinInt()
+{
+    {
+        int input = 0;
+        bool valid = false;
+
+        while (!valid)
+        {
+            cin >> input;
+            if (!cin.good())
+            {
+                cin.clear();
+                cout << "Invalid value. Please try again.\n";
+            }
+            valid = true;
+            cin.ignore(10000, '\n');
+        }
+        return input;
+    }
+}
+void Menu::registerClient() {
+    string name,password, passConfirm;
+    int nif, type, price, passengers, volume, weight, year;
+    bool valid = false;
+    bool fridge;
+    cout << "Please insert your Name: " ;
+    getline(cin,name);
+    cout << "Please enter your NIF: ";
+    nif = validCinInt();
+    while(!valid){
+        cout << "Please enter your password: ";
+        getline(cin,password);
+        cout << "Please enter your password again.";
+        getline(cin,passConfirm);
+        if(password == passConfirm){
+            valid = true;
+        }
+        else
+            cout << "The passwords dont match, please try again." << endl;
+    }
+    valid = false;
+    cout << "Do you want to rent passenger or commercial vehicles ?"<< endl;
+    cout << "Enter 1 for passenger vehicle" << endl;
+    cout << "Enter 2 for comercial vehicle"<< endl;
+    while (!valid)
+    {
+        type = validCinInt();
+        if( type == 1 || type == 2)
+            valid = true;
+        else
+        {
+            cout << "Invalid value. Please try again.\n";
+        }
+    }
+    valid = false;
+
+    cout << "In what range are you looking to spend? " << endl;
+    cout << "Enter 1 for less than 20" << endl;
+    cout << "Enter 2 for 20 to 40" << endl;
+    cout << "Enter 3 over 40" << endl;
+    while (!valid)
+    {
+        price = validCinInt();
+        if( price == 1 || price == 2 || price == 3)
+            valid = true;
+        else
+        {
+            cout << "Invalid value. Please try again.\n";
+        }
+    }
+    valid = false;
+    cout << "from what range of years do you prefer your car" << endl;
+    cout << "Enter 1 for older than 2000" << endl;
+    cout << "Enter 2 for 2000 to 2010" << endl;
+    cout << "Enter 3 newer than 2010" << endl;
+    while (!valid)
+    {
+        year = validCinInt();
+        if( price == 1 || price == 2 || price == 3)
+            valid = true;
+        else
+        {
+            cout << "Invalid value. Please try again.\n";
+        }
+    }
+    valid = false;
+
+    if( type == 1)
+        {
+            cout << "How many passengers do you usually travel with?" << endl;
+            cout << "Enter 1 for Up to 1" << endl;
+            cout << "Enter 2 for up to 4" << endl;
+            cout << "Enter 3 for more than 5" << endl;
+            while (!valid)
+            {
+                passengers = validCinInt();
+                if( price == 1 || price == 2 || price == 3)
+                    valid = true;
+                else
+                {
+                    cout << "Invalid value. Please try again.\n";
+                }
+            }
+            valid = false;
+            string preferencias = to_string(type) + to_string(price) + to_string(year) + to_string(passengers);
+            VisitanteRegistado *vr = new VisitanteRegistado(name, nif, preferencias, password);
+
+            empresa.addVisitanteRegistado((*vr));
+            cout << "Thank you for registering!" << endl;
+            cout << "Your ID is: " << visitanteAtual->nrVisitantes -1 << endl;
+        }
+    else {
+        cout << "How much cargo weight do you usually travel with?" << endl;
+        cout << "Enter 1 for Up to 50 " << endl;
+        cout << "Enter 2 for between 50 and 150 " << endl;
+        cout << "Enter 3 for more than 150" << endl;
+        while (!valid) {
+            weight = validCinInt();
+            if (price == 1 || price == 2 || price == 3)
+                valid = true;
+            else {
+                cout << "Invalid value. Please try again.\n";
+            }
+        }
+        valid = false;
+
+        cout << "How much cargo volume do you usually travel with?" << endl;
+        cout << "Enter 1 for Up to 50 " << endl;
+        cout << "Enter 2 for between 50 and 150 " << endl;
+        cout << "Enter 3 for more than 150" << endl;
+        while (!valid) {
+            volume = validCinInt();
+            if (price == 1 || price == 2 || price == 3)
+                valid = true;
+            else {
+                cout << "Invalid value. Please try again.\n";
+            }
+        }
+        valid = false;
+
+        cout << "Do you need a refrigerated vehicle?" << endl;
+        cout << "Enter 1 for yes " << endl;
+        cout << "Enter 2 for no " << endl;
+        while (!valid) {
+            fridge = validCinInt();
+            if (price == 1 || price == 2 || price == 3)
+                valid = true;
+            else {
+                cout << "Invalid value. Please try again.\n";
+            }
+        }
+
+        string preferencias = to_string(type) + to_string(price) + to_string(year) + to_string(weight) + to_string(volume) + to_string(fridge);
+        VisitanteRegistado vr = VisitanteRegistado(name, nif, preferencias, password);
+        empresa.addVisitanteRegistado(vr);
+        cout << "Thank you for registering!" << endl;
+        cout << "Your ID is: " << visitanteAtual->nrVisitantes -1 << endl;
+    }
+    checkRegister();
 }
