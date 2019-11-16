@@ -7,6 +7,7 @@
 
 #include <vector>
 #include <string>
+#include <iostream>
 #include "Utilizador.h"
 
 using namespace std;
@@ -198,6 +199,57 @@ public:
  */
     void removeByPricePassengers(vector<VeiculoPassageiros* >* listaVeiculos, int maxPrice);
 };
+
+
+/** Class UnknownInput
+ * Excepção atirada quando se encontra
+ * input desconhecido nos txt
+ */
+class UnknownInput{
+
+    string line;
+    string filename;
+
+public:
+     /**
+	 * Construtor da UnkownInput
+     * @param line - conteudo da linha que causou a excepção
+     * @param filename - nome do ficheiro que causou a excepção
+	 */
+    UnknownInput(string line, string filename){
+        this->line =line;
+        this->filename = filename;
+        cout << "Exception: Unkown Exception -> This line was not recognized: " << line << " in file " << filename << "." << endl;
+
+
+    }
+
+
+};
+
+
+/** Class InvalidClientId
+ * Excepção atirada quando se procura um
+ * cliente de id não existente
+ */
+class InvalidClientId{
+
+    int id;
+
+
+public:
+    /**
+    * Construtor da InvalidClientId
+    * @param id - id do veiculo que causou a excepção
+    */
+    InvalidClientId(int id){
+
+        cout << "Exception: InvalidClientId: couldn't find a client with id =" << id << "." << endl;
+    }
+
+};
+
+
 
 
 #endif //PROJECT_EMPRESA_H
