@@ -1,0 +1,28 @@
+var class_menu =
+[
+    [ "Menu", "class_menu.html#ace305a86537feb8087fa7d239df24ed3", null ],
+    [ "advertiseVehicle", "class_menu.html#a47f4073ba599c47c797b0adfe9f01872", null ],
+    [ "askDateIn", "class_menu.html#a770392bbc167009f435df0d596946f3a", null ],
+    [ "askDateOut", "class_menu.html#a3597c89c16b3e0d6aae1649f2ab0abe0", null ],
+    [ "askHourIn", "class_menu.html#af9102962e07d89f552c23a8a163bb746", null ],
+    [ "askHourOut", "class_menu.html#abd1d5964e91c27bfb732394c40cbf896", null ],
+    [ "checkDateFormat", "class_menu.html#a65ec2ab983cbbec16f09d98d333c0601", null ],
+    [ "checkHourFormat", "class_menu.html#ae9d6e7912e8c4db8696b7c69cabf25bb", null ],
+    [ "checkRegister", "class_menu.html#a7ea01217292d9c9cd73e0e5fe3f2d3d2", null ],
+    [ "choose", "class_menu.html#a99d620b6774a7b106ff42005d98aad2e", null ],
+    [ "login", "class_menu.html#aaca4b67618b55645e98864eb6defd9e1", null ],
+    [ "makeOffer", "class_menu.html#a1ef47cceb97dcc79e78ea341217cd36d", null ],
+    [ "manageFleet", "class_menu.html#a5ac760581f28d3232ae086e64dcd6d2a", null ],
+    [ "periodicContractRent", "class_menu.html#a293377af6f7bcecbc2d6a476dc370a1b", null ],
+    [ "registerClient", "class_menu.html#a5bc727abe569da982bf4aba2415c9f22", null ],
+    [ "removeCar", "class_menu.html#a5b226d5fb3ca24a37cb0d261adcd198b", null ],
+    [ "rentVehicle", "class_menu.html#ad237807f37623e43e857632803284bf6", null ],
+    [ "seeReservations", "class_menu.html#aae8d998fcc62bfae29b5bf4635335eac", null ],
+    [ "singleUseRent", "class_menu.html#a27dce519de50084d30c07898408fe697", null ],
+    [ "unregisteredChoose", "class_menu.html#a07ab3c3ecd8d7f284168c7d011a9b246", null ],
+    [ "updateCar", "class_menu.html#aa25a160191ea787eaa6957cb957e030b", null ],
+    [ "updateCargoVehicle", "class_menu.html#a0e6746673f5d10bbe9211426b17bcfe9", null ],
+    [ "updatePassengerVehicle", "class_menu.html#a161eec7024bcdc2ce2cc299fa135464f", null ],
+    [ "validCinInt", "class_menu.html#a67d7ad5e3b69e2c56facc4abb5b83330", null ],
+    [ "viewCars", "class_menu.html#aa387a0452eb83a79443e8fcefaf846be", null ]
+];
