@@ -15,7 +15,7 @@ class Reserva {
 
     Data dataInicio, dataFim; /**Data de inicio e fim da reserva */
     bool concretizacao; /**Indicação se a reserva já foi concretizada */
-    double preco; /**preço por hora do aluger */
+    double preco; /**preço total reserva */
     int veiculoId; /**id do veiculo */
 
 public:
@@ -24,7 +24,7 @@ public:
 	 * Construtor de uma Reserva
      * @param dataInicio - Data de inicio do aluguer
      * @param dataFim - Data de fim do aluguer
-     * @param preco - Preço por hora do aluguer
+     * @param preco - Preço total reserva
      * @param concretizacao - Indicação se a reserva já ocorreu
      * @param veiculoId - id do veiculo utilizado para a reserva
 	 */

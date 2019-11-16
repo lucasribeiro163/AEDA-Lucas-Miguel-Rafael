@@ -46,7 +46,7 @@ Cliente* Empresa::getCliente(int id) const {
         if(this->clientes.at(i)->getId() == id)
             return this->clientes.at(i);
     }
-    return NULL;
+    throw InvalidClientId(id);
 
 }
 
@@ -121,6 +121,10 @@ void Empresa::parseClientInfo(){
         getline(readFile, password);
         getline(readFile, buffer);//limpar lixo
 
+        if(buffer != "----------")
+            throw UnknownInput(buffer, this->clientesFile);
+
+
         Preferencia *preferencia = new Preferencia(preferencias);
         VisitanteRegistado *vr = new VisitanteRegistado(nome, stoi(nif), stoi(id), (*preferencia), password);
         visitantesRegistados.push_back(vr);
@@ -137,6 +141,10 @@ void Empresa::parseClientInfo(){
         getline(readFile, preferencias);
         getline(readFile, password);
         getline(readFile, buffer);//limpar tracejado entre clientes
+
+
+        if(buffer != "----------")
+            throw UnknownInput(buffer, this->clientesFile);
 
         Preferencia *preferencia = new Preferencia(preferencias);
         Cliente *c = new Cliente(nome, stoi(nif),stoi(id), (*preferencia), password);
@@ -233,6 +241,8 @@ void Empresa::parseVehicleInfo() {
         getline(readFile, buffer);//limpar tracejado entre veiculos
 
 
+        if(buffer != "----------")
+            throw UnknownInput(buffer, this->veiculosFile);
 
         VeiculoPassageiros *vp = new VeiculoPassageiros(marca, modelo, stoi(ano), stoi(clientId), stoi(nrPass), stod(price));
 
@@ -258,6 +268,7 @@ void Empresa::parseVehicleInfo() {
         getline(readFile, peso);
         getline(readFile, refrig);
         getline(readFile, price);
+
         refrigeracao = (refrig=="true");
 
         VeiculoComercial *vc = new VeiculoComercial(marca, modelo, stoi(ano), stoi(clientId),
@@ -316,6 +327,9 @@ void Empresa::parseReservasInfo() {
         veiculo->addReserva(reserva);
 
         getline(readFile, buffer);
+
+        if(buffer != "----------")
+            throw UnknownInput(buffer, this->reservasFile);
     }
 
 }
