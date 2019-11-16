@@ -5,13 +5,14 @@
 #include <iostream>
 #include "Reserva.h"
 
-Reserva::Reserva(Data &dataInicio, Data &dataFim, int preco, bool concretizacao) :
+Reserva::Reserva(Data &dataInicio, Data &dataFim, int preco, bool concretizacao, int veiculoId) :
         dataInicio(dataInicio), dataFim(dataFim)
 {
     this->dataInicio = dataInicio;
     this->dataFim = dataFim;
     this->preco = preco;
     this->concretizacao = concretizacao;
+    this->veiculoId = veiculoId;
 }
 
 Data &Reserva::getDataInicio(){
@@ -67,3 +68,12 @@ bool Reserva::operator==(Reserva r){
 
 
 }
+
+int Reserva::getVeiculoId() const {
+    return veiculoId;
+}
+
+void Reserva::setVeiculoId(int veiculoId) {
+    Reserva::veiculoId = veiculoId;
+}
+

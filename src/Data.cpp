@@ -5,8 +5,17 @@
 #include <iostream>
 #include "Data.h"
 
-
 using namespace std;
+
+
+Data::Data(int ano, int mes, int dia, Hora hora): hora(hora) {
+
+    this->ano = ano;
+    this->mes = mes;
+    this->dia = dia;
+
+}
+
 
 Data::Data(string data, string hora) : hora(hora) {
     string buffer;
@@ -65,6 +74,21 @@ Hora &Data::getHora(){
 void Data::setHora(Hora &hora){
     this->hora = hora;
 }
+
+Data Data::getDifference(Data dataFim){
+
+    int dia = dataFim.getDia() - this->getDia();
+    int mes = dataFim.getMes() - this->getMes();
+    int ano = dataFim.getAno() - this->getAno();
+
+
+    Data res(ano, mes,dia, this->getHora());
+
+    return res;
+
+}
+
+
 
 bool Data::operator<=(Data data) {
     if(this->ano > data.ano) return false;

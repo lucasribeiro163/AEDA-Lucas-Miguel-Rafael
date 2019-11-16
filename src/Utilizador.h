@@ -60,10 +60,11 @@ class Cliente : public VisitanteRegistado{
 
     vector<Reserva*> reservas;
     vector<Reserva*> historico;
+    double balance;
 
 public:
 
-    Cliente(string nome, int nif, string preferencias, string password);
+    Cliente(string nome, int nif, string preferencias, string password, double balance);
 
     virtual const vector<Reserva *> &getReservas() const;
 

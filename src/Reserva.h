@@ -12,10 +12,11 @@ class Reserva {
     Data dataInicio, dataFim;
     bool concretizacao;
     int preco;
+    int veiculoId;
 
 public:
 
-    Reserva(Data &dataInicio, Data &dataFim, int preco, bool concretizacao);
+    Reserva(Data &dataInicio, Data &dataFim, int preco, bool concretizacao, int veiculoId);
 
     Data &getDataInicio();
 
@@ -32,6 +33,10 @@ public:
     bool isConcretizacao() const;
 
     void setConcretizacao(const bool concretizacao);
+
+    int getVeiculoId() const;
+
+    void setVeiculoId(int veiculoId);
 
     void print();
 

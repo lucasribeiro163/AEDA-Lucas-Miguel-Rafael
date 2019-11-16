@@ -330,7 +330,7 @@ void Empresa::parseReservasInfo() {
 
         completed = (completado =="true");
 
-        Reserva *reserva = new Reserva(dataI, dataF, stoi(preco), completed);
+        Reserva *reserva = new Reserva(dataI, dataF, stoi(preco), completed, stoi(buffer));
 
         Veiculo *veiculo = getVeiculo(veiculoId);
 
@@ -410,10 +410,8 @@ void Empresa::removeByRefri(vector<VeiculoComercial* >* veiculosComerciais, bool
     }
 }
 
-void Empresa::removeByReservaPassengers(vector<VeiculoPassageiros* >* veiculos, string dataIn, string dataOut, string horaIn, string horaOut){
+void Empresa::removeByReservaPassengers(vector<VeiculoPassageiros* >* veiculos, Data in, Data out){
 
-    Data in(dataIn, horaIn);
-    Data out(dataOut, horaOut);
 
     bool erase = false;
 
@@ -445,10 +443,8 @@ void Empresa::removeByReservaPassengers(vector<VeiculoPassageiros* >* veiculos, 
 
 
 
-void Empresa::removeByReservaComerciais(vector<VeiculoComercial* >* veiculos, string dataIn, string dataOut, string horaIn, string horaOut){
+void Empresa::removeByReservaComerciais(vector<VeiculoComercial* >* veiculos, Data in, Data out){
 
-    Data in(dataIn, horaIn);
-    Data out(dataOut, horaOut);
 
     bool erase = false;
 

@@ -19,13 +19,12 @@ public:
     void choose();
     void rentVehicle();
     void advertiseVehicle();
-    void hourRentVehicle();
-    void dayRentVehicle();
-    void weekRentVehicle();
-    void monthRentVehicle();
+    void singleUseRent();
+    void periodicContractRent();
     bool checkDateFormat(string data);
     bool checkHourFormat(string hora);
-    string askDate();
+    string askDateIn();
+    string askDateOut();
     string askHourIn();
     string askHourOut();
     void manageFleet();

@@ -20,6 +20,8 @@ public:
 
     Data(string data, string hora);
 
+    Data(int ano, int mes, int dia, Hora hora);
+
     int getAno() const;
 
     void setAno(int ano);
@@ -35,6 +37,8 @@ public:
     Hora &getHora();
 
     void setHora(Hora &hora);
+
+    Data getDifference(Data d);
 
     bool operator<=(Data data);
 

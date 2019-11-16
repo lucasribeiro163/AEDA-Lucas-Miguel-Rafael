@@ -133,9 +133,9 @@ void Menu::choose() {
 }
 
 void Menu::rentVehicle(){
-    cout << "For how long would you like to rent?\n"
-    << "1 - For one or more hours\n"
-    << "2 - For one or more days\n"
+    cout << "\nWhat type of contract do you want?\n"
+    << "1 - It's a one time deal\n"
+    << "2 - I'd like for it to be periodic cycle\n"
     << "3 - Go back" << endl;
 
     string option;
@@ -149,10 +149,10 @@ void Menu::rentVehicle(){
     else{
         switch(stoi(option)){
             case(1):
-                hourRentVehicle();
+                singleUseRent();
                 break;
             case(2):
-                dayRentVehicle();
+                periodicContractRent();
                 break;
             case(3):
                 choose();
@@ -302,15 +302,31 @@ bool Menu::checkDateFormat(string data){
 
 }
 
-string Menu::askDate(){
+string Menu::askDateOut(){
 
-    cout << "\nWhat day do you wanna rent the vehicle?" << endl << "Insert the day in the following format (dd/mm/aaaa): ";
+    cout << "\nWhat day do you wanna drop off the vehicle?" << endl << "Insert the day in the following format (dd/mm/aaaa): ";
     string data;
     cin >> data;
 
     if(!checkDateFormat(data)) {
         cout << "\nFormato de data invalido. Try again." << endl;
-        askDate();
+        askDateOut();
+    }
+
+    return data;
+
+
+}
+
+string Menu::askDateIn(){
+
+    cout << "\nWhat day do you wanna pick up the vehicle?" << endl << "Insert the day in the following format (dd/mm/aaaa): ";
+    string data;
+    cin >> data;
+
+    if(!checkDateFormat(data)) {
+        cout << "\nFormato de data invalido. Try again." << endl;
+        askDateIn();
     }
 
     return data;
@@ -349,9 +365,10 @@ string Menu::askHourOut(){
 }
 
 
-void Menu::hourRentVehicle(){
+void Menu::singleUseRent(){
 
-    string data = askDate();
+    string dataIn = askDateIn();
+    string dataOut = askDateOut();
     string horaIn = askHourIn();
     string horaOut = askHourOut();
 
@@ -367,7 +384,11 @@ void Menu::hourRentVehicle(){
 
         vector<VeiculoPassageiros *> res = this->empresa.getVeiculosPassageiros();
         this->empresa.removeByNrPassengers(&res, min_pass);
-        this->empresa.removeByReservaPassengers(&res, data, data, horaIn, horaOut);
+
+        Data in(dataIn, horaIn);
+        Data out(dataOut, horaOut);
+
+        this->empresa.removeByReservaPassengers(&res, in, out);
 
 
         if(res.empty())
@@ -403,7 +424,11 @@ void Menu::hourRentVehicle(){
         this->empresa.removeByWeight(&res, min_weight);
         this->empresa.removeByVolume(&res, min_vol);
         this->empresa.removeByRefri(&res, refri);
-        this->empresa.removeByReservaComerciais(&res, data, data, horaIn, horaOut);
+
+        Data in(dataIn, horaIn);
+        Data out(dataOut, horaOut);
+
+        this->empresa.removeByReservaComerciais(&res, in, out);
 
 
         for(VeiculoComercial *v : res){
@@ -418,11 +443,11 @@ void Menu::hourRentVehicle(){
     int id;
     cin >> id;
 
-    Data in(data, horaIn);
-    Data out(data, horaOut);
 
-    //precos nao definidos para já
-    Reserva *r = new Reserva(in,out, 100, false);
+    Data in(dataIn, horaIn);
+    Data out(dataOut, horaOut);
+
+    Reserva *r = new Reserva(in,out, 100, false, id);
 
 
     for(int i =0; i < this->empresa.getClientes().size(); i++){
@@ -437,8 +462,190 @@ void Menu::hourRentVehicle(){
 }
 
 
-void Menu::dayRentVehicle() {
-    cout << "dayRent" << endl;
+void Menu::periodicContractRent() {
+
+    cout << "For how many times would you like to renew the contract? "<<endl;
+    int repetitions;
+    cin >> repetitions;
+
+
+    cout << "How long should the gap between each period of the contract be? "<<endl;
+    int gap;
+    cin >> gap;
+
+    cout << "Please reply to these questions refering to one period of that rent "<<endl;
+
+
+
+    string dataIn = askDateIn();
+    string dataOut = askDateOut();
+    string horaIn = askHourIn();
+    string horaOut = askHourOut();
+
+    cout << "\nWhat type of vehicle do you need, Passenger or Cargo (1-2)? ";
+    int type;
+    cin >> type;
+
+    if(type == 1) {
+
+        cout << "\nWhat's the minimum number of passengers? ";
+        int min_pass;
+        cin >> min_pass;
+
+        vector<VeiculoPassageiros *> res = this->empresa.getVeiculosPassageiros();
+        this->empresa.removeByNrPassengers(&res, min_pass);
+
+
+        Data in(dataIn, horaIn);
+        Data out(dataOut, horaOut);
+
+        this->empresa.removeByReservaPassengers(&res, in, out);
+
+        Data difference = in.getDifference(out);
+
+        int repetitionsBackup = repetitions;
+
+        while(repetitions > 0) {
+
+            in.setDia(in.getDia() + difference.getDia() + gap%30);
+            in.setMes(in.getMes() + difference.getMes() + gap/30);
+            in.setAno(in.getAno() + difference.getAno() + gap/365);
+
+            out.setDia(out.getDia() + difference.getDia() + gap%30);
+            out.setMes(out.getMes() + difference.getMes() + gap/30);
+            out.setAno(out.getAno() + difference.getAno() + gap/365);
+
+            this->empresa.removeByReservaPassengers(&res, in, out);
+
+            repetitions--;
+        }
+
+        repetitions = repetitionsBackup;
+
+
+        if(res.empty())
+            cout << "\n\nNo vehicles available with that criteria\n";
+        else {
+            for (VeiculoPassageiros *v : res) {
+
+                v->print();
+                cout << "--------" << endl;
+            }
+        }
+    }
+    else if(type == 2){
+
+        cout << "\nWhat's the minimum weight capacity required? ";
+        int min_weight;
+        cin >> min_weight;
+
+        cout << "\nWhat's the minimum volume capacity required? ";
+        int min_vol;
+        cin >> min_vol;
+
+        cout << "\nIs referigeration required?(Y-N) ";
+        char answer;
+        cin >> answer;
+        bool refri;
+        if(answer == 'Y' || answer == 'y')
+            refri = true;
+        else if(answer == 'Y' || answer == 'y')
+            refri = false;
+
+        vector<VeiculoComercial *> res = this->empresa.getVeiculosComerciais();
+        this->empresa.removeByWeight(&res, min_weight);
+        this->empresa.removeByVolume(&res, min_vol);
+        this->empresa.removeByRefri(&res, refri);
+
+
+        Data in(dataIn, horaIn);
+        Data out(dataOut, horaOut);
+
+        this->empresa.removeByReservaComerciais(&res, in, out);
+
+        Data difference = in.getDifference(out);
+
+        int repetitionsBackup = repetitions;
+
+        while(repetitions > 0) {
+
+            in.setDia(in.getDia() + difference.getDia() + gap%30);
+            in.setMes(in.getMes() + difference.getMes() + gap/30);
+            in.setAno(in.getAno() + difference.getAno() + gap/365);
+
+            out.setDia(out.getDia() + difference.getDia() + gap%30);
+            out.setMes(out.getMes() + difference.getMes() + gap/30);
+            out.setAno(out.getAno() + difference.getAno() + gap/365);
+
+            this->empresa.removeByReservaComerciais(&res, in, out);
+
+            repetitions--;
+        }
+
+        repetitions = repetitionsBackup;
+
+
+        if(res.empty())
+            cout << "\n\nNo vehicles available with that criteria\n";
+        else {
+            for (VeiculoComercial *v : res) {
+
+                v->print();
+                cout << "--------" << endl;
+            }
+        }
+
+    }
+
+    cout << "Enter the id of the car you would like to rent: ";
+    int id;
+    cin >> id;
+
+    Data in(dataIn, horaIn);
+    Data out(dataOut, horaOut);
+
+    Reserva *r = new Reserva(in,out, 100, false, id);
+
+
+    for(int i =0; i < this->empresa.getClientes().size(); i++) {
+
+        if (this->empresa.getClientes().at(i)->getId() == this->visitanteAtual->getId())
+            this->empresa.getClientes().at(i)->addReservas(r);
+    }
+
+    Data difference = in.getDifference(out);
+
+    repetitions--;
+
+
+    while(repetitions > 0) {
+
+        in.setDia(in.getDia() + difference.getDia() + gap%30);
+        in.setMes(in.getMes() + difference.getMes() + gap/30);
+        in.setAno(in.getAno() + difference.getAno() + gap/365);
+
+        out.setDia(out.getDia() + difference.getDia() + gap%30);
+        out.setMes(out.getMes() + difference.getMes() + gap/30);
+        out.setAno(out.getAno() + difference.getAno() + gap/365);
+
+        Reserva *r = new Reserva(in,out, 100, false, id);
+
+
+        for(int i =0; i < this->empresa.getClientes().size(); i++) {
+
+            if (this->empresa.getClientes().at(i)->getId() == this->visitanteAtual->getId())
+                this->empresa.getClientes().at(i)->addReservas(r);
+        }
+
+        repetitions--;
+
+
+    }
+
+    cout << "\n\nYour vehicle has been reserved\n\n";
+    choose();
+
+
 }
 
 void Menu::manageFleet(){
@@ -703,14 +910,13 @@ void Menu::seeReservations(){
 
             for (Veiculo *v : this->empresa.getVeiculos()) {
 
-                //Carro nao esta a imprimir
-                for (Reserva *r : v->getReservas())
-                    if (r == c->getReservas().at(j))
+                if(v->getId() == c->getReservas().at(j)->getVeiculoId())
                         cout << "Carro: " << v->getMarca() << " " << v->getModelo() << " " << v->getAno() << endl;
 
             }
 
             c->getReservas().at(j)->print();
+            cout << "------------" << endl;
 
         }
 
