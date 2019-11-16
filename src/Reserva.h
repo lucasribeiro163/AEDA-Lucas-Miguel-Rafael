@@ -6,59 +6,64 @@
 #define UNTITLED_RESERVA_H
 
 #include "Data.h"
-
+/** Class Reserva
+ *
+ * Formato da uma reserva, seusatributos e respectivas funções.
+ *
+ */
 class Reserva {
 
-    Data dataInicio, dataFim;
-    bool concretizacao;
-    double preco;
-    int veiculoId;
+    Data dataInicio, dataFim; /**Data de inicio e fim da reserva */
+    bool concretizacao; /**Indicação se a reserva já foi concretizada */
+    double preco; /**preço por hora do aluger */
+    int veiculoId; /**id do veiculo */
 
 public:
 
+    /**
+	 * Construtor de uma Reserva
+     * @param dataInicio - Data de inicio do aluguer
+     * @param dataFim - Data de fim do aluguer
+     * @param preco - Preço por hora do aluguer
+     * @param concretizacao - Indicação se a reserva já ocorreu
+     * @param veiculoId - id do veiculo utilizado para a reserva
+	 */
     Reserva(Data &dataInicio, Data &dataFim, double preco, bool concretizacao, int veiculoId);
 
+    /**
+  * Função que retorna a data do inicio do aluguer.
+  */
     Data &getDataInicio();
-
-    void setDataInicio(const Data &dataInicio);
-
+    /**
+  * Função que retorna a data do fim do aluguer.
+  */
     Data &getDataFim();
 
-    void setDataFim(const Data &dataFim);
-
+    /**
+  * Função que retorna o preço por hora do aluguer.
+  */
     const double getPreco();
 
-    const void setPreco(int &preco);
-
+    /**
+  * Função que retorna se o aluguer já ocorreu.
+  */
     bool isConcretizacao() const;
 
-    void setConcretizacao(const bool concretizacao);
-
+    /**
+  * Função que retorna o id do veiculo utilizado para o aluguer
+  */
     int getVeiculoId() const;
 
-    void setVeiculoId(int veiculoId);
-
+    /**
+  * Função que imprime um aluguer
+  */
     void print();
 
+    /**
+  * Overload do operador == para permitir discernir se duas reservas são iguais.
+  */
     bool operator==(Reserva r);
 
 };
-
-class ReservaHoraria : public Reserva{
-
-};
-
-class ReservaDiaria : public Reserva{
-
-};
-
-class ReservaSemanal : public Reserva{
-
-};
-
-class ReservaMensal : public Reserva{
-
-};
-
 
 #endif //UNTITLED_RESERVA_H

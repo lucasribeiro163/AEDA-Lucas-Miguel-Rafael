@@ -30,17 +30,12 @@ int Hora::getHora() const {
     return hora;
 }
 
-void Hora::setHora(int hora) {
-    this->hora = hora;
-}
 
 int Hora::getMinuto() const {
     return minuto;
 }
 
-void Hora::setMinuto(int minuto) {
-    this->minuto = minuto;
-}
+
 
 
 bool Hora::operator<=(Hora Hora) {

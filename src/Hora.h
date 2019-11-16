@@ -8,24 +8,40 @@
 
 using namespace std;
 
+/** Class Hora
+ *
+ * Formato da Hora, atributos (hora, minuto) e respectivas funções.
+ *
+ */
 class Hora {
     int hora;
     int minuto;
+    /**< Hora e minutos de uma "hora" . */
 
 public:
 
+    /**
+    * Construtor da data que recebe uma string representativa da hora.
+    *
+    * @param hora - string composta pela hora e pelos minutos, separados por ":".
+    */
     Hora(string &horaRecebida);
 
+    /**
+   * Função que retorna a hora.
+   */
     int getHora() const;
-
-    void setHora(int hora);
-
+    /**
+       * Função que retorna os minutos .
+       */
     int getMinuto() const;
-
-    void setMinuto(int minuto);
-
+    /**
+    * Overload do operados <= para permitir comparar duas horas.
+    */
     bool operator<=(Hora hora);
-
+        /**
+       * Overload do operador == para permitir discernir a igualdade entre duas horas.
+       */
     bool operator==(Hora hora);
 
     };

@@ -19,34 +19,22 @@ Data &Reserva::getDataInicio(){
     return dataInicio;
 }
 
-void Reserva::setDataInicio(const Data &dataInicio){
-    this->dataInicio = dataInicio;
-}
 
 Data &Reserva::getDataFim(){
     return dataFim;
 }
 
-void Reserva::setDataFim(const Data &dataFim){
-    this->dataFim = dataFim;
-}
 
 const double Reserva::getPreco(){
     return preco;
 }
 
-const void Reserva::setPreco(int &preco){
-    this->preco = preco;
-}
 
 
 bool Reserva::isConcretizacao() const {
     return concretizacao;
 }
 
-void Reserva::setConcretizacao(const bool concretizacao) {
-    Reserva::concretizacao = concretizacao;
-}
 
 
 
@@ -74,7 +62,4 @@ int Reserva::getVeiculoId() const {
     return veiculoId;
 }
 
-void Reserva::setVeiculoId(int veiculoId) {
-    Reserva::veiculoId = veiculoId;
-}
 

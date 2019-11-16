@@ -62,9 +62,6 @@ int Veiculo::getClientId() const{
     return this->clientId;
 }
 
-void Veiculo::setClientId(int &id){
-    this->clientId = clientId;
-}
 
 void Veiculo::print()const{
     cout << "Id: " << id << endl << "Marca: " << marca << endl
@@ -77,9 +74,6 @@ double Veiculo::getPriceHour() const {
     return priceHour;
 }
 
-void Veiculo::setPriceHour(double priceHour) {
-    Veiculo::priceHour = priceHour;
-}
 
 VeiculoPassageiros::VeiculoPassageiros(string marca, string modelo, int ano, int clientId, int nrPassageiros, double priceHour)
         : Veiculo(marca, modelo, ano, clientId, priceHour){

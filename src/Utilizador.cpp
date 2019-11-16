@@ -52,9 +52,6 @@ const int &VisitanteRegistado::getNif() const {
     return nif;
 }
 
-void VisitanteRegistado::setNif(const int &nif) {
-    this->nif = nif;
-}
 
 const string VisitanteRegistado::getPreferencias()const{
     return preferencias;
@@ -63,25 +60,16 @@ const Preferencia VisitanteRegistado::getPreferencia() const{
     return preferencia;
 }
 
-void VisitanteRegistado::setPreferencias(const string &preferencias){
-    this->preferencias = preferencias;
-}
 
 const string VisitanteRegistado::getNome() const{
     return this->nome;
 }
 
-void VisitanteRegistado::setNome(const string &nome){
-    this->nome = nome;
-}
 
 const string &VisitanteRegistado::getPassword() const {
     return password;
 }
 
-void VisitanteRegistado::setPassword(const string &password) {
-    VisitanteRegistado::password = password;
-}
 
 
 Cliente::Cliente(string nome, int nif, Preferencia &preferencias, string password)
@@ -104,25 +92,6 @@ void Cliente::addReservas(Reserva * r){
 
     reservas.push_back(r);
 
-}
-
-
-void Cliente::setReservas(const vector<Reserva *> &reservas) {
-    this->reservas = reservas;
-}
-
-const vector<Reserva *> &Cliente::getHistorico() const {
-    return historico;
-}
-
-void Cliente::setHistorico(const vector<Reserva *> &historico) {
-    this->historico = historico;
-}
-
-void Cliente::addToHistorico(Reserva &reserva) {
-    Reserva *reservaPtr;
-    reservaPtr=&reserva;
-    historico.push_back(reservaPtr);
 }
 
 
@@ -151,9 +120,6 @@ vector<VeiculoPassageiros *>* ClienteDono::getVeiculosPassageiros() {
 }
 
 
-void ClienteDono::setVeiculos(const vector<Veiculo *> &veiculos) {
-    this->veiculos = veiculos;
-}
 
 void ClienteDono::addVeiculo(Veiculo* veiculo) {
 

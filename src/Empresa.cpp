@@ -57,46 +57,11 @@ void Empresa::addVisitanteRegistado(VisitanteRegistado &visitanteRegistado){
     visitantesRegistados.push_back(visitanteRegistadoPtr);
 }
 
-void Empresa::addCliente(Cliente &cliente) {
-    Cliente *ptr;
-    ptr = &cliente;
-    clientes.push_back(ptr);
-}
 
 void Empresa::addClienteDono(ClienteDono &clienteDono) {
     ClienteDono *ptr;
     ptr = &clienteDono;
     clientesDono.push_back(ptr);
-}
-
-void Empresa::deleteVisitor(int id) {
-    for ( int i = 0; i < clientes.size(); i++)
-    {
-        if(clientes.at(i)->getId() == id){
-            delete clientes.at(i);
-            clientes.erase(clientes.begin()+i);
-            break;
-        }
-
-    }
-    for ( int i = 0; i < clientesDono.size(); i++)
-    {
-        if(clientesDono.at(i)->getId() == id){
-            delete clientesDono.at(i);
-            clientesDono.erase(clientesDono.begin()+i);
-            break;
-        }
-
-    }
-
-    for ( int i = 0; i < visitantesRegistados.size(); i++)
-    {
-        if(visitantesRegistados.at(i)->getId() == id){
-            delete visitantesRegistados.at(i);
-            visitantesRegistados.erase(visitantesRegistados.begin()+i);
-            break;
-        }
-    }
 }
 
 
@@ -425,16 +390,6 @@ void Empresa::removeByRefri(vector<VeiculoComercial* >* veiculosComerciais, bool
 }
 
 void Empresa::removeByPricePassengers(vector<VeiculoPassageiros *> *listaVeiculos, int maxPrice){
-    for (int i = 0; i < listaVeiculos->size();i++)
-    {
-        if( listaVeiculos->at(i)->getPriceHour() > maxPrice)
-        {
-            listaVeiculos->erase(listaVeiculos->begin()+i);
-            i--;
-        }
-    }
-}
-void Empresa::removeByPriceComercials(vector<VeiculoComercial *> *listaVeiculos, int maxPrice){
     for (int i = 0; i < listaVeiculos->size();i++)
     {
         if( listaVeiculos->at(i)->getPriceHour() > maxPrice)
