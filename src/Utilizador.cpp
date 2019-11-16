@@ -21,6 +21,9 @@ int Visitante::nrVisitantes = 1;
 int Visitante::getId() {
     return this->id;
 }
+void Visitante::setId(int id){
+    this->id = id;
+}
 
 void Visitante::resetID(int id) {
     nrVisitantes--;
@@ -29,12 +32,21 @@ void Visitante::resetID(int id) {
 
 
 
-VisitanteRegistado::VisitanteRegistado(string nome, int nif, string preferencias, string password) : Visitante() {
+VisitanteRegistado::VisitanteRegistado(string nome, int nif, Preferencia &preferencias, string password)
+: preferencia(preferencias), Visitante(){
     this->nome = nome;
     this->nif = nif;
-    this->preferencias = preferencias;
     this->password = password;
 }
+VisitanteRegistado::VisitanteRegistado(string nome, int nif, int id, Preferencia &preferencias, string password)
+: preferencia(preferencias), Visitante(){
+    this->nome = nome;
+    this->nif = nif;
+    this->setId(id);
+    this->password = password;
+    this->preferencia = preferencias;
+}
+
 
 const int &VisitanteRegistado::getNif() const {
     return nif;
@@ -46,6 +58,9 @@ void VisitanteRegistado::setNif(const int &nif) {
 
 const string VisitanteRegistado::getPreferencias()const{
     return preferencias;
+}
+const Preferencia VisitanteRegistado::getPreferencia() const{
+    return preferencia;
 }
 
 void VisitanteRegistado::setPreferencias(const string &preferencias){
@@ -69,10 +84,17 @@ void VisitanteRegistado::setPassword(const string &password) {
 }
 
 
-Cliente::Cliente(string nome, int nif, string preferencias, string password)
-: VisitanteRegistado(nome, nif, preferencias, password)
+Cliente::Cliente(string nome, int nif, Preferencia &preferencias, string password)
+: VisitanteRegistado(nome, nif, preferencias, password), reservas(), historico()
 {
+
 }
+Cliente::Cliente(string nome, int nif, int id, Preferencia &preferencias, string password)
+        : VisitanteRegistado(nome, nif, preferencias, password), reservas{}, historico{}
+{
+    this->setId(id);
+}
+
 
 const vector<Reserva *> &Cliente::getReservas() const {
     return reservas;
@@ -104,8 +126,16 @@ void Cliente::addToHistorico(Reserva &reserva) {
 }
 
 
-ClienteDono::ClienteDono(string nome, int nif, string preferencias, string password)
+ClienteDono::ClienteDono(string nome, int nif, Preferencia &preferencias, string password)
         : Cliente(nome, nif, preferencias, password){}
+
+ClienteDono::ClienteDono(string nome, int nif, int id, Preferencia &preferencias, string password)
+        : Cliente(nome, nif, preferencias, password)
+    {
+    this->setId(id);
+    }
+
+
 
 vector<Veiculo *>* ClienteDono::getVeiculos(){
     return &veiculos;

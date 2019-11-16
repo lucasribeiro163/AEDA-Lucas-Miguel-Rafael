@@ -15,6 +15,7 @@ Empresa::Empresa(string empresaFile){
     parseClientInfo();
     parseVehicleInfo();
     parseReservasInfo();
+    saveReservations();
 }
 
 vector<VisitanteRegistado *> Empresa::getVisitantesRegistados() const{
@@ -109,6 +110,15 @@ bool Empresa::hasVisitanteRegistado(int id) const {
     }
     return false;
 }
+bool Empresa::hasClienteDono(int id) const {
+    for(ClienteDono *cd : clientesDono)
+    {
+        if(cd->getId() == id){
+            return true;
+        }
+    }
+    return false;
+}
 
 ClienteDono *Empresa::getClienteDono(int id){
     for(ClienteDono *cd : clientesDono)
@@ -133,7 +143,7 @@ void Empresa::parseClientInfo(){
 
     readFile.open(this->clientesFile);
 
-    string buffer, nif, preferencias, nome, password;
+    string buffer, nif, preferencias, nome, password, id;
 
     getline(readFile, buffer);//Nome da classe
     getline(readFile, nome);//nome do 1º Vr
@@ -141,11 +151,13 @@ void Empresa::parseClientInfo(){
     while(nome != "Cliente")//ler todos os visitantes registados
     {
         getline(readFile, nif);
+        getline(readFile,id);
         getline(readFile, preferencias);
         getline(readFile, password);
         getline(readFile, buffer);//limpar lixo
 
-        VisitanteRegistado *vr = new VisitanteRegistado(nome, stoi(nif), preferencias, password);
+        Preferencia *preferencia = new Preferencia(preferencias);
+        VisitanteRegistado *vr = new VisitanteRegistado(nome, stoi(nif), stoi(id), (*preferencia), password);
         visitantesRegistados.push_back(vr);
 
         getline(readFile, nome);//limpar lixo
@@ -156,13 +168,13 @@ void Empresa::parseClientInfo(){
     while(nome != "ClienteDono")//ler todos os clientes
     {
         getline(readFile, nif);
+        getline(readFile,id);
         getline(readFile, preferencias);
         getline(readFile, password);
         getline(readFile, buffer);//limpar tracejado entre clientes
 
-
-
-        Cliente *c = new Cliente(nome, stoi(nif), preferencias, password);
+        Preferencia *preferencia = new Preferencia(preferencias);
+        Cliente *c = new Cliente(nome, stoi(nif),stoi(id), (*preferencia), password);
         clientes.push_back(c);
 
         getline(readFile, nome);//limpar lixo
@@ -172,13 +184,13 @@ void Empresa::parseClientInfo(){
     {
         getline(readFile, nome);
         getline(readFile, nif);
+        getline(readFile,id);
         getline(readFile, preferencias);
         getline(readFile, password);
 
-        ClienteDono *cd = new ClienteDono(nome, stoi(nif), preferencias, password);
+        Preferencia *preferencia = new Preferencia(preferencias);
+        ClienteDono *cd = new ClienteDono(nome, stoi(nif), stoi(id), (*preferencia), password);
         clientesDono.push_back(cd);
-        clientes.push_back(cd);
-
         getline(readFile, nome);//limpar lixo
     }
     readFile.close();
@@ -192,8 +204,8 @@ void Empresa::saveClientInfo(){
     for (size_t i = 0; i < visitantesRegistados.size();i++)
     {
         line << visitantesRegistados.at(i)->getNome() << endl;
-        line << visitantesRegistados.at(i)->getId() << endl;
         line << visitantesRegistados.at(i)->getNif() << endl;
+        line << visitantesRegistados.at(i)->getId() << endl;
         line << visitantesRegistados.at(i)->getPreferencias() << endl;
         line << visitantesRegistados.at(i)->getPassword() << endl;
         line << "----------" << endl;
@@ -205,8 +217,8 @@ void Empresa::saveClientInfo(){
     for (size_t i = 0; i < clientes.size();i++)
     {
         line << clientes.at(i)->getNome() << endl;
-        line << clientes.at(i)->getId() << endl;
         line << clientes.at(i)->getNif() << endl;
+        line << clientes.at(i)->getId() << endl;
         line << clientes.at(i)->getPreferencias() << endl;
         line << clientes.at(i)->getPassword() << endl;
         line << "----------" << endl;
@@ -219,8 +231,8 @@ void Empresa::saveClientInfo(){
     {
 
         line << clientesDono.at(i)->getNome() << endl;
-        line << clientesDono.at(i)->getId() << endl;
         line << clientesDono.at(i)->getNif() << endl;
+        line << clientesDono.at(i)->getId() << endl;
         line << clientesDono.at(i)->getPreferencias() << endl;
         line << clientesDono.at(i)->getPassword() << endl;
         line << "----------";
@@ -412,6 +424,29 @@ void Empresa::removeByRefri(vector<VeiculoComercial* >* veiculosComerciais, bool
     }
 }
 
+void Empresa::removeByPricePassengers(vector<VeiculoPassageiros *> *listaVeiculos, int maxPrice){
+    for (int i = 0; i < listaVeiculos->size();i++)
+    {
+        if( listaVeiculos->at(i)->getPriceHour() > maxPrice)
+        {
+            listaVeiculos->erase(listaVeiculos->begin()+i);
+            i--;
+        }
+    }
+}
+void Empresa::removeByPriceComercials(vector<VeiculoComercial *> *listaVeiculos, int maxPrice){
+    for (int i = 0; i < listaVeiculos->size();i++)
+    {
+        if( listaVeiculos->at(i)->getPriceHour() > maxPrice)
+        {
+            listaVeiculos->erase(listaVeiculos->begin()+i);
+            i--;
+        }
+    }
+}
+
+
+
 void Empresa::removeByReservaPassengers(vector<VeiculoPassageiros* >* veiculos, Data in, Data out){
 
 
@@ -475,11 +510,6 @@ void Empresa::removeByReservaComerciais(vector<VeiculoComercial* >* veiculos, Da
 
     }
 }
-
-
-
-
-
 void Empresa::saveVehicleInfo(){
     ofstream file;
     stringstream line;
@@ -493,6 +523,7 @@ void Empresa::saveVehicleInfo(){
         line << veiculosPassageiros.at(i)->getAno() << endl;
         line << veiculosPassageiros.at(i)->getClientId() << endl;
         line << veiculosPassageiros.at(i)->getNrPassageiros() << endl;
+        line << veiculosPassageiros.at(i)->getPriceHour() << endl;
         line << "----------" << endl;
         file << line.str();
         line.str("");
@@ -510,6 +541,7 @@ void Empresa::saveVehicleInfo(){
         if(veiculosComerciais.at(i)->hasRefrigeracao())
             line << "true" << endl;
         else line << "false" << endl;
+        line << veiculosComerciais.at(i)->getPriceHour() << endl;
         line << "----------";
         if (i != veiculosComerciais.size()-1)
             line << endl;
@@ -526,4 +558,68 @@ Veiculo *Empresa::getVeiculo(int &veiculoId){
             return veiculos[i];
     }
     return veiculos[0];//TODO
+}
+
+void Empresa::saveReservations() {
+    ofstream file;
+    stringstream line;
+    file.open(reservasFile);
+    Veiculo *v;
+    for (size_t i = 0; i < veiculos.size();i++)
+    {
+        for (size_t j =0; j < veiculos.at(i)->getReservas().size(); j++)
+        {
+
+            if(j == 0 && i != 0 )
+                line << endl;
+            if(veiculos.at(i)->getReservas().at(j)->getDataInicio().getDia() < 10)
+                line  << '0' << veiculos.at(i)->getReservas().at(j)->getDataInicio().getDia();
+            else line  << veiculos.at(i)->getReservas().at(j)->getDataInicio().getDia();
+
+            if(veiculos.at(i)->getReservas().at(j)->getDataInicio().getMes() < 10)
+                line << '/' << '0' << veiculos.at(i)->getReservas().at(j)->getDataInicio().getMes();
+            else line << '/' << veiculos.at(i)->getReservas().at(j)->getDataInicio().getMes();
+            line << '/'<< veiculos.at(i)->getReservas().at(j)->getDataInicio().getAno() << endl;
+
+            if(veiculos.at(i)->getReservas().at(j)->getDataInicio().getHora().getHora() < 10)
+                line  << '0' << veiculos.at(i)->getReservas().at(j)->getDataInicio().getHora().getHora();
+            else line << veiculos.at(i)->getReservas().at(j)->getDataInicio().getHora().getHora();
+
+            if(veiculos.at(i)->getReservas().at(j)->getDataInicio().getHora().getMinuto() < 10)
+                line << ':' << '0' << veiculos.at(i)->getReservas().at(j)->getDataInicio().getHora().getMinuto()<<endl;
+            else line << ':' << veiculos.at(i)->getReservas().at(j)->getDataInicio().getHora().getMinuto() << endl;
+
+
+
+            if(veiculos.at(i)->getReservas().at(j)->getDataInicio().getDia() < 10)
+                line << '0' << veiculos.at(i)->getReservas().at(j)->getDataFim().getDia();
+            else line  << veiculos.at(i)->getReservas().at(j)->getDataFim().getDia();
+
+            if(veiculos.at(i)->getReservas().at(j)->getDataFim().getMes() < 10)
+                line << '/' << '0' << veiculos.at(i)->getReservas().at(j)->getDataFim().getMes();
+            else line << '/' << veiculos.at(i)->getReservas().at(j)->getDataFim().getMes();
+            line << '/' << veiculos.at(i)->getReservas().at(j)->getDataFim().getAno() << endl;
+
+            if(veiculos.at(i)->getReservas().at(j)->getDataFim().getHora().getHora() < 10)
+                line << '0' << veiculos.at(i)->getReservas().at(j)->getDataFim().getHora().getHora();
+            else line  << veiculos.at(i)->getReservas().at(j)->getDataFim().getHora().getHora();
+
+            if(veiculos.at(i)->getReservas().at(j)->getDataFim().getHora().getMinuto() < 10)
+                line << ':' << '0' << veiculos.at(i)->getReservas().at(j)->getDataFim().getHora().getMinuto()<<endl;
+            else line << ':' << veiculos.at(i)->getReservas().at(j)->getDataFim().getHora().getMinuto()<<endl;
+
+            line << veiculos.at(i)->getId() << endl;
+            line << veiculos.at(i)->getReservas().at(j)->getPreco() << endl;
+            if (veiculos.at(i)->getReservas().at(j)->isConcretizacao())
+                line << "true" << endl;
+            else line << "false" << endl;
+            line << "----------";
+            if (j != veiculos.at(i)->getReservas().size()-1)
+                line << endl;
+
+            file << line.str();
+            line.str("");
+        }
+    }
+    file.close();
 }

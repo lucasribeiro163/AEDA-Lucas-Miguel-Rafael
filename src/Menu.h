@@ -34,9 +34,10 @@ public:
     void updateCargoVehicle();
     void updatePassengerVehicle();
     void seeReservations();
-
+    void unregisteredChoose();
     int validCinInt();
     void registerClient();
+    void makeOffer(Data in, Data out);
 
     };
 

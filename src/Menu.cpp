@@ -27,16 +27,46 @@ void Menu::checkRegister(){
         if ((isRegistered == "N") || (isRegistered == "n")) {
             Visitante *v = new Visitante();
             cout << "You are anonymous visitor number " << v->getId() << "\nHere are the company's offers: " << endl;
-            empresa.printVeiculos();
-            //registerClient();
-            //empresa.saveClientInfo();
+            unregisteredChoose();
         } else {
             cout << "Sorry, wrong input" << endl;
             checkRegister();
         }
     }
 }
+void Menu::unregisteredChoose() {
+    cout << "\nWhat would you like to do?\n"
+         << "1 - See the company's offers\n"
+         << "2 - Register" << endl
+         << "3 - Exit" << endl;
 
+    char option;
+    cin >> option;
+    cin.clear();
+
+    if (option < '1' || option > '3') {
+        cin.clear();
+        cout << "Invalid option" << endl;
+        unregisteredChoose();
+    } else {
+        switch (option) {
+            case ('1'):
+                cin.clear();
+                empresa.printVeiculos();
+                unregisteredChoose();
+                break;
+            case ('2'):
+                cin.clear();
+                registerClient();
+                this->empresa.saveClientInfo();
+                choose();
+                break;
+            case ('3'):
+                cin.clear();
+                return;
+        }
+    }
+}
 void Menu::login(){
     string inputId;
     bool password_match = false;
@@ -89,45 +119,137 @@ void Menu::login(){
 }
 
 void Menu::choose() {
-    cout << "\nWhat would you like to do?\n"
-    << "1 - See all the company's cars\n"
-    << "2 - Rent a vehicle" << endl
-    << "3 - Advertise a vehicle" << endl
-    << "4 - Manage your fleet" << endl
-    << "5 - See all of my reservations" << endl;
+    if (this->empresa.hasClienteDono(this->visitanteAtual->getId()))
+    {
+        cout << "\nWhat would you like to do?\n"
+             << "1 - See all the company's cars\n"
+             << "2 - Rent a vehicle" << endl
+             << "3 - Advertise a vehicle" << endl
+             << "4 - Manage your fleet" << endl
+             << "5 - See all of my reservations" << endl
+             << "6 - Exit" << endl;
 
-    char option;
-    cin >> option;
-    cin.clear();
 
-    if(option < '1' || option > '5') {
+        char option;
+        cin >> option;
         cin.clear();
-        cout << "Invalid option" << endl;
-        choose();
+
+        if(option < '1' || option > '6') {
+            cin.clear();
+            cout << "Invalid option" << endl;
+            choose();
+        }
+        else{
+            switch(option){
+                case('1'):
+                    cin.clear();
+                    empresa.printVeiculos();
+                    choose();
+                    break;
+                case('2'):
+                    cin.clear();
+                    rentVehicle();
+                    this->empresa.saveReservations();
+                    break;
+                case('3'):
+                    cin.clear();
+                    advertiseVehicle();
+                    this->empresa.saveVehicleInfo();
+                    break;
+                case('4'):
+                    cin.clear();
+                    manageFleet();
+                    this->empresa.saveVehicleInfo();
+                    break;
+                case('5'):
+                    cin.clear();
+                    seeReservations();
+                    break;
+                case('6'):
+                    return;
+            }
+        }
+    }
+    else if (this->empresa.hasClienteDono(this->visitanteAtual->getId())){
+        cout << "\nWhat would you like to do?\n"
+             << "1 - See all the company's cars\n"
+             << "2 - Rent a vehicle" << endl
+             << "3 - Advertise a vehicle" << endl
+             << "4 - Manage your fleet" << endl
+             << "5 - See all of my reservations" << endl
+             << "6 - Exit" << endl;
+
+
+        char option;
+        cin >> option;
+        cin.clear();
+
+        if(option < '1' || option > '6') {
+            cin.clear();
+            cout << "Invalid option" << endl;
+            choose();
+        }
+        else{
+            switch(option){
+                case('1'):
+                    cin.clear();
+                    empresa.printVeiculos();
+                    choose();
+                    break;
+                case('2'):
+                    cin.clear();
+                    rentVehicle();
+                    this->empresa.saveReservations();
+                    break;
+                case('3'):
+                    cin.clear();
+                    advertiseVehicle();
+                    this->empresa.saveVehicleInfo();
+                    break;
+                case('4'):
+                    cin.clear();
+                    seeReservations();
+                    break;
+                case('5'):
+                    return;
+            }
+        }
     }
     else{
-        switch(option){
-            case('1'):
-                cin.clear();
-                empresa.printVeiculos();
-                choose();
-                break;
-            case('2'):
-                cin.clear();
-                rentVehicle();
-                break;
-            case('3'):
-                cin.clear();
-                advertiseVehicle();
-                break;
-            case('4'):
-                cin.clear();
-                manageFleet();
-                break;
-            case('5'):
-                cin.clear();
-                seeReservations();
-                break;
+        cout << "\nWhat would you like to do?\n"
+             << "1 - See all the company's cars\n"
+             << "2 - Rent a vehicle" << endl
+             << "3 - Advertise a vehicle" << endl
+             << "4 - Exit" << endl;
+
+        char option;
+        cin >> option;
+        cin.clear();
+
+        if (option < '1' || option > '4') {
+            cin.clear();
+            cout << "Invalid option" << endl;
+            choose();
+        } else {
+            switch (option) {
+                case ('1'):
+                    cin.clear();
+                    empresa.printVeiculos();
+                    choose();
+                    break;
+                case ('2'):
+                    cin.clear();
+                    rentVehicle();
+                    this->empresa.saveReservations();
+                    break;
+                case ('3'):
+                    cin.clear();
+                    advertiseVehicle();
+                    this->empresa.saveVehicleInfo();
+                    break;
+                case ('4'):
+                    return;
+            }
         }
     }
 }
@@ -140,9 +262,9 @@ void Menu::rentVehicle(){
 
     string option;
     cin >> option;
-    if(option!="1" && option!="2" && option!="3" && option!="4" && option!="5")
+    if(option!="1" && option!="2" && option!="3")
     {
-        cout << "HERES the option:  " <<  option << endl;
+        //cout << "HERES the option:  " <<  option << endl;
         cout << "Sorry, wrong input" << endl;
         rentVehicle();
     }
@@ -247,23 +369,26 @@ void Menu::advertiseVehicle() {
         if(this->empresa.getCliente(this->visitanteAtual->getId()) == NULL)
         {
             VisitanteRegistado* v = this->empresa.getVisitanteRegistado(this->visitanteAtual->getId());
-            cd = new ClienteDono(v->getNome(), v->getNif(),v->getPreferencias(),
+            Preferencia *preferencia = new Preferencia(v->getPreferencia());
+            cd = new ClienteDono(v->getNome(), v->getNif(),(*preferencia),
                                               v->getPassword());
         }
         else{
             Cliente* c = this->empresa.getCliente(this->visitanteAtual->getId());
-            cd = new ClienteDono(c->getNome(), c->getNif(),c->getPreferencias(),
+            Preferencia *preferencia = new Preferencia(c->getPreferencia());
+            cd = new ClienteDono(c->getNome(), c->getNif(),(*preferencia),
                                               c->getPassword());
         }
         cd->resetID(this->visitanteAtual->getId());
         cd->addVeiculo(v);
         this->empresa.addClienteDono((*cd));
-        this->empresa.deleteVisitor(this->visitanteAtual->getId());
+        //this->empresa.deleteVisitor(this->visitanteAtual->getId());
 
         cout << cd->getNome() << endl;
         cout << cd->getPassword() << endl;
         cd->getVeiculos()->at(0)->print();
     }
+        this->empresa.saveVehicleInfo();
         choose();
 }
 
@@ -378,7 +503,35 @@ void Menu::singleUseRent(){
     string dataOut = askDateOut();
     string horaIn = askHourIn();
     string horaOut = askHourOut();
+    bool valid = false;
+    while(!valid){
+        cout << "\nWhat would you like to do?\n"
+             << "1 - Make me an offer\n"
+             << "2 - Select Vehicle\n" << endl;
 
+        char option;
+        cin >> option;
+        cin.clear();
+
+        if (option < '1' || option > '2') {
+            cin.clear();
+            cout << "Invalid option" << endl;
+        } else {
+            Data in(dataIn, horaIn);
+            Data out(dataOut, horaOut);
+            valid = true;
+            switch (option) {
+                case ('1'):
+                    cin.clear();
+                    makeOffer(in,out);
+                    choose();
+                    break;
+                case ('2'):
+                    break;
+
+            }
+        }
+    }
 
     cout << "\nWhat type of vehicle do you need, Passenger or Cargo (1-2)? ";
     int type;
@@ -482,6 +635,7 @@ void Menu::singleUseRent(){
     }
 
     cout << "\n\nYour vehicle has been reserved for " << r->getPreco() <<" euros\n\n";
+    this->empresa.saveReservations();
     choose();
 }
 
@@ -667,6 +821,7 @@ void Menu::periodicContractRent() {
     }
 
     cout << "\n\nYour vehicle has been reserved\n\n";
+    this->empresa.saveReservations();
     choose();
 
 
@@ -691,14 +846,17 @@ void Menu::manageFleet(){
             case('1'):
                 cin.clear();
                 viewCars();
+                this->empresa.saveVehicleInfo();
                 break;
             case('2'):
                 cin.clear();
                 removeCar();
+                this->empresa.saveVehicleInfo();
                 break;
             case('3'):
                 cin.clear();
                 updateCar();
+                this->empresa.saveVehicleInfo();
                 break;
         }
 
@@ -733,8 +891,6 @@ void Menu::removeCar() {
     }
     else
         choose();
-
-
 }
 
 void Menu::viewCars() {
@@ -843,7 +999,6 @@ void Menu::updateCargoVehicle() {
 
     }
 
-
 }
 
 void Menu::updatePassengerVehicle() {
@@ -910,40 +1065,73 @@ void Menu::updatePassengerVehicle() {
 
 void Menu::seeReservations(){
 
+
     cout << "\n\nHere are your reservations: \n\n";
 
+    bool dono = false;
     Cliente *c;
 
     for(int i =0; i < this->empresa.getClientes().size(); i++){
 
         if(this->empresa.getClientes().at(i)->getId() == this->visitanteAtual->getId()) {
-            c = this->empresa.getClientes().at(i);
+                c = this->empresa.getClientes().at(i);
+                dono = false;
+            }
         }
+    ClienteDono *cd;
+    for(int i =0; i < this->empresa.getClientesDono().size(); i++){
 
+        if(this->empresa.getClientesDono().at(i)->getId() == this->visitanteAtual->getId()) {
+            cd = this->empresa.getClientesDono().at(i);
+            dono = true;
+        }
     }
 
+    if (!dono){
+        if(c->getReservas().empty())
+            cout << "\nThere are no reservations.\n";
+        else {
 
+            for (int j = 0; j < c->getReservas().size(); j++) {
 
-    if(c->getReservas().empty())
-        cout << "\nThere are no reservations.\n";
-    else {
+                cout << "\n\nReserva " << j << ": " << endl;
 
-        for (int j = 0; j < c->getReservas().size(); j++) {
+                for (Veiculo *v : this->empresa.getVeiculos()) {
 
-            cout << "\n\nReserva " << j << ": " << endl;
+                    if(v->getId() == c->getReservas().at(j)->getVeiculoId())
+                            cout << "Carro: " << v->getMarca() << " " << v->getModelo() << " " << v->getAno() << endl;
 
-            for (Veiculo *v : this->empresa.getVeiculos()) {
+                }
 
-                if(v->getId() == c->getReservas().at(j)->getVeiculoId())
-                        cout << "Carro: " << v->getMarca() << " " << v->getModelo() << " " << v->getAno() << endl;
+                c->getReservas().at(j)->print();
+                cout << "------------" << endl;
 
             }
 
-            c->getReservas().at(j)->print();
-            cout << "------------" << endl;
+        }
+    }
+    else {
+        if(cd->getReservas().empty())
+            cout << "\nThere are no reservations.\n";
+        else {
+
+            for (int j = 0; j < cd->getReservas().size(); j++) {
+
+                cout << "\n\nReserva " << j << ": " << endl;
+
+                for (Veiculo *v : this->empresa.getVeiculos()) {
+
+                    if(v->getId() == cd->getReservas().at(j)->getVeiculoId())
+                        cout << "Carro: " << v->getMarca() << " " << v->getModelo() << " " << v->getAno() << endl;
+
+                }
+
+                c->getReservas().at(j)->print();
+                cout << "------------" << endl;
+
+            }
 
         }
-
     }
 
     choose();
@@ -975,6 +1163,7 @@ void Menu::registerClient() {
     int nif, type, price, passengers, volume, weight, year;
     bool valid = false;
     bool fridge;
+    cin.ignore(10000, '\n');
     cout << "Please insert your Name: ";
     getline(cin, name);
     cout << "Please enter your NIF: ";
@@ -1044,8 +1233,8 @@ void Menu::registerClient() {
             }
         }
         valid = false;
-        string preferencias = to_string(type) + to_string(price) + to_string(year) + to_string(passengers);
-        VisitanteRegistado *vr = new VisitanteRegistado(name, nif, preferencias, password);
+        Preferencia *preferencias = new  Preferencia(to_string(type) + to_string(price) + to_string(year) + to_string(passengers));
+        VisitanteRegistado *vr = new VisitanteRegistado(name, nif, (*preferencias), password);
 
         empresa.addVisitanteRegistado((*vr));
         cout << "Thank you for registering!" << endl;
@@ -1090,14 +1279,442 @@ void Menu::registerClient() {
                 cout << "Invalid value. Please try again.\n";
             }
         }
-
-        string preferencias =
-                to_string(type) + to_string(price) + to_string(year) + to_string(weight) + to_string(volume) +
-                to_string(fridge);
-        VisitanteRegistado vr = VisitanteRegistado(name, nif, preferencias, password);
+        Preferencia *preferencias = new Preferencia(to_string(type) + to_string(price) + to_string(year) + to_string(weight) + to_string(volume) +
+                                                    to_string(fridge));
+        VisitanteRegistado vr = VisitanteRegistado(name, nif, (*preferencias), password);
         empresa.addVisitanteRegistado(vr);
         cout << "Thank you for registering!" << endl;
         cout << "Your ID is: " << visitanteAtual->nrVisitantes - 1 << endl;
     }
+    //empresa.saveClientInfo();
     checkRegister();
+}
+
+void Menu::makeOffer(Data in,Data out) {
+    vector<Veiculo *> res = this->empresa.getVeiculos();
+    vector<VeiculoPassageiros *> resPassageiros;
+    vector<VeiculoComercial *> resComercial;
+
+    if (this->empresa.hasVisitanteRegistado(this->visitanteAtual->getId()))
+    {
+        VisitanteRegistado *v = this->empresa.getVisitanteRegistado(this->visitanteAtual->getId());
+        if(v->getPreferencia().getTipo()== 1)
+        {
+            vector<VeiculoPassageiros *> res = this->empresa.getVeiculosPassageiros();
+            vector<VeiculoPassageiros *> temp = res;
+            this->empresa.removeByReservaPassengers(&temp, in, out);
+                    if (temp.size() != 0)
+                    {
+                        res = temp;
+                        resPassageiros = res;
+                    }
+            if(v->getPreferencia().getPrecoMax() == 1)
+            {
+                this->empresa.removeByPricePassengers(&temp,20);
+                if (temp.size() != 0)
+                {
+                    res = temp;
+                    resPassageiros = res;
+                }
+            }
+            if(v->getPreferencia().getPrecoMax() == 2)
+            {
+                this->empresa.removeByPricePassengers(&temp,40);
+                if (temp.size() != 0)
+                {
+                    res = temp;
+                    resPassageiros = res;
+                }
+            }
+            if (v->getPreferencia().getNrPass() == 1)
+            {
+                this->empresa.removeByNrPassengers(&temp, 2);
+                if (temp.size() != 0)
+                {
+                    res = temp;
+                    resPassageiros = res;
+                }
+            }
+            if (v->getPreferencia().getNrPass() == 2)
+            {
+                this->empresa.removeByNrPassengers(&temp, 5);
+                if (temp.size() != 0)
+                {
+                    res = temp;
+                    resPassageiros = res;
+                }
+            }
+            if(v->getPreferencia().getNrPass() == 3)
+            {
+                this->empresa.removeByNrPassengers(&temp, 7);
+                if (temp.size() != 0)
+                {
+                    res = temp;
+                    resPassageiros = res;
+                }
+            }
+        }
+        else if(v->getPreferencia().getTipo()== 2)
+        {
+            vector<VeiculoComercial *> res = this->empresa.getVeiculosComerciais();
+            vector<VeiculoComercial *> temp = res;
+            this->empresa.removeByReservaComerciais(&temp, in, out);
+            if (temp.size() != 0)
+            {
+                res = temp;
+                resComercial = res;
+            }
+            if (v->getPreferencia().getRefrigeracao())
+            {
+                this->empresa.removeByRefri(&temp,true);
+                if (temp.size() != 0)
+                {
+                    res = temp;
+                    resComercial = res;
+                }
+            }
+            else {
+                this->empresa.removeByRefri(&temp,false);
+                if (temp.size() != 0)
+                {
+                    res = temp;
+                    resComercial = res;
+                }
+            }
+            if (v->getPreferencia().getPeso_carga() == 2)
+            {
+                this->empresa.removeByWeight(&temp, 50);
+                if (temp.size() != 0)
+                {
+                    res = temp;
+                    resComercial = res;
+                }
+            }
+            else if (v->getPreferencia().getPeso_carga() == 3)
+            {
+                this->empresa.removeByWeight(&temp, 150);
+                if (temp.size() != 0)
+                {
+                    res = temp;
+                    resComercial = res;
+                }
+            }
+            if (v->getPreferencia().getVolume() == 2)
+            {
+                this->empresa.removeByVolume(&temp,50);
+                if (temp.size() != 0)
+                {
+                    res = temp;
+                    resComercial = res;
+                }
+
+            }
+            else if (v->getPreferencia().getVolume() == 3)
+            {
+                this->empresa.removeByVolume(&temp,150);
+                if (temp.size() != 0)
+                {
+                    res = temp;
+                    resComercial = res;
+                }
+            }
+        }
+    }
+    else if (this->empresa.hasClienteDono(this->visitanteAtual->getId()))
+    {
+        VisitanteRegistado *v = this->empresa.getVisitanteRegistado(this->visitanteAtual->getId());
+        if(v->getPreferencia().getTipo()== 1)
+        {
+            vector<VeiculoPassageiros *> res = this->empresa.getVeiculosPassageiros();
+            vector<VeiculoPassageiros *> temp = res;
+            this->empresa.removeByReservaPassengers(&temp, in, out);
+            if (temp.size() != 0)
+            {
+                res = temp;
+                resPassageiros = res;
+            }
+            if(v->getPreferencia().getPrecoMax() == 1)
+            {
+                this->empresa.removeByPricePassengers(&temp,20);
+                if (temp.size() != 0)
+                {
+                    res = temp;
+                    resPassageiros = res;
+                }
+            }
+            if(v->getPreferencia().getPrecoMax() == 2)
+            {
+                this->empresa.removeByPricePassengers(&temp,40);
+                if (temp.size() != 0)
+                {
+                    res = temp;
+                    resPassageiros = res;
+                }
+            }
+            if (v->getPreferencia().getNrPass() == 1)
+            {
+                this->empresa.removeByNrPassengers(&temp, 2);
+                if (temp.size() != 0)
+                {
+                    res = temp;
+                    resPassageiros = res;
+                }
+            }
+            if (v->getPreferencia().getNrPass() == 2)
+            {
+                this->empresa.removeByNrPassengers(&temp, 5);
+                if (temp.size() != 0)
+                {
+                    res = temp;
+                    resPassageiros = res;
+                }
+            }
+            if(v->getPreferencia().getNrPass() == 3)
+            {
+                this->empresa.removeByNrPassengers(&temp, 7);
+                if (temp.size() != 0)
+                {
+                    res = temp;
+                    resPassageiros = res;
+                }
+            }
+        }
+        else if(v->getPreferencia().getTipo()== 2)
+        {
+            vector<VeiculoComercial *> res = this->empresa.getVeiculosComerciais();
+            vector<VeiculoComercial *> temp = res;
+            this->empresa.removeByReservaComerciais(&temp, in, out);
+            if (temp.size() != 0)
+            {
+                res = temp;
+                resComercial = res;
+            }
+            if (v->getPreferencia().getRefrigeracao())
+            {
+                this->empresa.removeByRefri(&temp,true);
+                if (temp.size() != 0)
+                {
+                    res = temp;
+                    resComercial = res;
+                }
+            }
+            else {
+                this->empresa.removeByRefri(&temp,false);
+                if (temp.size() != 0)
+                {
+                    res = temp;
+                    resComercial = res;
+                }
+            }
+            if (v->getPreferencia().getPeso_carga() == 2)
+            {
+                this->empresa.removeByWeight(&temp, 50);
+                if (temp.size() != 0)
+                {
+                    res = temp;
+                    resComercial = res;
+                }
+            }
+            else if (v->getPreferencia().getPeso_carga() == 3)
+            {
+                this->empresa.removeByWeight(&temp, 150);
+                if (temp.size() != 0)
+                {
+                    res = temp;
+                    resComercial = res;
+                }
+            }
+            if (v->getPreferencia().getVolume() == 2)
+            {
+                this->empresa.removeByVolume(&temp,50);
+                if (temp.size() != 0)
+                {
+                    res = temp;
+                    resComercial = res;
+                }
+
+            }
+            else if (v->getPreferencia().getVolume() == 3)
+            {
+                this->empresa.removeByVolume(&temp,150);
+                if (temp.size() != 0)
+                {
+                    res = temp;
+                    resComercial = res;
+                }
+            }
+        }
+    }
+    else
+        {
+            VisitanteRegistado *v = this->empresa.getVisitanteRegistado(this->visitanteAtual->getId());
+            if(v->getPreferencia().getTipo()== 1)
+            {
+                vector<VeiculoPassageiros *> res = this->empresa.getVeiculosPassageiros();
+                vector<VeiculoPassageiros *> temp = res;
+                this->empresa.removeByReservaPassengers(&temp, in, out);
+                if (temp.size() != 0)
+                {
+                    res = temp;
+                    resPassageiros = res;
+                }
+                if(v->getPreferencia().getPrecoMax() == 1)
+                {
+                    this->empresa.removeByPricePassengers(&temp,20);
+                    if (temp.size() != 0)
+                    {
+                        res = temp;
+                        resPassageiros = res;
+                    }
+                }
+                if(v->getPreferencia().getPrecoMax() == 2)
+                {
+                    this->empresa.removeByPricePassengers(&temp,40);
+                    if (temp.size() != 0)
+                    {
+                        res = temp;
+                        resPassageiros = res;
+                    }
+                }
+                if (v->getPreferencia().getNrPass() == 1)
+                {
+                    this->empresa.removeByNrPassengers(&temp, 2);
+                    if (temp.size() != 0)
+                    {
+                        res = temp;
+                        resPassageiros = res;
+                    }
+                }
+                if (v->getPreferencia().getNrPass() == 2)
+                {
+                    this->empresa.removeByNrPassengers(&temp, 5);
+                    if (temp.size() != 0)
+                    {
+                        res = temp;
+                        resPassageiros = res;
+                    }
+                }
+                if(v->getPreferencia().getNrPass() == 3)
+                {
+                    this->empresa.removeByNrPassengers(&temp, 7);
+                    if (temp.size() != 0)
+                    {
+                        res = temp;
+                        resPassageiros = res;
+                    }
+                }
+            }
+            else if(v->getPreferencia().getTipo()== 2)
+            {
+                vector<VeiculoComercial *> res = this->empresa.getVeiculosComerciais();
+                vector<VeiculoComercial *> temp = res;
+                this->empresa.removeByReservaComerciais(&temp, in, out);
+                if (temp.size() != 0)
+                {
+                    res = temp;
+                    resComercial = res;
+                }
+                if (v->getPreferencia().getRefrigeracao())
+                {
+                    this->empresa.removeByRefri(&temp,true);
+                    if (temp.size() != 0)
+                    {
+                        res = temp;
+                        resComercial = res;
+                    }
+                }
+                else {
+                    this->empresa.removeByRefri(&temp,false);
+                    if (temp.size() != 0)
+                    {
+                        res = temp;
+                        resComercial = res;
+                    }
+                }
+                if (v->getPreferencia().getPeso_carga() == 2)
+                {
+                    this->empresa.removeByWeight(&temp, 50);
+                    if (temp.size() != 0)
+                    {
+                        res = temp;
+                        resComercial = res;
+                    }
+                }
+                else if (v->getPreferencia().getPeso_carga() == 3)
+                {
+                    this->empresa.removeByWeight(&temp, 150);
+                    if (temp.size() != 0)
+                    {
+                        res = temp;
+                        resComercial = res;
+                    }
+                }
+                if (v->getPreferencia().getVolume() == 2)
+                {
+                    this->empresa.removeByVolume(&temp,50);
+                    if (temp.size() != 0)
+                    {
+                        res = temp;
+                        resComercial = res;
+                    }
+
+                }
+                else if (v->getPreferencia().getVolume() == 3)
+                {
+                    this->empresa.removeByVolume(&temp,150);
+                    if (temp.size() != 0)
+                    {
+                        res = temp;
+                        resComercial = res;
+                    }
+                }
+            }
+
+        }
+
+    if(res.empty())
+    {
+        cout << "\n\nNo vehicles available with that criteria\n";
+
+    }
+    else {
+        for (int i = 0; i != resPassageiros.size(); i++) {
+            resPassageiros.at(i)->print();
+            cout << "--------" << endl;
+        }
+        for (int i = 0; i != resComercial.size(); i++) {
+            resComercial.at(i)->print();
+            cout << "--------" << endl;
+        }
+
+
+        cout << "Enter the id of the car you would like to rent: ";
+        int id;
+        cin >> id;
+
+        Veiculo *v;
+
+
+        for(int i=0; i < this->empresa.getVeiculos().size(); i++){
+
+            if(this->empresa.getVeiculos().at(i)->getId() == id)
+                v = this->empresa.getVeiculos().at(i);
+        }
+        double total_price = v->getPriceHour() * in.hoursBetween(out);
+
+
+        Reserva *r = new Reserva(in,out,total_price, false, id);
+
+
+
+        for(int i =0; i < this->empresa.getClientes().size(); i++){
+
+            if(this->empresa.getClientes().at(i)->getId() == this->visitanteAtual->getId())
+                this->empresa.getClientes().at(i)->addReservas(r);
+
+        }
+
+        cout << "\n\nYour vehicle has been reserved for " << r->getPreco() <<" euros\n\n";
+    }
+
 }

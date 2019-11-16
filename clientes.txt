@@ -1,53 +1,63 @@
 VisitanteRegistado
 Rui Miguel
 12345
-minhaspreferencias
+1
+1232
 pipipopo
 ----------
 Joao Mario
 398219
-minhaspreferencias2
+2
+212231
 laladidi
 ----------
 Fabio Rodrigues
 1928392
-minhaspreferencias3
+3
+212232
 nananene
 ----------
 Ricardo Rodrigues
 9864392
-minhaspreferencias4
+4
+1232
 bibibobo
 ----------
 Joana Gomes
 19888132
-minhaspreferencias5
+5
+1232
 pupupipi
 ----------
 Cliente
 Ernesto Fabricio
 6387654
-minhaspreferencias4
+6
+1232
 apitaocomboio
 ----------
 Florbela Estela
 3628363
-minhaspreferencias5
+7
+212121
 lavaiaapitar
 ----------
 ClienteDono
 Bela Joaquina
 2398547
-minhaspreferencias4
+8
+212232
 abeiradomar
 ----------
 Hugo Lugo
 7625327
-minhaspreferencias5
+9
+212232
 naoseiores
 ----------
 Francisca Pisca
 1517181
-minhaspreferencias6
+10
+1233
 todaletra
 ----------

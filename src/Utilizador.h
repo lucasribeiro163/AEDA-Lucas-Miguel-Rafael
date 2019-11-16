@@ -9,6 +9,7 @@
 #include <vector>
 #include "Veiculo.h"
 #include "Reserva.h"
+#include "Preferencia.h"
 
 using namespace std;
 
@@ -22,6 +23,7 @@ public:
     static int nrVisitantes;
 
     int getId();
+    void setId(int id);
     void resetID(int id);
     virtual ~Visitante() {};
 
@@ -32,16 +34,21 @@ class VisitanteRegistado : public Visitante{
 
     int nif;
     string preferencias, nome, password;
+    Preferencia preferencia;
 
 public:
 
-    VisitanteRegistado(string nome, int nif, string preferencias, string password);
+    VisitanteRegistado(string nome, int nif, Preferencia &preferencias, string password);
+    VisitanteRegistado(string nome, int nif,int id, Preferencia &preferencias, string password);
+
+
 
     virtual const int &getNif() const;
 
     virtual void setNif(const int &nif);
 
     virtual const string getPreferencias() const;
+    virtual const Preferencia getPreferencia() const;
 
     void setPreferencias(const string &preferencias);
 
@@ -63,7 +70,10 @@ class Cliente : public VisitanteRegistado{
 
 public:
 
-    Cliente(string nome, int nif, string preferencias, string password);
+    Cliente(string nome, int nif, Preferencia &preferencias, string password);
+
+    Cliente(string nome, int nif,int id, Preferencia  &preferencias, string password);
+
 
     virtual const vector<Reserva *> &getReservas() const;
 
@@ -89,7 +99,9 @@ class ClienteDono : public Cliente{
 
 public:
 
-    ClienteDono(string nome, int nif, string preferencias, string password);
+    ClienteDono(string nome, int nif, Preferencia  &preferencias, string password);
+    ClienteDono(string nome, int nif,int id, Preferencia  &preferencias, string password);
+
 
     vector<Veiculo *>* getVeiculos();
 

@@ -29,6 +29,7 @@ public:
     Cliente* getCliente(int id) const;
     void addVisitanteRegistado(VisitanteRegistado &visitanteRegistado);
     bool hasVisitanteRegistado(int id) const;
+    bool hasClienteDono(int id) const;
     void addCliente(Cliente &cliente);
     void deleteVisitor(int id);
     void addClienteDono(ClienteDono &clienteDono);
@@ -50,7 +51,10 @@ public:
     void removeByRefri(vector<VeiculoComercial* >* veiculosComerciais, bool refri);
     void removeByReservaPassengers(vector<VeiculoPassageiros* >* veiculos, Data in, Data out);
     void removeByReservaComerciais(vector<VeiculoComercial* >* veiculos, Data in, Data out);
-    };
+    void removeByPricePassengers(vector<VeiculoPassageiros* >* listaVeiculos, int maxPrice);
+    void removeByPriceComercials(vector<VeiculoComercial* >* listaVeiculos, int maxPrice);
+
+};
 
 
 #endif //PROJECT_EMPRESA_H

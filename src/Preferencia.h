@@ -9,12 +9,14 @@
 #include "Data.h"
 
 class Preferencia {
-    unsigned int precoMax, anoMax, tipo, nrPass;
-    float peso_carga, volume;
+    unsigned int precoMax, anoMax, tipo, nrPass = 0;
+    float peso_carga, volume = 0 ;
     bool refrigeracao;
+    string preferencias;
 public:
     Preferencia(int precoMax, int anoMax, int nrPass);
     Preferencia(int precoMax, int anoMax, float peso_carga, float volume, bool refrigeracao);
+    Preferencia(string preferencias);
 
     int getPrecoMax() const;
     void setPrecoMax(int &preco);
@@ -33,6 +35,7 @@ public:
 
     bool getRefrigeracao() const;
     void setRefrigeracao(bool &refrigeracao);
+    int getTipo() const;
 
 };
 
