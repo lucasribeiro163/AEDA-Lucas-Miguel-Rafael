@@ -11,12 +11,12 @@ class Reserva {
 
     Data dataInicio, dataFim;
     bool concretizacao;
-    int preco;
+    double preco;
     int veiculoId;
 
 public:
 
-    Reserva(Data &dataInicio, Data &dataFim, int preco, bool concretizacao, int veiculoId);
+    Reserva(Data &dataInicio, Data &dataFim, double preco, bool concretizacao, int veiculoId);
 
     Data &getDataInicio();
 
@@ -26,7 +26,7 @@ public:
 
     void setDataFim(const Data &dataFim);
 
-    const int getPreco();
+    const double getPreco();
 
     const void setPreco(int &preco);
 

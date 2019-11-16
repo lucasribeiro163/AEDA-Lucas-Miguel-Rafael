@@ -185,6 +185,9 @@ void Menu::advertiseVehicle() {
     cout << "Year: ";
     int ano;
     cin >> ano;
+    cout << "Hourly Rate: : ";
+    int priceHour;
+    cin >> priceHour;
 
     Veiculo *v;
 
@@ -193,7 +196,7 @@ void Menu::advertiseVehicle() {
         int nr_pass;
         cin >> nr_pass;
 
-        v = new VeiculoPassageiros(marca, modelo, ano, this->visitanteAtual->getId(), nr_pass);
+        v = new VeiculoPassageiros(marca, modelo, ano, this->visitanteAtual->getId(), nr_pass, priceHour);
         this->empresa.addVeiculo(v);
 
 
@@ -207,6 +210,10 @@ void Menu::advertiseVehicle() {
         double peso_carga;
         cin >> peso_carga;
 
+        cout << "Hourly rate: ";
+        double priceHour;
+        cin >> priceHour;
+
         cout << "Does it have Referigeration (Y-N): ";
         char tmp;
         cin >> tmp;
@@ -217,7 +224,7 @@ void Menu::advertiseVehicle() {
         else if(tmp == 'N')
             referigeracao = false;
 
-        v = new VeiculoComercial(marca, modelo, ano, this->visitanteAtual->getId(), volume_carga, peso_carga, referigeracao);
+        v = new VeiculoComercial(marca, modelo, ano, this->visitanteAtual->getId(), volume_carga, peso_carga, referigeracao, priceHour);
         this->empresa.addVeiculo(v);
         this->empresa.addVeiculo(v);
 
@@ -372,6 +379,7 @@ void Menu::singleUseRent(){
     string horaIn = askHourIn();
     string horaOut = askHourOut();
 
+
     cout << "\nWhat type of vehicle do you need, Passenger or Cargo (1-2)? ";
     int type;
     cin >> type;
@@ -444,10 +452,26 @@ void Menu::singleUseRent(){
     cin >> id;
 
 
+    Veiculo *v;
+
+
+    for(int i=0; i < this->empresa.getVeiculos().size(); i++){
+
+        if(this->empresa.getVeiculos().at(i)->getId() == id)
+            v = this->empresa.getVeiculos().at(i);
+    }
+
+    cout << "\nHERE\n";
+
     Data in(dataIn, horaIn);
     Data out(dataOut, horaOut);
 
-    Reserva *r = new Reserva(in,out, 100, false, id);
+
+    double total_price = v->getPriceHour() * in.hoursBetween(out);
+
+
+    Reserva *r = new Reserva(in,out,total_price, false, id);
+
 
 
     for(int i =0; i < this->empresa.getClientes().size(); i++){
@@ -457,7 +481,7 @@ void Menu::singleUseRent(){
 
     }
 
-    cout << "\n\nYour vehicle has been reservedd\n\n";
+    cout << "\n\nYour vehicle has been reserved for " << r->getPreco() <<" euros\n\n";
     choose();
 }
 

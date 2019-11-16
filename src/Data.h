@@ -40,6 +40,8 @@ public:
 
     Data getDifference(Data d);
 
+    int hoursBetween(Data d);
+
     bool operator<=(Data data);
 
     bool operator==(Data data);

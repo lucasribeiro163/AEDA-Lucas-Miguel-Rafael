@@ -17,11 +17,12 @@ class Veiculo {
     string marca, modelo;
     int ano, clientId, id;
     vector<Reserva*> reservas;
+    double priceHour;
 public:
 
     static int nrVeiculos;
 
-    Veiculo(string marca, string modelo, int ano, int clientId);
+    Veiculo(string marca, string modelo, int ano, int clientId, double priceHour);
 
     virtual const vector<Reserva*> &getReservas() const;
 
@@ -47,6 +48,10 @@ public:
 
     virtual void print()const;
 
+    double getPriceHour() const;
+
+    void setPriceHour(double priceHour);
+
 };
 
 
@@ -56,7 +61,7 @@ class VeiculoPassageiros : public Veiculo{
 
 public:
 
-    VeiculoPassageiros(string marca, string modelo, int ano, int clientId, int nrPassageiros);
+    VeiculoPassageiros(string marca, string modelo, int ano, int clientId, int nrPassageiros, double price);
     int getNrPassageiros() const;
     void setNrPassageiros(int nrPassageiros);
 
@@ -72,7 +77,7 @@ class VeiculoComercial : public Veiculo{
 
 public:
 
-    VeiculoComercial(string marca, string modelo, int ano, int clientId, double volume_carga, double peso_carga, bool refrigeracao);
+    VeiculoComercial(string marca, string modelo, int ano, int clientId, double volume_carga, double peso_carga, bool refrigeracao, double price);
 
     double getVolumeCarga() const;
 

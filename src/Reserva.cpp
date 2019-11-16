@@ -5,7 +5,7 @@
 #include <iostream>
 #include "Reserva.h"
 
-Reserva::Reserva(Data &dataInicio, Data &dataFim, int preco, bool concretizacao, int veiculoId) :
+Reserva::Reserva(Data &dataInicio, Data &dataFim, double preco, bool concretizacao, int veiculoId) :
         dataInicio(dataInicio), dataFim(dataFim)
 {
     this->dataInicio = dataInicio;
@@ -31,7 +31,7 @@ void Reserva::setDataFim(const Data &dataFim){
     this->dataFim = dataFim;
 }
 
-const int Reserva::getPreco(){
+const double Reserva::getPreco(){
     return preco;
 }
 

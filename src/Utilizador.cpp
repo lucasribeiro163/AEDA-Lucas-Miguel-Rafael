@@ -69,10 +69,9 @@ void VisitanteRegistado::setPassword(const string &password) {
 }
 
 
-Cliente::Cliente(string nome, int nif, string preferencias, string password, double balance)
+Cliente::Cliente(string nome, int nif, string preferencias, string password)
 : VisitanteRegistado(nome, nif, preferencias, password)
 {
-    this.balance;
 }
 
 const vector<Reserva *> &Cliente::getReservas() const {

@@ -238,7 +238,7 @@ void Empresa::parseVehicleInfo() {
 
     readFile.open(this->veiculosFile);
 
-    string buffer, marca, modelo, ano, clientId, veiculoId, nrPass, volume, peso, refrig;
+    string buffer, marca, modelo, ano, clientId, veiculoId, nrPass, volume, peso, refrig, price;
     bool refrigeracao;
 
 
@@ -252,11 +252,12 @@ void Empresa::parseVehicleInfo() {
         getline(readFile, ano);
         getline(readFile, clientId);
         getline(readFile, nrPass);
+        getline(readFile, price);
         getline(readFile, buffer);//limpar tracejado entre veiculos
 
 
 
-        VeiculoPassageiros *vp = new VeiculoPassageiros(marca, modelo, stoi(ano), stoi(clientId), stoi(nrPass));
+        VeiculoPassageiros *vp = new VeiculoPassageiros(marca, modelo, stoi(ano), stoi(clientId), stoi(nrPass), stod(price));
 
 
         getClienteDono(stoi(clientId))->addVeiculo(vp);
@@ -279,10 +280,11 @@ void Empresa::parseVehicleInfo() {
         getline(readFile, volume);
         getline(readFile, peso);
         getline(readFile, refrig);
+        getline(readFile, price);
         refrigeracao = (refrig=="true");
 
         VeiculoComercial *vc = new VeiculoComercial(marca, modelo, stoi(ano), stoi(clientId),
-                                                    stod(volume), stod(peso), refrigeracao);
+                                                    stod(volume), stod(peso), refrigeracao, stod(price));
         getClienteDono(stoi(clientId))->addVeiculo(vc);
         getClienteDono(stoi(clientId))->addVeiculoComercial(vc);
         this->addVeiculo(vc);

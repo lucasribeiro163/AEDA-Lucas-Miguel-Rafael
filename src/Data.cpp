@@ -89,6 +89,35 @@ Data Data::getDifference(Data dataFim){
 }
 
 
+int Data::hoursBetween(Data d) {
+
+
+    int res = 0;
+
+    if(d.getAno() - this->getAno() > 1)
+        res += (d.getAno() - this->getAno()) * 8760;
+
+    if(d.getAno() - this->getAno() == 1)
+        res += ((12 -d.getMes()) + this->getMes()) * 720;
+    else if(d.getMes() - this->getMes() > 1)
+        res += (d.getMes() - this->getMes()) * 720;
+
+    if(d.getMes() - this->getMes() == 1)
+        res += ((30 - d.getDia()) + this->getDia()) *24;
+    else if(d.getDia() - this->getDia() > 1)
+        res += (d.getDia() - this->getDia()) * 24;
+
+    if(d.getDia() - this->getDia() == 1)
+        res += (24-d.getHora().getHora()) + this->getHora().getHora();
+    else
+        res += d.getHora().getHora() - this->getHora().getHora();
+
+
+    return res;
+
+}
+
+
 
 bool Data::operator<=(Data data) {
     if(this->ano > data.ano) return false;

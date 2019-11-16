@@ -9,12 +9,13 @@
 
 using namespace std;
 
-Veiculo::Veiculo(string marca, string modelo, int ano, int clientId){
+Veiculo::Veiculo(string marca, string modelo, int ano, int clientId, double priceHour){
     this->marca = marca;
     this->modelo = modelo;
     this->ano = ano;
     this->clientId = clientId;
     this->id = this->nrVeiculos++;
+    this->priceHour = priceHour;
 }
 
 int Veiculo::nrVeiculos = 1;
@@ -68,11 +69,20 @@ void Veiculo::setClientId(int &id){
 void Veiculo::print()const{
     cout << "Id: " << id << endl << "Marca: " << marca << endl
     << "Modelo: " << modelo << endl
-    << "Ano: " << ano << endl;
+    << "Ano: " << ano << endl
+    << "Hourly Rate: " << priceHour << endl;
 }
 
-VeiculoPassageiros::VeiculoPassageiros(string marca, string modelo, int ano, int clientId, int nrPassageiros)
-        : Veiculo(marca, modelo, ano, clientId){
+double Veiculo::getPriceHour() const {
+    return priceHour;
+}
+
+void Veiculo::setPriceHour(double priceHour) {
+    Veiculo::priceHour = priceHour;
+}
+
+VeiculoPassageiros::VeiculoPassageiros(string marca, string modelo, int ano, int clientId, int nrPassageiros, double priceHour)
+        : Veiculo(marca, modelo, ano, clientId, priceHour){
     this->nrPassageiros = nrPassageiros;
 };
 
@@ -90,8 +100,8 @@ void VeiculoPassageiros::print()const{
 }
 
 VeiculoComercial::VeiculoComercial(string marca, string modelo, int ano, int clientId, double volume_carga, double peso_carga,
-                                   bool refrigeracao)
-        : Veiculo(marca, modelo, ano, clientId) {
+                                   bool refrigeracao, double priceHour)
+        : Veiculo(marca, modelo, ano, clientId, priceHour) {
     this->volume_carga = volume_carga;
     this->peso_carga = peso_carga;
     this->refrigeracao = refrigeracao;
