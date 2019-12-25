@@ -75,6 +75,7 @@ public:
    */
     int getTipo() const;
 
+    const string getStringPreferencias() const ;
 };
 
 

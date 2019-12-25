@@ -5,14 +5,18 @@
 #include <iostream>
 #include "Reserva.h"
 
-Reserva::Reserva(Data &dataInicio, Data &dataFim, double preco, bool concretizacao, int veiculoId) :
-        dataInicio(dataInicio), dataFim(dataFim)
+Reserva::Reserva(Data &dataInicio, Data &dataFim, double preco, bool concretizacao, int veiculoId, Contract contrato) :
+        dataInicio(dataInicio), dataFim(dataFim), contrato(contrato)
 {
     this->dataInicio = dataInicio;
     this->dataFim = dataFim;
     this->preco = preco;
     this->concretizacao = concretizacao;
     this->veiculoId = veiculoId;
+}
+
+const Contract &Reserva::getContrato() const {
+    return contrato;
 }
 
 Data &Reserva::getDataInicio(){

@@ -6,9 +6,10 @@
 #define UNTITLED_RESERVA_H
 
 #include "Data.h"
+#include "Contract.h"
 /** Class Reserva
  *
- * Formato da uma reserva, seusatributos e respectivas funções.
+ * Formato da uma reserva, seus atributos e respectivas funções.
  *
  */
 class Reserva {
@@ -17,6 +18,7 @@ class Reserva {
     bool concretizacao; /**Indicação se a reserva já foi concretizada */
     double preco; /**preço total reserva */
     int veiculoId; /**id do veiculo */
+    Contract contrato;
 
 public:
 
@@ -28,7 +30,7 @@ public:
      * @param concretizacao - Indicação se a reserva já ocorreu
      * @param veiculoId - id do veiculo utilizado para a reserva
 	 */
-    Reserva(Data &dataInicio, Data &dataFim, double preco, bool concretizacao, int veiculoId);
+    Reserva(Data &dataInicio, Data &dataFim, double preco, bool concretizacao, int veiculoId,Contract contrato);
 
     /**
   * Função que retorna a data do inicio do aluguer.
@@ -63,6 +65,8 @@ public:
   * Overload do operador == para permitir discernir se duas reservas são iguais.
   */
     bool operator==(Reserva r);
+
+    const Contract &getContrato() const;
 
 };
 

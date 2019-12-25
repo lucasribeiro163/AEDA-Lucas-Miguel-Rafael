@@ -21,6 +21,7 @@ class Veiculo {
     int ano, clientId, id; /**Ano do veiculo, id do cliente dono do carro, e id do veiculo*/
     vector<Reserva*> reservas;/**vetor de reservas do veiculo */
     double priceHour; /**Preço por hora pelo aluger do veiculo */
+    Data manutencao;
 public:
 
     static int nrVeiculos;  /**Variavel que permite contar o numero de veiculos, e gerar ids para cada um*/
@@ -34,7 +35,7 @@ public:
      * @param clientId - Id do cliente dono do veiculo.
      * @param priceHour - Preço por hora do alguer.
     */
-    Veiculo(string marca, string modelo, int ano, int clientId, double priceHour);
+    Veiculo(string marca, string modelo, int ano, int clientId, double priceHour,Data manutencao);
 
     /**
     * Função que retorna o vetor de reservas do veiculo.
@@ -97,6 +98,9 @@ public:
     */
     double getPriceHour() const;
 
+    Data getManutencao() const;
+
+    bool operator<(const Veiculo& v1) const;
 };
 
 /** Class VeiculoPassageiros
@@ -120,7 +124,7 @@ public:
      * @param nrPassageiros - Numero de passageiros que o veiculo suporta.
     * @param priceHour - Preço por hora do alguer.
    */
-    VeiculoPassageiros(string marca, string modelo, int ano, int clientId, int nrPassageiros, double price);
+    VeiculoPassageiros(string marca, string modelo, int ano, int clientId, int nrPassageiros, double price, Data manutencao);
     /**
     * Função que devolve o numero de passageiros.
     */
@@ -161,7 +165,7 @@ public:
      * @param refrigeracao - Possui arca de refrigeração ou não.
     * @param priceHour - Preço por hora do alguer.
    */
-    VeiculoComercial(string marca, string modelo, int ano, int clientId, double volume_carga, double peso_carga, bool refrigeracao, double price);
+    VeiculoComercial(string marca, string modelo, int ano, int clientId, double volume_carga, double peso_carga, bool refrigeracao, double price, Data manutencao);
 
     /**
     * Função que devolve o volume máximo de carga.

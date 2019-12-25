@@ -19,6 +19,7 @@ using namespace std;
 class Visitante {
 
     int id; /**id do visitante */
+    int type;
 
 public:
     /**
@@ -53,13 +54,19 @@ public:
  * assim como novos atributos e respetivas funções.
  */
 class VisitanteRegistado : public Visitante{
-
     int nif; /**nif do Visitante */
+    int type;
     string preferencias, nome, password; /**informação codificada das preferencias, nome e password do utilizador*/
     Preferencia preferencia; /**Objeto Preferencia do utilizador */
 
 public:
-/**
+
+
+
+    int getType() const;
+    void setType(int type);
+
+    /**
 	 * Construtor  de um Visitante registado
      * @param nome - Nome do Utilizador
      * @param nif - Nif do utilizador
@@ -89,7 +96,7 @@ public:
     /**
    * Função que devolve o objeto Preferencia do utilizador.
    */
-    virtual const Preferencia getPreferencia() const;
+    virtual const Preferencia& getPreferencia() const;
 
 /**
    * Função que devolve o nome do utilizador.
@@ -122,7 +129,7 @@ public:
      * @param preferencias - Preferencias do utilizador
      * @param password - palavra-passa do utilizador
 	 */
-    Cliente(string nome, int nif, Preferencia &preferencias, string password);
+    Cliente(string nome, int nif, Preferencia preferencias, string password);
 
     /**
 	 * Construtor  de um Cliente que já tem préviamente um id
@@ -131,7 +138,7 @@ public:
      * @param preferencias - Preferencias do utilizador
      * @param password - palavra-passa do utilizador
 	 */
-    Cliente(string nome, int nif,int id, Preferencia  &preferencias, string password);
+    Cliente(string nome, int nif,int id, Preferencia  preferencias, string password);
 
 /**
    * Função que devolve o vetor de reservas do cliente.
@@ -166,7 +173,7 @@ public:
      * @param preferencias - Preferencias do utilizador
      * @param password - palavra-passa do utilizador
 	 */
-    ClienteDono(string nome, int nif, Preferencia  &preferencias, string password);
+    ClienteDono(string nome, int nif, Preferencia  preferencias, string password);
     /**
 	 * Construtor  de um Cliente Dono que já tem préviamente um id
      * @param nome - Nome do Utilizador
@@ -174,7 +181,7 @@ public:
      * @param preferencias - Preferencias do utilizador
      * @param password - palavra-passa do utilizador
 	 */
-    ClienteDono(string nome, int nif,int id, Preferencia  &preferencias, string password);
+    ClienteDono(string nome, int nif,int id, Preferencia  preferencias, string password);
 
     /**
       * Função que devolve o vetor de veiculos do cliente.

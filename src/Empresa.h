@@ -9,6 +9,8 @@
 #include <string>
 #include <iostream>
 #include "Utilizador.h"
+#include "Contract.h"
+#include "bst.h"
 
 using namespace std;
 
@@ -24,15 +26,15 @@ class Empresa {
     /**
 	 * Vetor onde estao guardados os Visitantes com registo.
 	 */
-    vector<VisitanteRegistado *> visitantesRegistados;
+    //vector<VisitanteRegistado *> visitantesRegistados;
     /**
 	 * Vetor onde estao guardados os Clientes.
 	 */
-    vector<Cliente *> clientes;
+    //vector<Cliente *> clientes;
     /**
 	 * Vetor onde estao guardados os Clientes donos de pelo menos uma viatura.
 	 */
-    vector<ClienteDono *> clientesDono;
+    //vector<ClienteDono *> clientesDono;
     /**
 	 * Vetor onde estao guardados os veiculos.
 	 */
@@ -49,6 +51,11 @@ class Empresa {
 	 * Localização dos ficheiros de texto de apoio ao programa.
 	 */
     string empresaFile, clientesFile, reservasFile, veiculosFile;
+
+    BST<Contract> contratos;
+    vector<VisitanteRegistado*> allClients;
+    priority_queue<Veiculo> filaVeiculos;
+    Data today = Data("01/01/2020", "10:00");
 public:
     /**
 	 * Construtor da empresa
@@ -198,6 +205,28 @@ public:
      * @param maxPrice - preço maximo aceitavel.
  */
     void removeByPricePassengers(vector<VeiculoPassageiros* >* listaVeiculos, int maxPrice);
+
+    void logContract(Contract contract);
+
+    VisitanteRegistado* getTrueClient(int id);
+
+    void visualizaContratos();
+
+    Data getDateToday();
+
+    void skipToDate(Data newDate);
+
+    void turnVRToClient(VisitanteRegistado * vr);
+
+    void turnVrToClientDono(VisitanteRegistado *vr);
+
+    void turnClientToClientDono(Cliente *cl);
+
+    bool hasCliente(int id) const;
+
+    void saveAll();
+
+    void visualizaManutencoes(int n );
 };
 
 

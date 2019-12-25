@@ -23,6 +23,9 @@ Hora::Hora(string &horaRecebida){
     this->hora = hor;
     this->minuto = min;
 }
+Hora::Hora(){
+
+}
 
 
 
@@ -38,7 +41,7 @@ int Hora::getMinuto() const {
 
 
 
-bool Hora::operator<=(Hora Hora) {
+bool Hora::operator<=(Hora Hora) const {
     if (this->hora > Hora.hora) return false;
     if (this->hora < Hora.hora) return true;
 
@@ -52,13 +55,11 @@ bool Hora::operator<=(Hora Hora) {
 
 
 
-bool Hora::operator==(Hora hora){
+bool Hora::operator==(Hora hora) const {
 
     if(this->getHora() == hora.getHora() && this->getMinuto() == hora.getMinuto())
         return true;
     else
         return false;
-
-
 
 }

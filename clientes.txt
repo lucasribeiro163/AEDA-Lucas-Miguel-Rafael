@@ -1,10 +1,4 @@
 VisitanteRegistado
-Rui Miguel
-12345
-1
-1232
-pipipopo
-----------
 Joao Mario
 398219
 2
@@ -41,6 +35,12 @@ Florbela Estela
 7
 212121
 lavaiaapitar
+----------
+Rui Miguel
+12345
+1
+1232
+pipipopo
 ----------
 ClienteDono
 Bela Joaquina

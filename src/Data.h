@@ -23,7 +23,8 @@ class Data {
     /**< dia, mes e ano e hora de uma data. */
 
 public:
-
+    Data();
+    Data(string data);
     /**
 	 * Construtor da data recebendo duas string: Data e hora.
 	 *
@@ -73,7 +74,7 @@ public:
     /**
     * Função que retorna a Hora.
     */
-    Hora &getHora();
+    Hora getHora() const;
     /**
     * Função que atribui uma hora ao membro hora.
     */
@@ -92,12 +93,16 @@ public:
     /**
     * Overload do operados <= para permitir comparar duas datas.
     */
-    bool operator<=(Data data);
+    bool operator<=(Data data) const;
 
     /**
     * Overload do operador == para permitir discernir a igualdade entre duas datas.
     */
-    bool operator==(Data data);
+    bool operator==(Data data) const;
+
+    void printData() const;
+
+    void printHour() const;
 };
 
 

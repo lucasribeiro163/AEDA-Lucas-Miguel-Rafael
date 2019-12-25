@@ -37,6 +37,7 @@ VisitanteRegistado::VisitanteRegistado(string nome, int nif, Preferencia &prefer
     this->nome = nome;
     this->nif = nif;
     this->password = password;
+    this->type =0;
 }
 VisitanteRegistado::VisitanteRegistado(string nome, int nif, int id, Preferencia &preferencias, string password)
 : preferencia(preferencias), Visitante(){
@@ -45,6 +46,7 @@ VisitanteRegistado::VisitanteRegistado(string nome, int nif, int id, Preferencia
     this->setId(id);
     this->password = password;
     this->preferencia = preferencias;
+    this->type = 0;
 }
 
 
@@ -56,7 +58,7 @@ const int &VisitanteRegistado::getNif() const {
 const string VisitanteRegistado::getPreferencias()const{
     return preferencias;
 }
-const Preferencia VisitanteRegistado::getPreferencia() const{
+const Preferencia &VisitanteRegistado::getPreferencia() const{
     return preferencia;
 }
 
@@ -70,17 +72,25 @@ const string &VisitanteRegistado::getPassword() const {
     return password;
 }
 
+int VisitanteRegistado::getType() const {
+    return type;
+}
+
+void VisitanteRegistado::setType(int type) {
+    this->type = type;
+}
 
 
-Cliente::Cliente(string nome, int nif, Preferencia &preferencias, string password)
+Cliente::Cliente(string nome, int nif, Preferencia preferencias, string password)
 : VisitanteRegistado(nome, nif, preferencias, password), reservas(), historico()
 {
-
+    this->setType(1);
 }
-Cliente::Cliente(string nome, int nif, int id, Preferencia &preferencias, string password)
+Cliente::Cliente(string nome, int nif, int id, Preferencia preferencias, string password)
         : VisitanteRegistado(nome, nif, preferencias, password), reservas{}, historico{}
 {
     this->setId(id);
+    this->setType(1);
 }
 
 
@@ -95,13 +105,16 @@ void Cliente::addReservas(Reserva * r){
 }
 
 
-ClienteDono::ClienteDono(string nome, int nif, Preferencia &preferencias, string password)
-        : Cliente(nome, nif, preferencias, password){}
+ClienteDono::ClienteDono(string nome, int nif, Preferencia preferencias, string password)
+        : Cliente(nome, nif, preferencias, password){
+    this->setType(2);
+}
 
-ClienteDono::ClienteDono(string nome, int nif, int id, Preferencia &preferencias, string password)
+ClienteDono::ClienteDono(string nome, int nif, int id, Preferencia preferencias, string password)
         : Cliente(nome, nif, preferencias, password)
     {
     this->setId(id);
+    this->setType(2);
     }
 
 

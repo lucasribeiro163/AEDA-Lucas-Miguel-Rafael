@@ -46,10 +46,6 @@ Preferencia::Preferencia(string preferencias){
         this->anoMax = temp % 10;
         temp /= 10;
         this->precoMax = temp %10;
-
-
-
-
         this->tipo = 2;
     }
     this->preferencias = preferencias;
@@ -84,4 +80,7 @@ bool Preferencia::getRefrigeracao() const{
  int Preferencia::getTipo()const
 {
     return tipo;
+}
+const string Preferencia::getStringPreferencias() const {
+    return preferencias;
 }

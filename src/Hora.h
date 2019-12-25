@@ -19,7 +19,7 @@ class Hora {
     /**< Hora e minutos de uma "hora" . */
 
 public:
-
+    Hora();
     /**
     * Construtor da data que recebe uma string representativa da hora.
     *
@@ -38,11 +38,11 @@ public:
     /**
     * Overload do operados <= para permitir comparar duas horas.
     */
-    bool operator<=(Hora hora);
+    bool operator<=(Hora hora) const;
         /**
        * Overload do operador == para permitir discernir a igualdade entre duas horas.
        */
-    bool operator==(Hora hora);
+    bool operator==(Hora hora)const ;
 
     };
 

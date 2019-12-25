@@ -8,6 +8,9 @@
 using namespace std;
 
 
+Data::Data(){
+
+}
 Data::Data(int ano, int mes, int dia, Hora hora): hora(hora) {
 
     this->ano = ano;
@@ -67,7 +70,7 @@ void Data::setDia(int dia) {
     this->dia = dia;
 }
 
-Hora &Data::getHora(){
+Hora Data::getHora() const{
     return hora;
 }
 
@@ -119,7 +122,7 @@ int Data::hoursBetween(Data d) {
 
 
 
-bool Data::operator<=(Data data) {
+bool Data::operator<=(Data data)const {
     if(this->ano > data.ano) return false;
     if(this->ano < data.ano) return true;
 
@@ -146,14 +149,35 @@ bool Data::operator<=(Data data) {
 }
 
 
-bool Data::operator==(Data data){
+bool Data::operator==(Data data) const {
 
     if(this->getAno() == data.getAno() && this->getMes() == data.getMes() && this->getDia() == data.getDia() && this->getHora() == data.getHora())
         return true;
     else
         return false;
+}
 
+void Data::printData() const {
+    if(this->getDia() < 10)
+        cout << "0" << this->getDia();
+    else cout << this->getDia();
+    cout << "/";
 
+    if(this->getMes() < 10)
+        cout << "0" << this->getMes();
+    else cout << this->getMes();
+    cout << "/" << this->getAno();
+}
 
+void Data::printHour() const {
+    if(this->getHora().getHora() < 10)
+        cout << "0" << this->getHora().getHora();
+    else cout << this->getHora().getHora();
+
+    cout << ":";
+
+    if(this->getHora().getMinuto() < 10)
+        cout << "0" << this->getHora().getMinuto();
+    else cout << this->getHora().getMinuto();
 }
 

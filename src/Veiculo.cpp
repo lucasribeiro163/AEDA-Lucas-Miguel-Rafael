@@ -9,13 +9,14 @@
 
 using namespace std;
 
-Veiculo::Veiculo(string marca, string modelo, int ano, int clientId, double priceHour){
+Veiculo::Veiculo(string marca, string modelo, int ano, int clientId, double priceHour, Data manutencao){
     this->marca = marca;
     this->modelo = modelo;
     this->ano = ano;
     this->clientId = clientId;
     this->id = this->nrVeiculos++;
     this->priceHour = priceHour;
+    this->manutencao = manutencao;
 }
 
 int Veiculo::nrVeiculos = 1;
@@ -73,10 +74,22 @@ void Veiculo::print()const{
 double Veiculo::getPriceHour() const {
     return priceHour;
 }
+Data Veiculo::getManutencao() const {
+    return manutencao;
+}
+
+bool Veiculo::operator<(const Veiculo &v1) const {
+    if(this->manutencao == v1.getManutencao())
+        return !this->id < v1.getId();
+    else if( this->manutencao <= v1.getManutencao())
+        return false;
+    return true;
+
+}
 
 
-VeiculoPassageiros::VeiculoPassageiros(string marca, string modelo, int ano, int clientId, int nrPassageiros, double priceHour)
-        : Veiculo(marca, modelo, ano, clientId, priceHour){
+VeiculoPassageiros::VeiculoPassageiros(string marca, string modelo, int ano, int clientId, int nrPassageiros, double priceHour, Data manutencao)
+        : Veiculo(marca, modelo, ano, clientId, priceHour, manutencao){
     this->nrPassageiros = nrPassageiros;
 };
 
@@ -94,8 +107,8 @@ void VeiculoPassageiros::print()const{
 }
 
 VeiculoComercial::VeiculoComercial(string marca, string modelo, int ano, int clientId, double volume_carga, double peso_carga,
-                                   bool refrigeracao, double priceHour)
-        : Veiculo(marca, modelo, ano, clientId, priceHour) {
+                                   bool refrigeracao, double priceHour, Data manutencao)
+        : Veiculo(marca, modelo, ano, clientId, priceHour,manutencao) {
     this->volume_carga = volume_carga;
     this->peso_carga = peso_carga;
     this->refrigeracao = refrigeracao;
@@ -132,4 +145,5 @@ void VeiculoComercial::print() const{
         cout << "Tem refrigeracao" << endl;
     }
 }
+
 

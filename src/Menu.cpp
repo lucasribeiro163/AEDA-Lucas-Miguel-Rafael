@@ -119,22 +119,21 @@ void Menu::login(){
 }
 
 void Menu::choose() {
-    if (this->empresa.hasClienteDono(this->visitanteAtual->getId()))
+    if (this->empresa.hasCliente(this->visitanteAtual->getId()))
     {
         cout << "\nWhat would you like to do?\n"
              << "1 - See all the company's cars\n"
              << "2 - Rent a vehicle" << endl
              << "3 - Advertise a vehicle" << endl
-             << "4 - Manage your fleet" << endl
-             << "5 - See all of my reservations" << endl
-             << "6 - Exit" << endl;
+             << "4 - See all of my reservations" << endl
+             << "5 - Exit" << endl;
 
 
         char option;
         cin >> option;
         cin.clear();
 
-        if(option < '1' || option > '6') {
+        if(option < '1' || option > '5') {
             cin.clear();
             cout << "Invalid option" << endl;
             choose();
@@ -150,22 +149,21 @@ void Menu::choose() {
                     cin.clear();
                     rentVehicle();
                     this->empresa.saveReservations();
+                    choose();
                     break;
                 case('3'):
                     cin.clear();
                     advertiseVehicle();
                     this->empresa.saveVehicleInfo();
+                    choose();
                     break;
                 case('4'):
                     cin.clear();
-                    manageFleet();
-                    this->empresa.saveVehicleInfo();
+                    seeReservations();
+                    choose();
                     break;
                 case('5'):
-                    cin.clear();
-                    seeReservations();
-                    break;
-                case('6'):
+                    this->empresa.saveAll();
                     return;
             }
         }
@@ -200,17 +198,21 @@ void Menu::choose() {
                     cin.clear();
                     rentVehicle();
                     this->empresa.saveReservations();
+                    choose();
                     break;
                 case('3'):
                     cin.clear();
                     advertiseVehicle();
                     this->empresa.saveVehicleInfo();
+                    choose();
                     break;
                 case('4'):
                     cin.clear();
                     seeReservations();
+                    choose();
                     break;
                 case('5'):
+                    this->empresa.saveAll();
                     return;
             }
         }
@@ -241,13 +243,16 @@ void Menu::choose() {
                     cin.clear();
                     rentVehicle();
                     this->empresa.saveReservations();
+                    choose();
                     break;
                 case ('3'):
                     cin.clear();
                     advertiseVehicle();
                     this->empresa.saveVehicleInfo();
+                    choose();
                     break;
                 case ('4'):
+                    this->empresa.saveAll();
                     return;
             }
         }
@@ -255,6 +260,7 @@ void Menu::choose() {
 }
 
 void Menu::rentVehicle(){
+    bool isClient = this->empresa.hasVisitanteRegistado(this->visitanteAtual->getId());
     cout << "\nWhat type of contract do you want?\n"
     << "1 - It's a one time deal\n"
     << "2 - I'd like for it to be periodic cycle\n"
@@ -269,6 +275,10 @@ void Menu::rentVehicle(){
         rentVehicle();
     }
     else{
+        if(isClient)
+        {
+            this->empresa.turnVRToClient(this->empresa.getVisitanteRegistado(this->visitanteAtual->getId()));
+        }
         switch(stoi(option)){
             case(1):
                 singleUseRent();
@@ -291,7 +301,7 @@ void Menu::advertiseVehicle() {
     cin >> tipo;
 
     if(tipo != 1 && tipo != 2){
-        cout << "You've entered an unkown vehicle type. Try again." << endl;
+        cout << "You've entered an unknown vehicle type. Try again." << endl;
         advertiseVehicle();
         return;
     }
@@ -318,7 +328,7 @@ void Menu::advertiseVehicle() {
         int nr_pass;
         cin >> nr_pass;
 
-        v = new VeiculoPassageiros(marca, modelo, ano, this->visitanteAtual->getId(), nr_pass, priceHour);
+        v = new VeiculoPassageiros(marca, modelo, ano, this->visitanteAtual->getId(), nr_pass, priceHour,this->empresa.getDateToday());
         this->empresa.addVeiculo(v);
 
 
@@ -346,9 +356,9 @@ void Menu::advertiseVehicle() {
         else if(tmp == 'N')
             referigeracao = false;
 
-        v = new VeiculoComercial(marca, modelo, ano, this->visitanteAtual->getId(), volume_carga, peso_carga, referigeracao, priceHour);
+        v = new VeiculoComercial(marca, modelo, ano, this->visitanteAtual->getId(), volume_carga, peso_carga, referigeracao, priceHour,this->empresa.getDateToday());
         this->empresa.addVeiculo(v);
-        this->empresa.addVeiculo(v);
+        //this->empresa.addVeiculo(v);
 
     }
 
@@ -364,6 +374,15 @@ void Menu::advertiseVehicle() {
 
     }
 
+    if(this->empresa.hasVisitanteRegistado(this->visitanteAtual->getId()))
+    {
+        this->empresa.turnVrToClientDono(this->empresa.getVisitanteRegistado(this->visitanteAtual->getId()));
+    }
+    else if(this->empresa.hasCliente(this->visitanteAtual->getId()))
+    {
+        this->empresa.turnClientToClientDono(this->empresa.getCliente(this->visitanteAtual->getId()));
+    }
+    /*
     if(!alreadyIsOwner){
         ClienteDono *cd;
         if(this->empresa.getCliente(this->visitanteAtual->getId()) == NULL)
@@ -388,8 +407,8 @@ void Menu::advertiseVehicle() {
         cout << cd->getPassword() << endl;
         cd->getVeiculos()->at(0)->print();
     }
+     */
         this->empresa.saveVehicleInfo();
-        choose();
 }
 
 bool Menu::checkHourFormat(string hora){
@@ -524,8 +543,7 @@ void Menu::singleUseRent(){
                 case ('1'):
                     cin.clear();
                     makeOffer(in,out);
-                    choose();
-                    break;
+                    return;
                 case ('2'):
                     break;
 
@@ -614,7 +632,7 @@ void Menu::singleUseRent(){
             v = this->empresa.getVeiculos().at(i);
     }
 
-    cout << "\nHERE\n";
+    //cout << "\nHERE\n";
 
     Data in(dataIn, horaIn);
     Data out(dataOut, horaOut);
@@ -622,8 +640,9 @@ void Menu::singleUseRent(){
 
     double total_price = v->getPriceHour() * in.hoursBetween(out);
 
-
-    Reserva *r = new Reserva(in,out,total_price, false, id);
+    Contract *contract = new Contract(in,in,out,this->empresa.getCliente(this->visitanteAtual->getId())->getNome(),id,1);
+    Reserva *r = new Reserva(in,out,total_price, false, id,*contract);
+    this->empresa.logContract(*contract);
 
 
 
@@ -634,9 +653,15 @@ void Menu::singleUseRent(){
 
     }
 
+    Veiculo *veiculo = this->empresa.getVeiculo(id);
+    veiculo->addReserva(r);
+    static_cast<Cliente*>(this->empresa.getTrueClient(this->visitanteAtual->getId()))->addReservas(r);
+
+
     cout << "\n\nYour vehicle has been reserved for " << r->getPreco() <<" euros\n\n";
     this->empresa.saveReservations();
-    choose();
+    //choose();
+    return;
 }
 
 
@@ -781,8 +806,10 @@ void Menu::periodicContractRent() {
 
     Data in(dataIn, horaIn);
     Data out(dataOut, horaOut);
+    Contract *contract = new Contract(in,in,out,this->empresa.getCliente(this->visitanteAtual->getId())->getNome(),id,1);
 
-    Reserva *r = new Reserva(in,out, 100, false, id);
+    Reserva *r = new Reserva(in,out, 100, false, id,*contract);
+    this->empresa.logContract(*contract);
 
 
     for(int i =0; i < this->empresa.getClientes().size(); i++) {
@@ -806,10 +833,12 @@ void Menu::periodicContractRent() {
         out.setMes(out.getMes() + difference.getMes() + gap/30);
         out.setAno(out.getAno() + difference.getAno() + gap/365);
 
-        Reserva *r = new Reserva(in,out, 100, false, id);
+        Contract *contract = new Contract(in,in,out,this->empresa.getCliente(this->visitanteAtual->getId())->getNome(),id,1);
+        Reserva *r = new Reserva(in,out, 100, false, id,*contract);
+        this->empresa.logContract(*contract);
 
 
-        for(int i =0; i < this->empresa.getClientes().size(); i++) {
+        for(int i = 0 ; i < this->empresa.getClientes().size(); i++) {
 
             if (this->empresa.getClientes().at(i)->getId() == this->visitanteAtual->getId())
                 this->empresa.getClientes().at(i)->addReservas(r);
@@ -822,8 +851,6 @@ void Menu::periodicContractRent() {
 
     cout << "\n\nYour vehicle has been reserved\n\n";
     this->empresa.saveReservations();
-    choose();
-
 
 }
 
@@ -847,16 +874,19 @@ void Menu::manageFleet(){
                 cin.clear();
                 viewCars();
                 this->empresa.saveVehicleInfo();
+                choose();
                 break;
             case('2'):
                 cin.clear();
                 removeCar();
                 this->empresa.saveVehicleInfo();
+                choose();
                 break;
             case('3'):
                 cin.clear();
                 updateCar();
                 this->empresa.saveVehicleInfo();
+                choose();
                 break;
         }
 
@@ -1133,9 +1163,6 @@ void Menu::seeReservations(){
 
         }
     }
-
-    choose();
-
 }
 
 int Menu::validCinInt()
@@ -1702,8 +1729,10 @@ void Menu::makeOffer(Data in,Data out) {
         }
         double total_price = v->getPriceHour() * in.hoursBetween(out);
 
+        Contract *contract = new Contract(in,in,out,this->empresa.getCliente(this->visitanteAtual->getId())->getNome(),id,1);
 
-        Reserva *r = new Reserva(in,out,total_price, false, id);
+        Reserva *r = new Reserva(in,out,total_price, false, id,*contract);
+        this->empresa.logContract(*contract);
 
 
 
@@ -1714,7 +1743,10 @@ void Menu::makeOffer(Data in,Data out) {
 
         }
 
+        Veiculo *veiculo = this->empresa.getVeiculo(id);
+        veiculo->addReserva(r);
+        static_cast<Cliente*>(this->empresa.getTrueClient(this->visitanteAtual->getId()))->addReservas(r);
+
         cout << "\n\nYour vehicle has been reserved for " << r->getPreco() <<" euros\n\n";
     }
-
 }
