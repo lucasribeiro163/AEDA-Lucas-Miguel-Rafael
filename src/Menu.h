@@ -63,6 +63,14 @@ public:
   */
     bool checkHourFormat(string hora);
     /**
+  * Função que questiona o utilizador sobre a data manutencao.
+  */
+    string askDateMaintenance();
+    /**
+* Função que questiona o utilizador sobre a hora de manutencao.
+*/
+    string askHourMaintenance();
+    /**
   * Função que questiona o utilizador sobre a data de inicio do aluguer.
   */
     string askDateIn();

@@ -830,26 +830,3 @@ void Empresa::visualizaManutencoes(int n) {
         cout << endl;
     }
 }
-
-vector <Veiculo*> Empresa::getMyVehicles(int ownerID) {
-    vector <Veiculo*> returnVector;
-
-    for(int i = 0; i < this->getVeiculos().size(); i++)
-    {
-        if(this->getVeiculos()[i]->getClientId() == ownerID)
-        {
-            returnVector.push_back(this->getVeiculos()[i]);
-        }
-    }
-    return returnVector;
-}
-
-void Empresa::seeMyVehicles(int ownerID)
-{
-    vector<Veiculo*> veiculos = this->getMyVehicles(ownerID);
-
-    for(Veiculo *v : veiculos)
-    {
-        cout << v << endl;
-    }
-}

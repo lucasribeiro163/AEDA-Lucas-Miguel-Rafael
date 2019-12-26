@@ -141,16 +141,6 @@ public:
      */
     vector<Veiculo*> getVeiculos() const;
     /**
-     * Função que devolve todos os veiculos de um ClienteDono.
-     * @param ownerID - id do ClienteDono a pesquisar.
-     */
-    vector <Veiculo*> getMyVehicles(int ownerID);
-    /**
-   * Função que imprime todos os veiculos de um ClienteDono.
-   * @param ownerID - id do ClienteDono a pesquisar.
-   */
-    void seeMyVehicles(int ownerID);
-    /**
       * Função que  devolve um veiculo com um certo ID.
       * @param veiculoId - id do veiculo a pesquisar.
       */

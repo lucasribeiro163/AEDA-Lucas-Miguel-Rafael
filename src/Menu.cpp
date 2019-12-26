@@ -173,7 +173,7 @@ void Menu::choose() {
              << "2 - Rent a vehicle" << endl
              << "3 - Advertise a vehicle" << endl
              << "4 - See all of my reservations" << endl
-             << "5 - See all of my vehicles" << endl
+             << "5 - Manage Fleet" << endl
              << "6 - Exit" << endl;
 
 
@@ -212,7 +212,7 @@ void Menu::choose() {
                     break;
                 case('5'):
                     cin.clear();
-                    this->empresa.seeMyVehicles(this->visitanteAtual->getId());
+                    this->manageFleet();
                     choose();
                     break;
                 case('6'):
@@ -473,6 +473,35 @@ string Menu::askDateOut(){
 
 }
 
+string Menu::askDateMaintenance(){
+
+    cout << "\nWhat day do you wanna have the maintenance?" << endl << "Insert the day in the following format (dd/mm/aaaa): ";
+    string data;
+    cin >> data;
+
+    if(!checkDateFormat(data)) {
+        cout << "\nWrong data format. Try again." << endl;
+        askDateMaintenance();
+    }
+
+    return data;
+}
+
+string Menu::askHourMaintenance(){
+
+    cout << "\nWhat time would you like to pick up the vehicle? "<< endl << "Insert the hour in the following format (hh:mm): ";
+    string hora;
+    cin >> hora;
+
+    if(!checkHourFormat(hora)) {
+        cout << "\nFormato de hora invalido. Try again." << endl;
+        askHourMaintenance();
+    }
+
+    return hora;
+
+}
+
 string Menu::askDateIn(){
 
     cout << "\nWhat day do you wanna pick up the vehicle?" << endl << "Insert the day in the following format (dd/mm/aaaa): ";
@@ -485,8 +514,6 @@ string Menu::askDateIn(){
     }
 
     return data;
-
-
 }
 
 string Menu::askHourIn(){
@@ -1057,7 +1084,12 @@ void Menu::updatePassengerVehicle() {
 
     while(!done) {
 
-        cout << "\nWhat do you wanna change? \n1-Brand\n2-Model\n3-Year\n4-Number of Passengers\n";
+        cout << "\nWhat do you wanna change? "
+                "\n1-Brand"
+                "\n2-Model"
+                "\n3-Year"
+                "\n4-Number of Passengers"
+                "\n5-Alter next Maintenance";
 
         char option;
         cin >> option;
@@ -1080,6 +1112,9 @@ void Menu::updatePassengerVehicle() {
             int nrpass;
             cin >> nrpass;
             v->setNrPassageiros(nrpass);
+        }
+        else if (option == ('5')) {
+            v->setManutencao(Data(this->askDateMaintenance(), this->askHourMaintenance()));
         }
 
         char option2;
