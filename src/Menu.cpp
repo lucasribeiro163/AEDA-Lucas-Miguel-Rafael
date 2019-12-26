@@ -1016,7 +1016,14 @@ void Menu::updateCargoVehicle() {
 
     while(!done) {
 
-        cout << "What do you wanna change? \n1-Brand\n2-Model\n3-Year\n4-Maximum Cargo volume\n5-Maximum cargo weight\n6-Referigeration ability\n";
+        cout << "What do you wanna change? "
+                "\n1-Brand"
+                "\n2-Model"
+                "\n3-Year"
+                "\n4-Maximum Cargo volume"
+                "\n5-Maximum cargo weight"
+                "\n6-Referigeration ability"
+                "\n7-Maintenance date";
 
         char option;
         cin >> option;
@@ -1049,7 +1056,9 @@ void Menu::updateCargoVehicle() {
             cin >> refri;
             v->setRefrigeracao(refri);
         }
-
+        else if (option == ('7')) {
+            v->setManutencao(Data(this->askDateMaintenance(), this->askHourMaintenance()));
+        }
         char option2;
         cout << "\nDo you wanna edit anything else? (Y-N) ";
         cin >> option2;
