@@ -132,7 +132,10 @@ public:
      * @param out - Data do fim do aluguer.
  */
     void makeOffer(Data in, Data out);
-
+    /**
+* Função que verifica se algum carro ja devia ter feito manutencao, e da opcao de fazer.
+*/
+    void checkMaintenance();
     };
 
 

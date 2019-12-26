@@ -890,12 +890,13 @@ void Menu::manageFleet(){
     cout << "\nWhat would you like to do?\n"
          << "1 - View all cars on your fleet\n"
          << "2 - Remove a car from fleet\n"
-         << "3 - Update the info of a car from fleet\n";
+         << "3 - Update the info of a car from fleet\n"
+         << "4 - Check if any car needs maintenance \n";
 
     char option;
     cin >> option;
 
-    if(option < '1' && option > '3') {
+    if(option < '1' || option > '4') {
         cout << "Invalid option" << endl;
         choose();
     }
@@ -916,6 +917,12 @@ void Menu::manageFleet(){
             case('3'):
                 cin.clear();
                 updateCar();
+                this->empresa.saveVehicleInfo();
+                choose();
+                break;
+            case('4'):
+                cin.clear();
+                checkMaintenance();
                 this->empresa.saveVehicleInfo();
                 choose();
                 break;
@@ -944,7 +951,7 @@ void Menu::removeCar() {
     char option;
     cin >> option;
 
-    if (option == 'Y'){
+    if (option == 'Y' || option == 'y'){
         cd->printCars();
         cout << "\nPress any key to go back to your management options?";
         cin.get();
@@ -967,7 +974,6 @@ void Menu::viewCars() {
 
 
 void Menu::updateCar() {
-
 
     ClienteDono *cd = this->empresa.getClienteDono(this->visitanteAtual->getId());
 
@@ -1087,9 +1093,13 @@ void Menu::updatePassengerVehicle() {
 
         if (cd->getVeiculosPassageiros()->at(i)->getId() == id)
             v = cd->getVeiculosPassageiros()->at(i);
-
     }
 
+    if(v==nullptr)//TODO: CONDITION IS NEVER TRUE, ALTER THIS. SAME IN UPDATECARGOVEHICLE()
+    {
+        cout << "No such vehicle exists\n";
+        updatePassengerVehicle();
+    }
     bool done = false;
 
     while(!done) {
@@ -1792,5 +1802,44 @@ void Menu::makeOffer(Data in,Data out) {
         static_cast<Cliente*>(this->empresa.getTrueClient(this->visitanteAtual->getId()))->addReservas(r);
 
         cout << "\n\nYour vehicle has been reserved for " << r->getPreco() <<" euros\n\n";
+    }
+}
+
+void Menu::checkMaintenance()
+{
+    vector <Veiculo*> veiculos;
+    ClienteDono *cd = this->empresa.getClienteDono(this->visitanteAtual->getId());
+
+
+    for (int i = 0; i < cd->getVeiculos()->size(); i++) {
+        if(cd->getVeiculos()->at(i)->getManutencao() <= this->empresa.getDateToday())
+        {
+            veiculos.push_back(cd->getVeiculos()->at(i));
+        }
+    }
+    if(veiculos.size() == 0)
+    {
+        cout << "No vehicles need maintenance" << endl;
+    }
+    else{
+        cout << "The following vehicles need maintenance:\n";
+        for(int i = 0; i < veiculos.size(); i++)
+        {
+            cout << endl;
+            veiculos[i]->print();
+        }
+    }
+    cout << "To what car do you want to perform maintenance? Press 0 for none\n";
+    string option;
+    cin >> option;
+    if(option != "0")
+    {
+        Veiculo *v;
+        for(int i = 0; i < cd->getVeiculos()->size(); i++)
+        {
+            if(cd->getVeiculos()->at(i)->getId() == stoi(option))
+                v = cd->getVeiculos()->at(i);
+        }
+        v->setManutencao(Data(v->getManutencao().getAno()+1, v->getManutencao().getMes(), v->getManutencao().getDia(), v->getManutencao().getHora()));
     }
 }
