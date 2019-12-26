@@ -35,7 +35,6 @@ Data::Data(string data, string hora) : hora(hora) {
     mes = stoi(buffer);
 
 
-
     buffer=data;
     buffer.erase(0, 6);
     ano = stoi(buffer);

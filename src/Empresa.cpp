@@ -380,9 +380,6 @@ void Empresa::parseReservasInfo() {
 
 }
 
-void Empresa::parseContractsInfo() {
-
-}
 
 void Empresa::addVeiculo(Veiculo *v) {
     this->veiculos.push_back(v);

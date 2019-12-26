@@ -100,7 +100,7 @@ public:
 
     Data getManutencao() const;
 
-    void setManutencao(Data data);
+    void setManutencao(Data manutencao);
 
     bool operator<(const Veiculo& v1) const;
 };

@@ -63,8 +63,8 @@ int Veiculo::getClientId() const{
     return this->clientId;
 }
 
-void Veiculo::setManutencao(Data data) {
-    this->manutencao = data;
+void Veiculo::setManutencao(Data manutencao) {
+    this->manutencao = manutencao;
 }
 
 
@@ -72,7 +72,12 @@ void Veiculo::print()const{
     cout << "Id: " << id << endl << "Marca: " << marca << endl
     << "Modelo: " << modelo << endl
     << "Ano: " << ano << endl
-    << "Hourly Rate: " << priceHour << endl;
+    << "Hourly Rate: " << priceHour << endl
+    << "Next maintenance: ";
+    manutencao.printData();
+    cout << " ";
+    manutencao.printHour();
+    cout << endl;
 }
 
 double Veiculo::getPriceHour() const {

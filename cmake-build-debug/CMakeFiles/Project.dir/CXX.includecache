@@ -16,20 +16,6 @@ C:/Users/migue/Desktop/FEUP/AEDA/Projeto/src/Hora.h
 string
 -
 
-C:/Users/migue/Desktop/FEUP/AEDA/Projeto/src/Empresa.cpp
-Empresa.h
-C:/Users/migue/Desktop/FEUP/AEDA/Projeto/src/Empresa.h
-fstream
--
-string
--
-iostream
--
-iomanip
--
-sstream
--
-
 C:/Users/migue/Desktop/FEUP/AEDA/Projeto/src/Empresa.h
 vector
 -
@@ -47,6 +33,24 @@ C:/Users/migue/Desktop/FEUP/AEDA/Projeto/src/bst.h
 C:/Users/migue/Desktop/FEUP/AEDA/Projeto/src/Hora.h
 string
 -
+
+C:/Users/migue/Desktop/FEUP/AEDA/Projeto/src/Menu.cpp
+iostream
+-
+Menu.h
+C:/Users/migue/Desktop/FEUP/AEDA/Projeto/src/Menu.h
+Veiculo.h
+C:/Users/migue/Desktop/FEUP/AEDA/Projeto/src/Veiculo.h
+ctype.h
+-
+
+C:/Users/migue/Desktop/FEUP/AEDA/Projeto/src/Menu.h
+Empresa.h
+C:/Users/migue/Desktop/FEUP/AEDA/Projeto/src/Empresa.h
+Utilizador.h
+C:/Users/migue/Desktop/FEUP/AEDA/Projeto/src/Utilizador.h
+Veiculo.h
+C:/Users/migue/Desktop/FEUP/AEDA/Projeto/src/Veiculo.h
 
 C:/Users/migue/Desktop/FEUP/AEDA/Projeto/src/Preferencia.h
 Data.h

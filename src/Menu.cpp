@@ -489,7 +489,7 @@ string Menu::askDateMaintenance(){
 
 string Menu::askHourMaintenance(){
 
-    cout << "\nWhat time would you like to pick up the vehicle? "<< endl << "Insert the hour in the following format (hh:mm): ";
+    cout << "\nWhat time would you like to have the maintenance? "<< endl << "Insert the hour in the following format (hh:mm): ";
     string hora;
     cin >> hora;
 
@@ -971,7 +971,9 @@ void Menu::updateCar() {
 
     ClienteDono *cd = this->empresa.getClienteDono(this->visitanteAtual->getId());
 
-    cout << "What's the type of the car whose info you wanna edit? (1-2)";
+    cout << "What's the type of the car whose info you wanna edit?"
+            "\n 1 - Passenger Vehicle"
+            "\n 2 - Cargo Vehicle";
     int option;
     cin >> option;
 
@@ -1066,7 +1068,6 @@ void Menu::updateCargoVehicle() {
         if (option2 != 'Y')
             done = true;
     }
-
 }
 
 void Menu::updatePassengerVehicle() {
