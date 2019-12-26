@@ -128,7 +128,6 @@ void Menu::choose() {
              << "4 - See all of my reservations" << endl
              << "5 - Exit" << endl;
 
-
         char option;
         cin >> option;
         cin.clear();
@@ -1025,8 +1024,6 @@ void Menu::updateCargoVehicle() {
 
         if (option2 != 'Y')
             done = true;
-
-
     }
 
 }
@@ -1054,7 +1051,6 @@ void Menu::updatePassengerVehicle() {
     bool done = false;
 
     while(!done) {
-
 
         cout << "\nWhat do you wanna change? \n1-Brand\n2-Model\n3-Year\n4-Number of Passengers\n";
 
@@ -1087,8 +1083,6 @@ void Menu::updatePassengerVehicle() {
 
         if(option2 != 'Y')
             done = true;
-
-
     }
 
 }

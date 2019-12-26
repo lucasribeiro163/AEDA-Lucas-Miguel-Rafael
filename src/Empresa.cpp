@@ -15,7 +15,7 @@ Empresa::Empresa(string empresaFile) :contratos(Contract("",-1)){
     parseClientInfo();
     parseVehicleInfo();
     parseReservasInfo();
-    visualizaManutencoes(2);
+    //visualizaManutencoes(2);
     saveReservations();
     saveClientInfo();
     saveVehicleInfo();
@@ -473,7 +473,8 @@ void Empresa::removeByReservaPassengers(vector<VeiculoPassageiros* >* veiculos, 
 
 
             if( (veiculos->at(i)->getReservas().at(j)->getDataInicio() <= in && in <= veiculos->at(i)->getReservas().at(j)->getDataFim()) ||
-                (veiculos->at(i)->getReservas().at(j)->getDataInicio() <= out && out <= veiculos->at(i)->getReservas().at(j)->getDataFim()) ) {
+                (veiculos->at(i)->getReservas().at(j)->getDataInicio() <= out && out <= veiculos->at(i)->getReservas().at(j)->getDataFim())
+                || ((in <= veiculos->at(i)->getReservas().at(j)->getDataInicio()) && (veiculos->at(i)->getReservas().at(j)->getDataFim() <= out))) {
 
                 erase = true;
             }

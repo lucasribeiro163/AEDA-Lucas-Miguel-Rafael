@@ -151,10 +151,8 @@ bool Data::operator<=(Data data)const {
 
 bool Data::operator==(Data data) const {
 
-    if(this->getAno() == data.getAno() && this->getMes() == data.getMes() && this->getDia() == data.getDia() && this->getHora() == data.getHora())
-        return true;
-    else
-        return false;
+    return this->getAno() == data.getAno() && this->getMes() == data.getMes() && this->getDia() == data.getDia() &&
+           this->getHora() == data.getHora();
 }
 
 void Data::printData() const {
