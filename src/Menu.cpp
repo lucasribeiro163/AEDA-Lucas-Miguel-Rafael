@@ -1840,6 +1840,13 @@ void Menu::checkMaintenance()
             if(cd->getVeiculos()->at(i)->getId() == stoi(option))
                 v = cd->getVeiculos()->at(i);
         }
+        //adiar proxima manutencao para um ano a seguir
         v->setManutencao(Data(v->getManutencao().getAno()+1, v->getManutencao().getMes(), v->getManutencao().getDia(), v->getManutencao().getHora()));
+        Contract c("dummy", 1);
+        Data inicio = this->empresa.getDateToday();
+        Data fim = inicio;
+        fim.setDia(fim.getDia() + 5);
+        //reserva dummy para veiculo ficar indisponivel nos proximos 5 dias
+        Reserva r(inicio, fim, 0, false, v->getId(), c);
     }
 }

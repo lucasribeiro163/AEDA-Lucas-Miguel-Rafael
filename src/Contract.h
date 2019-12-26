@@ -36,8 +36,6 @@ public:
     bool operator <(const Contract &contract1) const;
     bool operator ==(const Contract &contract1) const;
 
-
-
 };
 
 
