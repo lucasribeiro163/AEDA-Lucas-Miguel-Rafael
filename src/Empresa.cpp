@@ -12,14 +12,7 @@ using namespace std;
 
 Empresa::Empresa(string empresaFile) :contratos(Contract("",-1)){
     this->empresaFile = empresaFile;
-    parseClientInfo();
-    parseVehicleInfo();
-    parseReservasInfo();
-    //visualizaManutencoes(2);
-    saveReservations();
-    saveClientInfo();
-    saveVehicleInfo();
-
+    parseAll();
 }
 
 vector<VisitanteRegistado *> Empresa::getVisitantesRegistados() const{
@@ -116,6 +109,13 @@ ClienteDono *Empresa::getClienteDono(int id){
         }
     }
     return NULL;
+}
+
+void Empresa::parseAll()
+{
+    parseClientInfo();
+    parseVehicleInfo();
+    parseReservasInfo();
 }
 
 void Empresa::parseClientInfo(){
@@ -379,6 +379,11 @@ void Empresa::parseReservasInfo() {
     }
 
 }
+
+void Empresa::parseContractsInfo() {
+
+}
+
 void Empresa::addVeiculo(Veiculo *v) {
     this->veiculos.push_back(v);
     this->filaVeiculos.push(*v);
@@ -486,8 +491,6 @@ void Empresa::removeByReservaPassengers(vector<VeiculoPassageiros* >* veiculos, 
             erase = false;
             i--;
         }
-
-
 
     }
 }
@@ -826,6 +829,27 @@ void Empresa::visualizaManutencoes(int n) {
         aux[i].print();
         cout << endl;
     }
+}
 
+vector <Veiculo*> Empresa::getMyVehicles(int ownerID) {
+    vector <Veiculo*> returnVector;
 
+    for(int i = 0; i < this->getVeiculos().size(); i++)
+    {
+        if(this->getVeiculos()[i]->getClientId() == ownerID)
+        {
+            returnVector.push_back(this->getVeiculos()[i]);
+        }
+    }
+    return returnVector;
+}
+
+void Empresa::seeMyVehicles(int ownerID)
+{
+    vector<Veiculo*> veiculos = this->getMyVehicles(ownerID);
+
+    for(Veiculo *v : veiculos)
+    {
+        cout << v << endl;
+    }
 }

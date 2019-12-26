@@ -172,8 +172,8 @@ void Menu::choose() {
              << "1 - See all the company's cars\n"
              << "2 - Rent a vehicle" << endl
              << "3 - Advertise a vehicle" << endl
-             << "4 - Manage your fleet" << endl
-             << "5 - See all of my reservations" << endl
+             << "4 - See all of my reservations" << endl
+             << "5 - See all of my vehicles" << endl
              << "6 - Exit" << endl;
 
 
@@ -211,6 +211,11 @@ void Menu::choose() {
                     choose();
                     break;
                 case('5'):
+                    cin.clear();
+                    this->empresa.seeMyVehicles(this->visitanteAtual->getId());
+                    choose();
+                    break;
+                case('6'):
                     this->empresa.saveAll();
                     return;
             }

@@ -63,6 +63,10 @@ int Veiculo::getClientId() const{
     return this->clientId;
 }
 
+void Veiculo::setManutencao(Data data) {
+    this->manutencao = data;
+}
+
 
 void Veiculo::print()const{
     cout << "Id: " << id << endl << "Marca: " << marca << endl

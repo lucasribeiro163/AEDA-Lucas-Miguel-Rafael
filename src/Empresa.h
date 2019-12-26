@@ -24,18 +24,6 @@ using namespace std;
 
 class Empresa {
     /**
-	 * Vetor onde estao guardados os Visitantes com registo.
-	 */
-    //vector<VisitanteRegistado *> visitantesRegistados;
-    /**
-	 * Vetor onde estao guardados os Clientes.
-	 */
-    //vector<Cliente *> clientes;
-    /**
-	 * Vetor onde estao guardados os Clientes donos de pelo menos uma viatura.
-	 */
-    //vector<ClienteDono *> clientesDono;
-    /**
 	 * Vetor onde estao guardados os veiculos.
 	 */
     vector<Veiculo* > veiculos;
@@ -114,6 +102,10 @@ public:
     /**
     * Função que faz parse ao ficheiro dos clientes e popula o vetor respetivo.
     */
+    void parseAll();
+    /**
+   * Função que chama parser de todos os ficheiros.
+   */
     void parseClientInfo();
     /**
    * Função que faz parse ao ficheiro dos veiculos e popula o vetor respetivo.
@@ -149,9 +141,19 @@ public:
      */
     vector<Veiculo*> getVeiculos() const;
     /**
-     * Função que devolve um veiculo com o id fornecido.
-     * @param veiculoId - id do veiculo a pesquisar.
+     * Função que devolve todos os veiculos de um ClienteDono.
+     * @param ownerID - id do ClienteDono a pesquisar.
      */
+    vector <Veiculo*> getMyVehicles(int ownerID);
+    /**
+   * Função que imprime todos os veiculos de um ClienteDono.
+   * @param ownerID - id do ClienteDono a pesquisar.
+   */
+    void seeMyVehicles(int ownerID);
+    /**
+      * Função que  devolve um veiculo com um certo ID.
+      * @param veiculoId - id do veiculo a pesquisar.
+      */
     Veiculo *getVeiculo(int &veiculoId);
     /**
       * Função que  devolve todos os veiculos do tipo Veiculo de passageiros.
