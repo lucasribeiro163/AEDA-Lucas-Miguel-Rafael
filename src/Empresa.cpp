@@ -286,9 +286,8 @@ void Empresa::parseVehicleInfo() {
 
         this->veiculosPassageiros.push_back(vp);
         Veiculo *temp = vp;
-        //this->filaVeiculos.push(temp);
+        this->filaVeiculos.push(*temp);
         this->addVeiculo(temp);
-
 
         getline(readFile, marca);//limpar lixo
     }
@@ -315,7 +314,7 @@ void Empresa::parseVehicleInfo() {
         this->veiculosComerciais.push_back(vc);
         Veiculo *temp = vc;
         this->addVeiculo(temp);
-        //this->filaVeiculos.push(temp);
+        this->filaVeiculos.push(*temp);
 
 
         getline(readFile, marca);//limpar lixo
@@ -825,5 +824,18 @@ void Empresa::visualizaManutencoes(int n) {
         filaVeiculos.push(aux[i]);
         aux[i].print();
         cout << endl;
+    }
+}
+
+void Empresa::addToQueue(Veiculo v)
+{
+    this->filaVeiculos.push(v);
+}
+
+void Empresa::clearQueue()
+{
+    while(!filaVeiculos.empty())
+    {
+        filaVeiculos.pop();
     }
 }

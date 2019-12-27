@@ -70,6 +70,15 @@ public:
     */
     ClienteDono *getClienteDono(int id);
     /**
+    * Função que adiciona um veiculo a queue.
+     * @param v - veiculo a adicionar.
+    */
+    void addToQueue(Veiculo v);
+    /**
+    * Função que limpa queue.
+    */
+    void clearQueue();
+    /**
     * Função que devolve um Visitante Registado com um determinado id.
      * @param id - id do visitante a procurar.
     */

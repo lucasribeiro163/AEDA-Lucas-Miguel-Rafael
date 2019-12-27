@@ -278,7 +278,6 @@ void Menu::rentVehicle() {
     string option;
     cin >> option;
     if (option != "1" && option != "2" && option != "3") {
-        //cout << "HERES the option:  " <<  option << endl;
         cout << "Sorry, wrong input" << endl;
         rentVehicle();
     } else {
@@ -323,14 +322,13 @@ void Menu::advertiseVehicle() {
     cin >> modelo;
     cout << "Year: ";
     int ano;
-    while(!valid)
-    {
+    while (!valid) {
         cin >> temp;
-        try{
+        try {
             ano = stoi(temp);
             valid = true;
         }
-        catch(exception e){
+        catch (exception e) {
             cout << "Sorry, wrong input\n";
             valid = false;
         }
@@ -338,14 +336,13 @@ void Menu::advertiseVehicle() {
     valid = false;
     cout << "Hourly Rate: : ";
     int priceHour;
-    while(!valid)
-    {
+    while (!valid) {
         cin >> temp;
-        try{
+        try {
             priceHour = stoi(temp);
             valid = true;
         }
-        catch(exception e){
+        catch (exception e) {
             cout << "Sorry, wrong input\n";
             valid = false;
         }
@@ -361,7 +358,8 @@ void Menu::advertiseVehicle() {
         v = new VeiculoPassageiros(marca, modelo, ano, this->visitanteAtual->getId(), nr_pass, priceHour,
                                    this->empresa.getDateToday());
         this->empresa.addVeiculo(v);
-
+        Veiculo *temp = v;
+        this->empresa.addToQueue(*temp);
 
     } else if (tipo == "2") {
         cout << "Maximum Cargo Volume: ";
@@ -385,7 +383,8 @@ void Menu::advertiseVehicle() {
         v = new VeiculoComercial(marca, modelo, ano, this->visitanteAtual->getId(), volume_carga, peso_carga,
                                  referigeracao, priceHour, this->empresa.getDateToday());
         this->empresa.addVeiculo(v);
-
+        Veiculo *temp = v;
+        this->empresa.addToQueue(*temp);
     }
 
     cout << "\nYou have advertised your car successfully!" << endl;
@@ -965,12 +964,15 @@ void Menu::removeCar() {
     cin >> id;
 
     for (int i = 0; i < cd->getVeiculos()->size(); i++) {
-
         if (cd->getVeiculos()->at(i)->getId() == id)
             cd->getVeiculos()->erase(cd->getVeiculos()->begin() + i);
-
     }
-
+    //Remove from empresa queue
+    this->empresa.clearQueue();
+    for(int i = 0; i < cd->getVeiculos()->size(); i++)
+    {
+        this->empresa.addToQueue(*(cd->getVeiculos())->at(i));
+    }
 
     cout << "Do you want to see what cars you have left in your fleet? (Y-N)";
     char option;
@@ -1265,8 +1267,8 @@ void Menu::registerClient() {
     cout << "Please insert your Name: ";
     cin >> name;
     while (!valid) {
-    cout << "Please enter your NIF: ";
-    cin >> temp;
+        cout << "Please enter your NIF: ";
+        cin >> temp;
         try {
             nif = stoi(temp);
             valid = true;
@@ -1294,15 +1296,14 @@ void Menu::registerClient() {
         cout << "Enter 1 for passenger vehicle" << endl;
         cout << "Enter 2 for comercial vehicle" << endl;
         cin >> temp;
-        try{
+        try {
             type = stoi(temp);
             valid = type == 1 || type == 2;
         }
-        catch(exception e)
-        {
+        catch (exception e) {
             valid = false;
         }
-        if(!valid) cout << "Sorry, wrong option\n";
+        if (!valid) cout << "Sorry, wrong option\n";
     }
     valid = false;
 
@@ -1312,15 +1313,14 @@ void Menu::registerClient() {
         cout << "Enter 2 for 20 to 40" << endl;
         cout << "Enter 3 over 40" << endl;
         cin >> temp;
-        try{
+        try {
             price = stoi(temp);
             valid = (price == 1 || price == 2 || price == 3);
         }
-        catch(exception e)
-        {
+        catch (exception e) {
             valid = false;
         }
-        if(!valid) cout << "Sorry, wrong option\n";
+        if (!valid) cout << "Sorry, wrong option\n";
     }
     valid = false;
     while (!valid) {
@@ -1330,35 +1330,33 @@ void Menu::registerClient() {
         cout << "Enter 3 newer than 2010" << endl;
 
         cin >> temp;
-        try{
+        try {
             year = stoi(temp);
             valid = (year == 1 || year == 2 || year == 3);
         }
-        catch(exception e)
-        {
+        catch (exception e) {
             valid = false;
         }
-        if(!valid) cout << "Sorry, wrong option\n";
+        if (!valid) cout << "Sorry, wrong option\n";
     }
     valid = false;
 
     if (type == 1) {
         while (!valid) {
-        cout << "How many passengers do you usually travel with?" << endl;
-        cout << "Enter 1 for Up to 1" << endl;
-        cout << "Enter 2 for up to 4" << endl;
-        cout << "Enter 3 for more than 5" << endl;
+            cout << "How many passengers do you usually travel with?" << endl;
+            cout << "Enter 1 for Up to 1" << endl;
+            cout << "Enter 2 for up to 4" << endl;
+            cout << "Enter 3 for more than 5" << endl;
 
             cin >> temp;
-            try{
+            try {
                 passengers = stoi(temp);
                 valid = (passengers == 1 || passengers == 2 || passengers == 3);
             }
-            catch(exception e)
-            {
+            catch (exception e) {
                 valid = false;
             }
-            if(!valid) cout << "Sorry, wrong option\n";
+            if (!valid) cout << "Sorry, wrong option\n";
         }
         valid = false;
         Preferencia *preferencias = new Preferencia(
@@ -1370,58 +1368,55 @@ void Menu::registerClient() {
         cout << "Your ID is: " << visitanteAtual->nrVisitantes - 1 << endl;
     } else {
         while (!valid) {
-        cout << "How much cargo weight do you usually travel with?" << endl;
-        cout << "Enter 1 for Up to 50 " << endl;
-        cout << "Enter 2 for between 50 and 150 " << endl;
-        cout << "Enter 3 for more than 150" << endl;
+            cout << "How much cargo weight do you usually travel with?" << endl;
+            cout << "Enter 1 for Up to 50 " << endl;
+            cout << "Enter 2 for between 50 and 150 " << endl;
+            cout << "Enter 3 for more than 150" << endl;
 
             cin >> temp;
-            try{
+            try {
                 weight = stoi(temp);
                 valid = (weight == 1 || weight == 2 || weight == 3);
             }
-            catch(exception e)
-            {
+            catch (exception e) {
                 valid = false;
             }
-            if(!valid) cout << "Sorry, wrong option\n";
+            if (!valid) cout << "Sorry, wrong option\n";
 
         }
         valid = false;
 
         while (!valid) {
-        cout << "How much cargo volume do you usually travel with?" << endl;
-        cout << "Enter 1 for Up to 50 " << endl;
-        cout << "Enter 2 for between 50 and 150 " << endl;
-        cout << "Enter 3 for more than 150" << endl;
+            cout << "How much cargo volume do you usually travel with?" << endl;
+            cout << "Enter 1 for Up to 50 " << endl;
+            cout << "Enter 2 for between 50 and 150 " << endl;
+            cout << "Enter 3 for more than 150" << endl;
 
             cin >> temp;
-            try{
+            try {
                 volume = stoi(temp);
                 valid = (volume == 1 || volume == 2 || volume == 3);
             }
-            catch(exception e)
-            {
+            catch (exception e) {
                 valid = false;
             }
-            if(!valid) cout << "Sorry, wrong option\n";
+            if (!valid) cout << "Sorry, wrong option\n";
         }
         valid = false;
         while (!valid) {
-        cout << "Do you need a refrigerated vehicle?" << endl;
-        cout << "Enter 1 for yes " << endl;
-        cout << "Enter 2 for no " << endl;
+            cout << "Do you need a refrigerated vehicle?" << endl;
+            cout << "Enter 1 for yes " << endl;
+            cout << "Enter 2 for no " << endl;
 
             cin >> temp;
-            try{
+            try {
                 fridge = stoi(temp);
                 valid = (fridge == 1 || fridge == 2);
             }
-            catch(exception e)
-            {
+            catch (exception e) {
                 valid = false;
             }
-            if(!valid) cout << "Sorry, wrong option\n";
+            if (!valid) cout << "Sorry, wrong option\n";
         }
         Preferencia *preferencias = new Preferencia(
                 to_string(type) + to_string(price) + to_string(year) + to_string(weight) + to_string(volume) +
