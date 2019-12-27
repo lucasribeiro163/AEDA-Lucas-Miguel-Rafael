@@ -168,6 +168,7 @@ void Menu::choose() {
                     break;
                 case ('5'):
                     this->empresa.saveAll();
+                    exit(0);
                     return;
             }
         }
@@ -220,6 +221,7 @@ void Menu::choose() {
                     break;
                 case ('6'):
                     this->empresa.saveAll();
+                    exit(0);
                     return;
             }
         }
@@ -259,6 +261,7 @@ void Menu::choose() {
                     break;
                 case ('4'):
                     this->empresa.saveAll();
+                    exit(0);
                     return;
             }
         }
