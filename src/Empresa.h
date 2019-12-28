@@ -8,6 +8,7 @@
 #include <vector>
 #include <string>
 #include <iostream>
+#include <unordered_set>
 #include "Utilizador.h"
 #include "Contract.h"
 #include "bst.h"
@@ -42,8 +43,11 @@ class Empresa {
 
     BST<Contract> contratos;
     vector<VisitanteRegistado*> allClients;
-    priority_queue<Veiculo> filaVeiculos;
+    priority_queue<Veiculo*> filaVeiculos;
+    unordered_set<Cliente*, clientesHash, clientesHash> clientesInativos;
+
     Data today = Data("01/01/2020", "10:00");
+
 public:
     /**
 	 * Construtor da empresa
@@ -73,7 +77,7 @@ public:
     * Função que adiciona um veiculo a queue.
      * @param v - veiculo a adicionar.
     */
-    void addToQueue(Veiculo v);
+    void addToQueue(Veiculo *v);
     /**
     * Função que limpa queue.
     */
@@ -228,6 +232,16 @@ public:
     void saveAll();
 
     void visualizaManutencoes(int n );
+
+    void updateClientesInativos();
+
+    void updateManutencoes();
+
+    void changeManutencao(int carID, Data manutencao);
+
+    bool hasPassengerVehicle(int carID) const;
+
+    bool hasCargoVehicle(int carID) const;
 };
 
 

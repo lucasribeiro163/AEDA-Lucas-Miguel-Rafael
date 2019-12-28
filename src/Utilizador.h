@@ -33,7 +33,7 @@ public:
     /**
    * Função que retorna o id do visitante.
    */
-    int getId();
+    int getId() const;
     /**
    * Função que atribui um id a um utilizador.
      * @param id - id a atribuir.
@@ -163,6 +163,7 @@ class ClienteDono : public Cliente{
     vector<Veiculo*> veiculos; /**vetor de veiculos do cliente*/
     vector<VeiculoPassageiros*> veiculosPassageiros;  /**vetor de veiculos de passageiros do cliente*/
     vector<VeiculoComercial*> veiculosComerciais; /**vetor de veiculos comerciais do cliente*/
+    vector<Contract*> cedenciasVeiculo;
 
 
 public:
@@ -215,7 +216,23 @@ public:
       * Função que imprime os carros de um cliente Dono.
       */
     void printCars();
+
+    void addCedencia(Contract *contract);
+
+    Contract* getLastContract();
 };
 
+struct clientesHash
+{
+    int operator() (const Cliente * cli1) const
+    {
+        return cli1->getId();
+    }
+
+    bool operator() (const Cliente * cli1, const Cliente * cli2) const
+    {
+        return cli1->getId() == cli2->getId();
+    }
+};
 
 #endif //UNTITLED_UTILIZADOR_H

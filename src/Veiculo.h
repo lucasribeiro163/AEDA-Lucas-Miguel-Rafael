@@ -102,6 +102,8 @@ public:
 
     void setManutencao(Data manutencao);
 
+    void updateManutencao();
+
     bool operator<(const Veiculo& v1) const;
 };
 

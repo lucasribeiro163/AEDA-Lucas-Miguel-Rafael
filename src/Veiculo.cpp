@@ -67,6 +67,10 @@ void Veiculo::setManutencao(Data manutencao) {
     this->manutencao = manutencao;
 }
 
+void Veiculo::updateManutencao() {
+    this->manutencao.setAno(this->manutencao.getAno() +1);
+}
+
 
 void Veiculo::print()const{
     cout << "Id: " << id << endl << "Marca: " << marca << endl

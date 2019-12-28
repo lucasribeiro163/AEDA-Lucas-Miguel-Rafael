@@ -301,6 +301,7 @@ void Menu::rentVehicle() {
 
 void Menu::advertiseVehicle() {
 
+    int carID;
     cout << "Is your vehicle a passenger vehicle or a cargo vehicle (1 or 2)?  ";
     string tipo;
     cin >> tipo;
@@ -359,7 +360,8 @@ void Menu::advertiseVehicle() {
                                    this->empresa.getDateToday());
         this->empresa.addVeiculo(v);
         Veiculo *temp = v;
-        this->empresa.addToQueue(*temp);
+        this->empresa.addToQueue(temp);
+        carID = v->getId();
 
     } else if (tipo == "2") {
         cout << "Maximum Cargo Volume: ";
@@ -384,13 +386,25 @@ void Menu::advertiseVehicle() {
                                  referigeracao, priceHour, this->empresa.getDateToday());
         this->empresa.addVeiculo(v);
         Veiculo *temp = v;
-        this->empresa.addToQueue(*temp);
+        carID = v->getId();
+        this->empresa.addToQueue(temp);
     }
 
     cout << "\nYou have advertised your car successfully!" << endl;
 
 
-    bool alreadyIsOwner = false;
+    if (this->empresa.hasVisitanteRegistado(this->visitanteAtual->getId())) {
+        this->empresa.turnVrToClientDono(this->empresa.getVisitanteRegistado(this->visitanteAtual->getId()));
+    } else if (this->empresa.hasCliente(this->visitanteAtual->getId())) {
+        this->empresa.turnClientToClientDono(this->empresa.getCliente(this->visitanteAtual->getId()));
+    }
+
+
+    Contract *contract = new Contract(this->empresa.getDateToday(), this->empresa.getClienteDono(this->visitanteAtual->getId())->getNome(),carID,2);
+    this->empresa.getClienteDono(this->visitanteAtual->getId())->addCedencia(contract);
+    /*
+
+     bool alreadyIsOwner = false;
 
     for (int i = 0; i < this->empresa.getClientesDono().size(); i++) {
 
@@ -398,13 +412,6 @@ void Menu::advertiseVehicle() {
             alreadyIsOwner = true;
 
     }
-
-    if (this->empresa.hasVisitanteRegistado(this->visitanteAtual->getId())) {
-        this->empresa.turnVrToClientDono(this->empresa.getVisitanteRegistado(this->visitanteAtual->getId()));
-    } else if (this->empresa.hasCliente(this->visitanteAtual->getId())) {
-        this->empresa.turnClientToClientDono(this->empresa.getCliente(this->visitanteAtual->getId()));
-    }
-    /*
     if(!alreadyIsOwner){
         ClienteDono *cd;
         if(this->empresa.getCliente(this->visitanteAtual->getId()) == NULL)
@@ -692,7 +699,7 @@ void Menu::singleUseRent() {
 
     double total_price = v->getPriceHour() * in.hoursBetween(out);
 
-    Contract *contract = new Contract(in, in, out, this->empresa.getCliente(this->visitanteAtual->getId())->getNome(),
+    Contract *contract = new Contract(this->empresa.getDateToday(), this->empresa.getCliente(this->visitanteAtual->getId())->getNome(),
                                       id, 1);
     Reserva *r = new Reserva(in, out, total_price, false, id, *contract);
     this->empresa.logContract(*contract);
@@ -856,7 +863,7 @@ void Menu::periodicContractRent() {
 
     Data in(dataIn, horaIn);
     Data out(dataOut, horaOut);
-    Contract *contract = new Contract(in, in, out, this->empresa.getCliente(this->visitanteAtual->getId())->getNome(),
+    Contract *contract = new Contract(this->empresa.getDateToday(), this->empresa.getCliente(this->visitanteAtual->getId())->getNome(),
                                       id, 1);
 
     Reserva *r = new Reserva(in, out, 100, false, id, *contract);
@@ -884,7 +891,7 @@ void Menu::periodicContractRent() {
         out.setMes(out.getMes() + difference.getMes() + gap / 30);
         out.setAno(out.getAno() + difference.getAno() + gap / 365);
 
-        Contract *contract = new Contract(in, in, out,
+        Contract *contract = new Contract(this->empresa.getDateToday(),
                                           this->empresa.getCliente(this->visitanteAtual->getId())->getNome(), id, 1);
         Reserva *r = new Reserva(in, out, 100, false, id, *contract);
         this->empresa.logContract(*contract);
@@ -971,7 +978,7 @@ void Menu::removeCar() {
     this->empresa.clearQueue();
     for(int i = 0; i < cd->getVeiculos()->size(); i++)
     {
-        this->empresa.addToQueue(*(cd->getVeiculos())->at(i));
+        this->empresa.addToQueue((cd->getVeiculos())->at(i));
     }
 
     cout << "Do you want to see what cars you have left in your fleet? (Y-N)";
@@ -1037,12 +1044,19 @@ void Menu::updateCargoVehicle() {
     int id;
     cin >> id;
 
-
+    bool exists = false;
     for (int i = 0; i < cd->getVeiculosComerciais()->size(); i++) {
 
         if (cd->getVeiculosComerciais()->at(i)->getId() == id)
+        {
             v = cd->getVeiculosComerciais()->at(i);
-
+            exists = true;
+        }
+    }
+    if(!exists)
+    {
+        cout << "No such vehicle exists\n";
+        updatePassengerVehicle();
     }
 
     bool done = false;
@@ -1089,7 +1103,8 @@ void Menu::updateCargoVehicle() {
             cin >> refri;
             v->setRefrigeracao(refri);
         } else if (option == ('7')) {
-            v->setManutencao(Data(this->askDateMaintenance(), this->askHourMaintenance()));
+            this->empresa.changeManutencao(id,Data(this->askDateMaintenance(),this->askHourMaintenance()));
+            //v->setManutencao(Data(this->askDateMaintenance(), this->askHourMaintenance()));
         }
         char option2;
         cout << "\nDo you wanna edit anything else? (Y-N) ";
@@ -1112,18 +1127,22 @@ void Menu::updatePassengerVehicle() {
     int id;
     cin >> id;
 
-
+    bool exists = false;
     for (int i = 0; i < cd->getVeiculosPassageiros()->size(); i++) {
 
         if (cd->getVeiculosPassageiros()->at(i)->getId() == id)
+        {
             v = cd->getVeiculosPassageiros()->at(i);
+            exists = true;
+        }
     }
 
-    if (v == nullptr)//TODO: CONDITION IS NEVER TRUE, ALTER THIS. SAME IN UPDATECARGOVEHICLE()
+    if (!exists)
     {
         cout << "No such vehicle exists\n";
         updatePassengerVehicle();
     }
+
     bool done = false;
 
     while (!done) {
@@ -1157,7 +1176,8 @@ void Menu::updatePassengerVehicle() {
             cin >> nrpass;
             v->setNrPassageiros(nrpass);
         } else if (option == ('5')) {
-            v->setManutencao(Data(this->askDateMaintenance(), this->askHourMaintenance()));
+            this->empresa.changeManutencao(id,Data(this->askDateMaintenance(),this->askHourMaintenance()));
+            //v->setManutencao(Data(this->askDateMaintenance(), this->askHourMaintenance()));
         }
 
         char option2;
@@ -1749,7 +1769,7 @@ void Menu::makeOffer(Data in, Data out) {
         }
         double total_price = v->getPriceHour() * in.hoursBetween(out);
 
-        Contract *contract = new Contract(in, in, out,
+        Contract *contract = new Contract(this->empresa.getDateToday(),
                                           this->empresa.getCliente(this->visitanteAtual->getId())->getNome(), id, 1);
 
         Reserva *r = new Reserva(in, out, total_price, false, id, *contract);
@@ -1800,13 +1820,17 @@ void Menu::checkMaintenance() {
                 v = cd->getVeiculos()->at(i);
         }
         //adiar proxima manutencao para um ano a seguir
-        v->setManutencao(Data(v->getManutencao().getAno() + 1, v->getManutencao().getMes(), v->getManutencao().getDia(),
-                              v->getManutencao().getHora()));
+        this->empresa.changeManutencao(stoi(option),Data(v->getManutencao().getAno() + 1, v->getManutencao().getMes(), v->getManutencao().getDia(),
+                                                         v->getManutencao().getHora()));
+
+        //v->setManutencao(Data(v->getManutencao().getAno() + 1, v->getManutencao().getMes(), v->getManutencao().getDia(),
+         //                     v->getManutencao().getHora()));
         Contract c("dummy", 1);
         Data inicio = this->empresa.getDateToday();
         Data fim = inicio;
         fim.setDia(fim.getDia() + 5);
         //reserva dummy para veiculo ficar indisponivel nos proximos 5 dias
         Reserva r(inicio, fim, 0, false, v->getId(), c);
+        v->addReserva(&r);
     }
 }

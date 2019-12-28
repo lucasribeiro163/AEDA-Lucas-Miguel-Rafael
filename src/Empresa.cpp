@@ -13,6 +13,13 @@ using namespace std;
 Empresa::Empresa(string empresaFile) :contratos(Contract("",-1)){
     this->empresaFile = empresaFile;
     parseAll();
+    updateClientesInativos();
+    /*
+    for(auto it = clientesInativos.begin(); it != clientesInativos.end(); it++)
+    {
+        cout << (*it)->getNome() <<"   " << (*it)->getId()<<  endl;
+    }
+     */
 }
 
 vector<VisitanteRegistado *> Empresa::getVisitantesRegistados() const{
@@ -286,8 +293,10 @@ void Empresa::parseVehicleInfo() {
 
         this->veiculosPassageiros.push_back(vp);
         Veiculo *temp = vp;
-        this->filaVeiculos.push(*temp);
+        this->filaVeiculos.push(temp);
         this->addVeiculo(temp);
+        ClienteDono *dono = getClienteDono(stoi(clientId));
+        dono->addCedencia(new Contract(this->getDateToday(),dono->getNome(),vp->getId(),2));
 
         getline(readFile, marca);//limpar lixo
     }
@@ -314,8 +323,9 @@ void Empresa::parseVehicleInfo() {
         this->veiculosComerciais.push_back(vc);
         Veiculo *temp = vc;
         this->addVeiculo(temp);
-        this->filaVeiculos.push(*temp);
-
+        this->filaVeiculos.push(temp);
+        ClienteDono *dono = getClienteDono(stoi(clientId));
+        dono->addCedencia(new Contract(this->getDateToday(),dono->getNome(),vc->getId(),2));
 
         getline(readFile, marca);//limpar lixo
     }
@@ -363,13 +373,18 @@ void Empresa::parseReservasInfo() {
 
         completed = (completado =="true");
 
-        Contract *cntrc = new Contract(contrato, dataI, dataF, name, veiculoId, 1);
+        Contract *cntrc = new Contract(contrato, name, veiculoId, 1);
         Reserva *reserva = new Reserva(dataI, dataF, stoi(preco), completed, stoi(buffer), *cntrc);
 
         contratos.insert(*cntrc);
 
         Veiculo *veiculo = getVeiculo(veiculoId);
         veiculo->addReserva(reserva);
+        for(int i = 0; i < allClients.size(); i++)
+        {
+            if(allClients[i]->getNome() == name)
+                static_cast<Cliente*>(allClients[i])->addReservas(reserva);
+        }
 
         getline(readFile, buffer);
 
@@ -378,11 +393,9 @@ void Empresa::parseReservasInfo() {
     }
 
 }
-
-
 void Empresa::addVeiculo(Veiculo *v) {
     this->veiculos.push_back(v);
-    this->filaVeiculos.push(*v);
+    this->filaVeiculos.push(v);
 }
 
 vector<Veiculo*> Empresa::getVeiculos() const{
@@ -487,7 +500,6 @@ void Empresa::removeByReservaPassengers(vector<VeiculoPassageiros* >* veiculos, 
             erase = false;
             i--;
         }
-
     }
 }
 
@@ -618,7 +630,10 @@ void Empresa::saveReservations() {
     {
         for (size_t j =0; j < veiculos.at(i)->getReservas().size(); j++)
         {
-
+            if(veiculos.at(i)->getReservas().at(j)->getContrato().getClientName() =="dummy")
+            {
+                continue;
+            }
             if(j == 0 && i != 0 )
                 line << endl;
 
@@ -717,20 +732,13 @@ void Empresa::visualizaContratos() {
         return;
     }
 
-    cout << setw(10) << "Data de celebracao" << setw(20) << "Inicio" << setw(23) << "Fim" << setw(23) << "Nome Cliente" << setw(20) << "ID do Carro" << setw(20) << "Tipo de Contrato"  << endl;
+    cout << setw(10) << "Data de celebracao" << setw(20)  << "Nome Cliente" << setw(20) << "ID do Carro" << setw(20) << "Tipo de Contrato"  << endl;
 
     while (!it.isAtEnd()){
         it.retrieve().getContractDate().printData();
         cout << " - ";
         it.retrieve().getContractDate().printHour();
         cout << setw(10);
-        it.retrieve().getStartDate().printData();
-        cout << " - ";
-        it.retrieve().getStartDate().printHour();
-        cout << setw(10);
-        it.retrieve().getEndDate().printData();
-        cout << " - ";
-        it.retrieve().getEndDate().printHour();
         cout << "          " << it.retrieve().getClientName() << setw(10) << it.retrieve().getId();
         cout << setw(10);
         if(it.retrieve().getTypeContract() == 1)
@@ -812,7 +820,7 @@ void Empresa::saveAll() {
 }
 
 void Empresa::visualizaManutencoes(int n) {
-    vector<Veiculo> aux;
+    vector<Veiculo*> aux;
     for(int i = 0; i < n && i < filaVeiculos.size(); i++)
     {
         aux.push_back(filaVeiculos.top());
@@ -822,12 +830,12 @@ void Empresa::visualizaManutencoes(int n) {
     for(int i = 0; i < aux.size();i++)
     {
         filaVeiculos.push(aux[i]);
-        aux[i].print();
+        aux[i]->print();
         cout << endl;
     }
 }
 
-void Empresa::addToQueue(Veiculo v)
+void Empresa::addToQueue(Veiculo *v)
 {
     this->filaVeiculos.push(v);
 }
@@ -838,4 +846,87 @@ void Empresa::clearQueue()
     {
         filaVeiculos.pop();
     }
+}
+
+void Empresa::updateClientesInativos() {
+    for (int i = 0; i < allClients.size(); i++) {
+        if (allClients[i]->getType() == 1) {
+            if (static_cast<Cliente *>(allClients[i])->getReservas().back()->getContrato().getContractDate().moreThanYear(
+                    this->getDateToday()))
+                this->clientesInativos.insert(static_cast<Cliente *> (allClients[i]));
+        }
+        if (allClients[i]->getType() == 2) {
+            if (static_cast<ClienteDono *>(allClients[i])->getLastContract()->getContractDate().moreThanYear(
+                    this->getDateToday())
+                    && (static_cast<ClienteDono *>(allClients[i])->getReservas().back()->getContrato().getContractDate().moreThanYear(
+                            this->getDateToday())))
+                this->clientesInativos.insert(static_cast<Cliente *> (allClients[i]));
+        }
+
+        auto it = clientesInativos.begin();
+        while (it != clientesInativos.end()) {
+            if (!(*it)->getReservas().back()->getContrato().getContractDate().moreThanYear(this->getDateToday()))
+                this->clientesInativos.erase(it);
+            it++;
+        }
+    }
+}
+
+void Empresa::updateManutencoes(){
+    while(filaVeiculos.top()->getManutencao().moreThanYear(this->getDateToday()))
+    {
+        Veiculo *veiculo = filaVeiculos.top();
+        veiculo->updateManutencao();
+        filaVeiculos.pop();
+        filaVeiculos.push(veiculo);
+    }
+}
+
+void Empresa::changeManutencao(int carID, Data manutencao) {
+    vector<Veiculo*> aux;
+    while(!filaVeiculos.empty())
+    {
+        if(filaVeiculos.top()->getId() == carID)
+        {
+            Veiculo *veiculo = filaVeiculos.top();
+            veiculo->setManutencao(manutencao);
+            Contract c("dummy", 1);
+            Data inicio = this->getDateToday();
+            Data fim = inicio;
+            fim.setDia(fim.getDia() + 5);
+            //reserva dummy para veiculo ficar indisponivel nos proximos 5 dias
+            Reserva *r = new Reserva(inicio, fim, 0, false, carID, c);
+            veiculo->addReserva(r);
+            filaVeiculos.pop();
+            filaVeiculos.push(veiculo);
+        } else{
+            aux.push_back(filaVeiculos.top());
+            filaVeiculos.pop();
+        }
+    }
+
+    for(int i = 0; i < aux.size();i++)
+    {
+        filaVeiculos.push(aux[i]);
+    }
+}
+
+bool Empresa::hasCargoVehicle(int carID)  const {
+    for(VeiculoComercial *vc : veiculosComerciais)
+    {
+        if(vc->getId() == carID ){
+            return true;
+        }
+    }
+    return false;
+}
+
+bool Empresa::hasPassengerVehicle(int carID) const {
+    for(VeiculoPassageiros *vp : veiculosPassageiros)
+    {
+        if(vp->getId() == carID ){
+            return true;
+        }
+    }
+    return false;
 }

@@ -103,6 +103,8 @@ public:
     void printData() const;
 
     void printHour() const;
+
+    bool moreThanYear(const Data & data) const;
 };
 
 

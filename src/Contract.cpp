@@ -4,8 +4,7 @@
 
 #include "Contract.h"
 
-Contract::Contract(Data dateContract, Data startDate, Data endDate, string clientName, int carId, int typeContract)
- : startDate(startDate), endDate(endDate),contractDate(dateContract){
+Contract::Contract(Data dateContract, string clientName, int carId, int typeContract): contractDate(dateContract){
     this->clientName = clientName;
     this->id = carId;
     this->typeContract = typeContract;
@@ -32,7 +31,7 @@ bool Contract::operator<(const Contract &contract1) const {
 const Data &Contract::getContractDate() const {
     return contractDate;
 }
-
+/*
 const Data &Contract::getStartDate() const {
     return startDate;
 }
@@ -40,7 +39,7 @@ const Data &Contract::getStartDate() const {
 const Data &Contract::getEndDate() const {
     return endDate;
 }
-
+*/
 int Contract::getId() const {
     return id;
 }

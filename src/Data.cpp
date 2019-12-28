@@ -178,3 +178,19 @@ void Data::printHour() const {
     else cout << this->getHora().getMinuto();
 }
 
+bool Data::moreThanYear(const Data &data) const {
+   if(this->getAno() == data.getAno())
+       return false;
+   if(this->getAno() == data.getAno()-1 )
+   {
+       if(this->getMes() > data.getMes())
+           return false;
+       if(this->getMes() == data.getMes())
+       {
+           if(this->getDia() > data.getDia())
+               return false;
+       }
+   }
+   return true;
+
+}

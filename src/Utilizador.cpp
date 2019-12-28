@@ -18,7 +18,7 @@ Visitante::Visitante() {
 //Os carros da empresa levam clientId 0, sendo assim este comeca em 1
 int Visitante::nrVisitantes = 1;
 
-int Visitante::getId() {
+int Visitante::getId() const{
     return this->id;
 }
 void Visitante::setId(int id){
@@ -159,6 +159,12 @@ void ClienteDono::printCars() {
         cout << "----------" << endl;
 
     }
+}
 
+void ClienteDono::addCedencia(Contract *contract) {
+    this->cedenciasVeiculo.push_back(contract);
+}
 
+Contract* ClienteDono::getLastContract() {
+    return cedenciasVeiculo.back();
 }
