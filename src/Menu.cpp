@@ -141,13 +141,15 @@ void Menu::choose() {
              << "2 - Rent a vehicle" << endl
              << "3 - Advertise a vehicle" << endl
              << "4 - See all of my reservations" << endl
-             << "5 - Exit" << endl;
+             << "5 - See all of my contracts" << endl
+             << "6 - Exit" << endl;
+
 
         char option;
         cin >> option;
         cin.clear();
 
-        if (option < '1' || option > '5') {
+        if (option < '1' || option > '6') {
             cin.clear();
             cout << "Invalid option" << endl;
             choose();
@@ -176,6 +178,11 @@ void Menu::choose() {
                     choose();
                     break;
                 case ('5'):
+                    cin.clear();
+                    this->empresa.visualizaContratosDeCliente(this->visitanteAtual->getId());
+                    choose();
+                    break;
+                case ('6'):
                     this->empresa.saveAll();
                     exit(0);
                     return;

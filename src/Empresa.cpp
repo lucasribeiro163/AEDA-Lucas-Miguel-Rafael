@@ -748,6 +748,39 @@ VisitanteRegistado * Empresa::getTrueClient(int id) {
     throw InvalidClientId(id);
 }
 
+void Empresa::visualizaContratosDeCliente(int id) {
+    BSTItrIn<Contract> it(contratos);
+    if (it.isAtEnd())
+    {
+        cout << "Não há contratos registados...\n";
+        cin.get();
+        return;
+    }
+
+    cout << setw(10) << "Data de celebracao" << setw(20)  << "Nome Cliente" << setw(20) << "ID do Carro" << setw(20) << "Tipo de Contrato"  << endl;
+
+    while (!it.isAtEnd()){
+        if(it.retrieve().getId() == id) {
+            it.retrieve().getContractDate().printData();
+            cout << " - ";
+            it.retrieve().getContractDate().printHour();
+            cout << setw(10);
+            cout << "          " << it.retrieve().getClientName() << setw(10) << it.retrieve().getId();
+            cout << setw(10);
+            if (it.retrieve().getTypeContract() == 1)
+                cout << "Aluguer" << endl;
+            else cout << "Cedencia" << endl;
+        }
+
+        it.advance();
+    }
+
+    cout << "Carregue no enter para continuar...\n";
+    cin.get();
+    return;
+}
+
+
 void Empresa::visualizaContratos() {
     BSTItrIn<Contract> it(contratos);
     if (it.isAtEnd())
