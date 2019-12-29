@@ -19,6 +19,7 @@ Menu::Menu(Empresa &empresa) : empresa(empresa) {
 void Menu::checkRegister() {
     cout << "Are you registered? (Y/N)" << endl;
     string isRegistered;
+    cin.clear();
     getline(cin, isRegistered);
     if ((isRegistered == "Y") || (isRegistered == "y")) {
         login();
@@ -142,14 +143,15 @@ void Menu::choose() {
              << "3 - Advertise a vehicle" << endl
              << "4 - See all of my reservations" << endl
              << "5 - See all of my contracts" << endl
-             << "6 - Exit" << endl;
+             << "6 - Log out\n"
+             << "7 - Exit" << endl;
 
 
         char option;
         cin >> option;
         cin.clear();
 
-        if (option < '1' || option > '6') {
+        if (option < '1' || option > '7') {
             cin.clear();
             cout << "Invalid option" << endl;
             choose();
@@ -183,6 +185,10 @@ void Menu::choose() {
                     choose();
                     break;
                 case ('6'):
+                    cin.clear();
+                    checkRegister();
+                    break;
+                case ('7'):
                     this->empresa.saveAll();
                     exit(0);
                     return;
@@ -193,14 +199,17 @@ void Menu::choose() {
              << "1 - See all the company's cars\n"
              << "2 - See all of the company's contracts\n"
              << "3 - See all of the company's inactive clients\n"
-             << "4 - Exit" << endl;
+             << "4 - Update inactive clients list\n"
+             << "5 - Update maintenance queue\n"
+             << "6 - Log out\n"
+             << "7 - Exit" << endl;
 
 
         char option;
         cin >> option;
         cin.clear();
 
-        if (option < '1' || option > '4') {
+        if (option < '1' || option > '7') {
             cin.clear();
             cout << "Invalid option" << endl;
             choose();
@@ -222,6 +231,22 @@ void Menu::choose() {
                     choose();
                     break;
                 case ('4'):
+                    cin.clear();
+                    empresa.updateClientesInativos();
+                    cout << "Inactive clients list has been updated\n";
+                    choose();
+                    break;
+                case ('5'):
+                    cin.clear();
+                    empresa.updateManutencoes();
+                    cout << "Maintenance queues have been updated\n";
+                    choose();
+                    break;
+                case ('6'):
+                    cin.clear();
+                    checkRegister();
+                    break;
+                case ('7'):
                     this->empresa.saveAll();
                     exit(0);
                     return;
@@ -235,14 +260,15 @@ void Menu::choose() {
              << "3 - Advertise a vehicle" << endl
              << "4 - See all of my reservations" << endl
              << "5 - Manage Fleet" << endl
-             << "6 - Exit" << endl;
+             << "6 - Log out" << endl
+             << "7 - Exit" << endl;
 
 
         char option;
         cin >> option;
         cin.clear();
 
-        if (option < '1' || option > '6') {
+        if (option < '1' || option > '7') {
             cin.clear();
             cout << "Invalid option" << endl;
             choose();
@@ -276,6 +302,10 @@ void Menu::choose() {
                     choose();
                     break;
                 case ('6'):
+                    cin.clear();
+                    checkRegister();
+                    break;
+                case ('7'):
                     this->empresa.saveAll();
                     exit(0);
                     return;
@@ -286,13 +316,14 @@ void Menu::choose() {
              << "1 - See all the company's cars\n"
              << "2 - Rent a vehicle" << endl
              << "3 - Advertise a vehicle" << endl
-             << "4 - Exit" << endl;
+             << "4 - Sign out" << endl
+             << "5 - Exit" << endl;
 
         char option;
         cin >> option;
         cin.clear();
 
-        if (option < '1' || option > '4') {
+        if (option < '1' || option > '5') {
             cin.clear();
             cout << "Invalid option" << endl;
             choose();
@@ -316,6 +347,10 @@ void Menu::choose() {
                     choose();
                     break;
                 case ('4'):
+                    cin.clear();
+                    checkRegister();
+                    break;
+                case ('5'):
                     this->empresa.saveAll();
                     exit(0);
                     return;
