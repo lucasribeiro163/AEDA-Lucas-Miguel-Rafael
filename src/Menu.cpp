@@ -192,14 +192,15 @@ void Menu::choose() {
         cout << "\nWhat would you like to do?\n"
              << "1 - See all the company's cars\n"
              << "2 - See all of the company's contracts\n"
-             << "3 - Exit" << endl;
+             << "3 - See all of the company's inactive clients\n"
+             << "4 - Exit" << endl;
 
 
         char option;
         cin >> option;
         cin.clear();
 
-        if (option < '1' || option > '3') {
+        if (option < '1' || option > '4') {
             cin.clear();
             cout << "Invalid option" << endl;
             choose();
@@ -216,6 +217,11 @@ void Menu::choose() {
                     choose();
                     break;
                 case ('3'):
+                    cin.clear();
+                    empresa.vizualizaClientesInativos();
+                    choose();
+                    break;
+                case ('4'):
                     this->empresa.saveAll();
                     exit(0);
                     return;

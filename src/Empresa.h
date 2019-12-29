@@ -232,6 +232,8 @@ public:
 
     void visualizaContratosDeCliente(int id);
 
+    void vizualizaClientesInativos();
+
     Administrador *getAdmin() const;
 
     Data getDateToday();

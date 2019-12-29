@@ -780,6 +780,21 @@ void Empresa::visualizaContratosDeCliente(int id) {
     return;
 }
 
+void Empresa::vizualizaClientesInativos(){
+
+    cout << "--ID--  Nome  -- NIF -- Type" << endl;
+
+    for(Cliente* c : this->clientesInativos){
+
+        cout << "--" << c->getId() << "--" << c->getNome() << "--" << c->getNif()<< "--" << c->getType() << endl;
+
+    }
+
+
+
+
+}
+
 
 void Empresa::visualizaContratos() {
     BSTItrIn<Contract> it(contratos);
