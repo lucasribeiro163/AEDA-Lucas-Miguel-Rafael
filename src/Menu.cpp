@@ -105,12 +105,19 @@ void Menu::login() {
 
             cin >> pass;
 
-            if (pass == v->getPassword() || (pass == this->empresa.getAdmin()->getPassword() && inputId == "0")) {
+            if (pass == v->getPassword()) {
 
                 password_match = true;
 
-            } else if ((pass == "n" || pass == "N") && (counter > 3 && counter % 2 == 0)) {
-                break;
+            } else if(pass == this->empresa.getAdmin()->getPassword() && inputId == "0") {
+
+                password_match = true;
+                this->empresa.setAdminView(true);
+            }
+
+            else if ((pass == "n" || pass == "N") && (counter > 3 && counter % 2 == 0)) {
+                    break;
+
             } else if (counter < 3 || counter % 2 != 0)
                 cout << "\nWrong password." << endl;
 
@@ -174,7 +181,35 @@ void Menu::choose() {
                     return;
             }
         }
-    } else if (this->empresa.hasClienteDono(this->visitanteAtual->getId())) {
+    } else if (this->empresa.isAdminView()) {
+        cout << "\nWhat would you like to do?\n"
+             << "1 - See all the company's cars\n"
+             << "2 - Exit" << endl;
+
+
+        char option;
+        cin >> option;
+        cin.clear();
+
+        if (option < '1' || option > '2') {
+            cin.clear();
+            cout << "Invalid option" << endl;
+            choose();
+        } else {
+            switch (option) {
+                case ('1'):
+                    cin.clear();
+                    empresa.printVeiculos();
+                    choose();
+                    break;
+                case ('2'):
+                    this->empresa.saveAll();
+                    exit(0);
+                    return;
+            }
+        }
+    }
+    else if (this->empresa.hasClienteDono(this->visitanteAtual->getId())) {
         cout << "\nWhat would you like to do?\n"
              << "1 - See all the company's cars\n"
              << "2 - Rent a vehicle" << endl

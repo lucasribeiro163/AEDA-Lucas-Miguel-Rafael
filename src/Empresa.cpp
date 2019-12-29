@@ -959,3 +959,11 @@ bool Empresa::hasPassengerVehicle(int carID) const {
 Administrador *Empresa::getAdmin() const {
     return admin;
 }
+
+bool Empresa::isAdminView() const {
+    return adminView;
+}
+
+void Empresa::setAdminView(bool adminView) {
+    Empresa::adminView = adminView;
+}

@@ -26,6 +26,13 @@ using namespace std;
 class Empresa {
 
     Administrador* admin;
+    bool adminView = false;
+public:
+    bool isAdminView() const;
+
+    void setAdminView(bool adminView);
+
+private:
     /**
 	 * Vetor onde estao guardados os veiculos.
 	 */
