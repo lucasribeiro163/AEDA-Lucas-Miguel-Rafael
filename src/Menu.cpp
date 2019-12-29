@@ -184,14 +184,15 @@ void Menu::choose() {
     } else if (this->empresa.isAdminView()) {
         cout << "\nWhat would you like to do?\n"
              << "1 - See all the company's cars\n"
-             << "2 - Exit" << endl;
+             << "2 - See all of the company's contracts\n"
+             << "3 - Exit" << endl;
 
 
         char option;
         cin >> option;
         cin.clear();
 
-        if (option < '1' || option > '2') {
+        if (option < '1' || option > '3') {
             cin.clear();
             cout << "Invalid option" << endl;
             choose();
@@ -203,6 +204,11 @@ void Menu::choose() {
                     choose();
                     break;
                 case ('2'):
+                    cin.clear();
+                    empresa.visualizaContratos();
+                    choose();
+                    break;
+                case ('3'):
                     this->empresa.saveAll();
                     exit(0);
                     return;
