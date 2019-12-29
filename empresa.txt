@@ -1,3 +1,8 @@
 clientes.txt
 veiculos.txt
 reservas.txt
+Administrador
+Lucas Ribeiro
+398219
+0
+laladidi

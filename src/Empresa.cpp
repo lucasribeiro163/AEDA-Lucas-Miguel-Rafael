@@ -123,6 +123,30 @@ void Empresa::parseAll()
     parseClientInfo();
     parseVehicleInfo();
     parseReservasInfo();
+    parseAdministratorInfo();
+}
+
+void Empresa::parseAdministratorInfo() {
+
+    //clientes tem de estar na ordem: visitanteRegistado, Cliente, ClienteDono
+    fstream readFile;
+    readFile.open(this->empresaFile);
+
+    string buffer, nif, preferencias, nome, password, id;
+
+    while(buffer != "Administrador")//ler todos os clientes
+    {
+        getline(readFile, buffer);
+    }
+
+    getline(readFile, nome);
+    getline(readFile, nif);
+    getline(readFile, id);
+    getline(readFile, password);
+
+
+    this->admin =  new Administrador(nome, stoi(nif), password, stoi(id));
+
 }
 
 void Empresa::parseClientInfo(){
@@ -713,6 +737,7 @@ void Empresa::logContract(Contract contract) {
 }
 
 VisitanteRegistado * Empresa::getTrueClient(int id) {
+
     for(int i = 0; i < allClients.size();i++)
     {
         if(allClients[i]->getId() == id)
@@ -929,4 +954,8 @@ bool Empresa::hasPassengerVehicle(int carID) const {
         }
     }
     return false;
+}
+
+Administrador *Empresa::getAdmin() const {
+    return admin;
 }

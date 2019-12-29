@@ -77,11 +77,13 @@ void Menu::login() {
     VisitanteRegistado *v;
     getline(cin, inputId);
     try {
-        v = this->empresa.getVisitanteRegistado(stoi(inputId));
-        if (v == NULL)
-            v = dynamic_cast<Cliente *> (this->empresa.getCliente(stoi(inputId)));
-        if (v == NULL)
-            v = dynamic_cast<ClienteDono *> (this->empresa.getClienteDono(stoi(inputId)));
+        if (inputId != "0") {
+            v = this->empresa.getVisitanteRegistado(stoi(inputId));
+            if (v == NULL)
+                v = dynamic_cast<Cliente *> (this->empresa.getCliente(stoi(inputId)));
+            if (v == NULL)
+                v = dynamic_cast<ClienteDono *> (this->empresa.getClienteDono(stoi(inputId)));
+        }
     }
     catch (exception e) {
         cout << "Sorry, wrong input\n";
@@ -103,7 +105,7 @@ void Menu::login() {
 
             cin >> pass;
 
-            if (pass == v->getPassword()) {
+            if (pass == v->getPassword() || (pass == this->empresa.getAdmin()->getPassword() && inputId == "0")) {
 
                 password_match = true;
 

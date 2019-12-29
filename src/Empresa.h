@@ -24,6 +24,8 @@ using namespace std;
  */
 
 class Empresa {
+
+    Administrador* admin;
     /**
 	 * Vetor onde estao guardados os veiculos.
 	 */
@@ -118,6 +120,10 @@ public:
     void parseAll();
     /**
    * Função que chama parser de todos os ficheiros.
+   */
+    void parseAdministratorInfo();
+    /**
+   * Função que faz parse ao ficheiro da empresa de modo a obter a imformação do administrador.
    */
     void parseClientInfo();
     /**
@@ -216,6 +222,8 @@ public:
     VisitanteRegistado* getTrueClient(int id);
 
     void visualizaContratos();
+
+    Administrador *getAdmin() const;
 
     Data getDateToday();
 

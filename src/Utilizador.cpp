@@ -168,3 +168,27 @@ void ClienteDono::addCedencia(Contract *contract) {
 Contract* ClienteDono::getLastContract() {
     return cedenciasVeiculo.back();
 }
+
+Administrador::Administrador(string nome, int nif, string password, int id) {
+    this->id = id;
+    this->password = password;
+    this->nif = nif;
+    this->nome = nome;
+
+}
+
+int Administrador::getId() const {
+    return id;
+}
+
+const string &Administrador::getNome() const {
+    return nome;
+}
+
+int Administrador::getNif() const {
+    return nif;
+}
+
+const string &Administrador::getPassword() const {
+    return password;
+}

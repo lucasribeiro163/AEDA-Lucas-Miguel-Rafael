@@ -235,4 +235,37 @@ struct clientesHash
     }
 };
 
+
+/** Class Administrador
+ *
+ * Estrutura de um Admnistrador.
+ */
+class Administrador{
+
+
+    int id = 0;
+    string nome;
+    int nif;
+    string password;
+
+public:
+
+    /**
+	 * Construtor  de um Administrador
+     * @param nome - Nome do Utilizador
+     * @param nif - Nif do utilizador
+     * @param password - palavra-passa do utilizador
+	 */
+    Administrador(string nome, int nif, string password, int id);
+
+    int getId() const;
+
+    const string &getNome() const;
+
+    int getNif() const;
+
+    const string &getPassword() const;
+
+};
+
 #endif //UNTITLED_UTILIZADOR_H
