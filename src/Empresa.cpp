@@ -317,7 +317,6 @@ void Empresa::parseVehicleInfo() {
 
         this->veiculosPassageiros.push_back(vp);
         Veiculo *temp = vp;
-        this->filaVeiculos.push(temp);
         this->addVeiculo(temp);
         ClienteDono *dono = getClienteDono(stoi(clientId));
         dono->addCedencia(new Contract(this->getDateToday(),dono->getNome(),vp->getId(),2));
@@ -347,7 +346,6 @@ void Empresa::parseVehicleInfo() {
         this->veiculosComerciais.push_back(vc);
         Veiculo *temp = vc;
         this->addVeiculo(temp);
-        this->filaVeiculos.push(temp);
         ClienteDono *dono = getClienteDono(stoi(clientId));
         dono->addCedencia(new Contract(this->getDateToday(),dono->getNome(),vc->getId(),2));
 
@@ -780,7 +778,7 @@ void Empresa::visualizaContratosDeCliente(int id) {
     return;
 }
 
-void Empresa::vizualizaClientesInativos(){
+void Empresa::visualizaClientesInativos(){
 
     cout << "--ID--  Nome  -- NIF -- Type" << endl;
 
@@ -894,11 +892,13 @@ void Empresa::saveAll() {
 
 void Empresa::visualizaManutencoes(int n) {
     vector<Veiculo*> aux;
-    for(int i = 0; i < n && i < filaVeiculos.size(); i++)
+    cout << filaVeiculos.size();
+    for(int i = 0; i < n && !filaVeiculos.empty(); i++)
     {
         aux.push_back(filaVeiculos.top());
         filaVeiculos.pop();
-    }
+
+  }
 
     for(int i = 0; i < aux.size();i++)
     {

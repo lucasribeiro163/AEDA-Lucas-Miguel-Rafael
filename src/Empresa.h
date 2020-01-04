@@ -26,6 +26,7 @@ using namespace std;
 class Empresa {
 
     Administrador* admin;
+
     bool adminView = false;
 public:
     bool isAdminView() const;
@@ -50,10 +51,10 @@ private:
 	 */
     string empresaFile, clientesFile, reservasFile, veiculosFile;
 
-    BST<Contract> contratos;
-    vector<VisitanteRegistado*> allClients;
-    priority_queue<Veiculo*> filaVeiculos;
-    unordered_set<Cliente*, clientesHash, clientesHash> clientesInativos;
+    BST<Contract> contratos; /**<.Árvore binária de pesquisa.  */
+    vector<VisitanteRegistado*> allClients;/**<Vetor onde estão todos os clientes de todos os tipos.  */
+    priority_queue<Veiculo*> filaVeiculos; /**<fila de prioridade de veiculos para manutenção.  */
+    unordered_set<Cliente*, clientesHash, clientesHash> clientesInativos; /**<Tabela de dispersão dos clientes inativos.  */
 
     Data today = Data("01/01/2020", "10:00");
 
@@ -223,43 +224,101 @@ public:
      * @param maxPrice - preço maximo aceitavel.
  */
     void removeByPricePassengers(vector<VeiculoPassageiros* >* listaVeiculos, int maxPrice);
-
+    /**
+     *Função que insere um novo contrato na arvore binaria de pesquisa contratos
+     * @param contract
+     */
     void logContract(Contract contract);
-
+    /**
+     * Devolve um apontador para um objeto da classe base visitanteRegistado, o qual pode ser Cast de forma segura para o seu tipo original.
+     * @param id - ID do cliente a pesquisar
+     * @return - pointer para objeto da classe visitanteRegistado.
+     */
     VisitanteRegistado* getTrueClient(int id);
-
+    /**
+     * Funaão que imprime todos os contratos disponiveis.
+     */
     void visualizaContratos();
-
+    /**
+     * Função para visualizar todos os contratos de um cliente.
+     * @param id - ID do cliente a pesquisar.
+     */
     void visualizaContratosDeCliente(int id);
-
-    void vizualizaClientesInativos();
-
+    /**
+     *Função para visualizar todos os clientes inativos.
+     */
+    void visualizaClientesInativos();
+    /**
+     * Função que devolve um apontador para o administrador.
+     * @return apontador para objeto do tipo Administrador.
+     */
     Administrador *getAdmin() const;
-
+    /**
+     * Função que devolve a data atual.
+     * @return Data atual.
+     */
     Data getDateToday();
+    /**
+     * Função para alterar a data atual.
+     * @param newDate
+     */
 
     void skipToDate(Data newDate);
-
+    /**
+     * Função para converter visitanteRegistado em Cliente aquando de alguma ação que o justifique.
+     * @param vr - visitanteRegistado a ser atualizado
+     */
     void turnVRToClient(VisitanteRegistado * vr);
-
+    /**
+     * Função para converter visitanteRegistado em ClienteDono aquando de alguma ação que o justifique.
+     * @param vr - visitanteRegistado a ser atualizado
+     */
     void turnVrToClientDono(VisitanteRegistado *vr);
-
+    /**
+     * Função para converter cliente em ClienteDono aquando de alguma ação que o justifique.
+     * @param cl - cliente a ser atualizado
+     */
     void turnClientToClientDono(Cliente *cl);
-
+    /**
+     * Função para verificar se um cliente existe.
+     * @param id - Id do cliente a procurar.
+     * @return booleano
+     */
     bool hasCliente(int id) const;
-
+    /**
+     * Função para guardar toda a informação em memória nos ficheiros respetivos.
+     */
     void saveAll();
-
+    /**
+     * Função que imprime as n primeiras manutenções ou todos os veículos caso n seja maior que o numero de veiculos disponiveis.
+     * @param n
+     */
     void visualizaManutencoes(int n );
-
+    /**
+     * Função que atualiza os clientes inativos.
+     */
     void updateClientesInativos();
-
+    /**
+     * Função que atualiza os manutenções.
+     */
     void updateManutencoes();
-
+    /**
+     * Função que permite alterar uma data de manutenção de um determinado veiculo.
+     * @param carID - ID do veiculo a alterar.
+     * @param manutencao - Nova data de manutenção.
+     */
     void changeManutencao(int carID, Data manutencao);
-
+    /**
+     * Função que verifica a existencia de um Veiculo de passageiros com determinado ID
+     * @param carID - id do carro a procurar.
+     * @return - booleano.
+     */
     bool hasPassengerVehicle(int carID) const;
-
+    /**
+     * Função que verifica a existencia de um Veiculo de mercadorias com determinado ID
+     * @param carID - id do carro a procurar.
+     * @return - booleano.
+     */
     bool hasCargoVehicle(int carID) const;
 };
 

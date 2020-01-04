@@ -1,0 +1,20 @@
+<map id="Empresa::Empresa" name="Empresa::Empresa">
+<area shape="rect" id="node1" title=" " alt="" coords="5,212,140,239"/>
+<area shape="rect" id="node2" href="$class_empresa.html#af580c41c4447de002605843537e0a98f" title=" " alt="" coords="229,132,358,159"/>
+<area shape="rect" id="node18" href="$class_empresa.html#aa6455e3db554222ad93612eb0df64301" title=" " alt="" coords="188,292,399,319"/>
+<area shape="rect" id="node3" href="$class_empresa.html#a4efde0f7db1320063b7ce8bb833b995a" title=" " alt="" coords="447,31,657,57"/>
+<area shape="rect" id="node4" href="$class_empresa.html#a813f46a14a17da473dbf112c4a23bcaf" title=" " alt="" coords="469,81,635,108"/>
+<area shape="rect" id="node5" href="$class_empresa.html#ad098ede8c7122e20c7d97b28854917db" title=" " alt="" coords="459,132,645,159"/>
+<area shape="rect" id="node8" href="$class_empresa.html#a49c4206ffc4055a6372b8f47416930ef" title=" " alt="" coords="463,284,641,311"/>
+<area shape="rect" id="node6" href="$class_veiculo.html#a76dd8ec6ab785feb2efcf44343408350" title=" " alt="" coords="753,5,893,32"/>
+<area shape="rect" id="node7" href="$class_empresa.html#afb60b7796ddf4a24800cd6ad44bd7cbb" title=" " alt="" coords="752,56,895,83"/>
+<area shape="rect" id="node9" href="$class_cliente_dono.html#ad7d8e924610fa37e7904c547947e097f" title=" " alt="" coords="736,107,911,133"/>
+<area shape="rect" id="node10" href="$class_empresa.html#a3c769b2b4bae4d5c6fa29460772a332f" title=" " alt="" coords="750,157,897,184"/>
+<area shape="rect" id="node11" href="$class_cliente_dono.html#a6b9623d5dc6f9977e28b5afc1559ab44" title=" " alt="" coords="741,208,905,235"/>
+<area shape="rect" id="node12" href="$class_cliente_dono.html#a2aebaab99b377cc9b7a90ed33e223826" title=" " alt="" coords="712,259,935,285"/>
+<area shape="rect" id="node13" href="$class_cliente_dono.html#a48089be2ab68e0392afe69cfcfc07b5e" title=" " alt="" coords="705,309,941,336"/>
+<area shape="rect" id="node14" href="$class_empresa.html#a5c0d9d1e36aaa4be8b915a29b51fea20" title=" " alt="" coords="738,360,909,387"/>
+<area shape="rect" id="node15" href="$class_empresa.html#aff7791e9061777b4a095b159d6bf4e41" title=" " alt="" coords="742,528,905,555"/>
+<area shape="rect" id="node16" href="$class_veiculo.html#a63816270ddb077f8f752faa6c22cd1b0" title=" " alt="" coords="773,411,874,437"/>
+<area shape="rect" id="node17" href="$class_visitante_registado.html#ad3a5200dcf9625324e4f4d653272a8ce" title=" " alt="" coords="758,462,889,503"/>
+</map>

@@ -99,11 +99,19 @@ public:
     * Overload do operador == para permitir discernir a igualdade entre duas datas.
     */
     bool operator==(Data data) const;
-
+    /**
+     * Funão para imprimir o dia do ano.
+     */
     void printData() const;
-
+    /**
+     * Função para imprimir a Hora.
+     */
     void printHour() const;
-
+    /**
+     * Função que verifica se a data atual está pelo menos 1 ano atrás da data fornecida.
+     * @param data - Data com a qual se quer comparar.
+     * @return -booleano
+     */
     bool moreThanYear(const Data & data) const;
 };
 

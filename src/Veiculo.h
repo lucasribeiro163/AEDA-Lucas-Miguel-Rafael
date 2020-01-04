@@ -98,12 +98,26 @@ public:
     */
     double getPriceHour() const;
 
+    /**
+     * Função que devolve a data da próxima manutenção.
+     * @return
+     */
     Data getManutencao() const;
 
+    /**
+     * Função que atribui uma nova data de manutenção.
+     * @param manutencao - nova manutenção.
+     */
     void setManutencao(Data manutencao);
-
+    /**
+     * Função que atualiza a manutenção para o ano seguinte, aquando da execução da manutenção.
+     */
     void updateManutencao();
-
+    /**
+     * Overload do operador < que permite comparar dois veiculos
+     * @param v1 - Veiculo ao qual comparar.
+     * @return - booleano
+     */
     bool operator<(const Veiculo& v1) const;
 };
 

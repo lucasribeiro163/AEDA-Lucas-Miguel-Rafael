@@ -1,0 +1,8 @@
+<map id="Menu::seeReservations" name="Menu::seeReservations">
+<area shape="rect" id="node1" title=" " alt="" coords="5,107,163,133"/>
+<area shape="rect" id="node2" href="$class_empresa.html#a52aacb2e4d657e3ad75adb43718cbb4c" title=" " alt="" coords="226,5,373,32"/>
+<area shape="rect" id="node3" href="$class_empresa.html#ab5203afda7c5b729743292a422b48f27" title=" " alt="" coords="211,56,388,83"/>
+<area shape="rect" id="node4" href="$class_visitante.html#af45b3cf8e55922b91895c2ebf28a46f4" title=" " alt="" coords="245,107,354,133"/>
+<area shape="rect" id="node5" href="$class_cliente.html#a9485d801601da5c3a2cedadc39be79ca" title=" " alt="" coords="229,157,370,184"/>
+<area shape="rect" id="node6" href="$class_empresa.html#a64b4f5f7e313a07569451b5a82f822bb" title=" " alt="" coords="224,208,375,235"/>
+</map>

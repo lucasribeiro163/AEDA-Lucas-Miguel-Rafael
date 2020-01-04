@@ -136,7 +136,13 @@ public:
 * Função que verifica se algum carro ja devia ter feito manutencao, e da opcao de fazer.
 */
     void checkMaintenance();
+    /**
+     * Função que obtem um inteiro do utilizador
+     * @return - int
+     */
+    int askInt();
     };
+
 
 
 #endif //PROJECT_MENU_H

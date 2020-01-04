@@ -66,6 +66,10 @@ public:
   */
     bool operator==(Reserva r);
 
+    /**
+     * Função que devolve o contrato associado à reserva.
+     * @return
+     */
     const Contract &getContrato() const;
 
 };

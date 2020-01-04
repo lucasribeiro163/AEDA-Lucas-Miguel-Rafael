@@ -75,6 +75,10 @@ public:
    */
     int getTipo() const;
 
+    /**
+     * Função que devolve as  preferencias em formato string.
+     * @return
+     */
     const string getStringPreferencias() const ;
 };
 

@@ -201,19 +201,21 @@ void Menu::choose() {
              << "3 - See all of the company's inactive clients\n"
              << "4 - Update inactive clients list\n"
              << "5 - Update maintenance queue\n"
-             << "6 - Log out\n"
-             << "7 - Exit" << endl;
+             << "6 - See vehicles in maintenence queue\n"
+             << "7 - Log out\n"
+             << "8 - Exit" << endl;
 
 
         char option;
         cin >> option;
         cin.clear();
 
-        if (option < '1' || option > '7') {
+        if (option < '1' || option > '8') {
             cin.clear();
             cout << "Invalid option" << endl;
             choose();
         } else {
+            int n = 0;
             switch (option) {
                 case ('1'):
                     cin.clear();
@@ -227,7 +229,7 @@ void Menu::choose() {
                     break;
                 case ('3'):
                     cin.clear();
-                    empresa.vizualizaClientesInativos();
+                    empresa.visualizaClientesInativos();
                     choose();
                     break;
                 case ('4'):
@@ -242,11 +244,17 @@ void Menu::choose() {
                     cout << "Maintenance queues have been updated\n";
                     choose();
                     break;
-                case ('6'):
+                case('6'):
+                    n = askInt();
+                    cin.clear();
+                    this->empresa.visualizaManutencoes(n);
+                    choose();
+                    break;
+                case ('7'):
                     cin.clear();
                     checkRegister();
                     break;
-                case ('7'):
+                case ('8'):
                     this->empresa.saveAll();
                     exit(0);
                     return;
@@ -1924,4 +1932,24 @@ void Menu::checkMaintenance() {
         Reserva r(inicio, fim, 0, false, v->getId(), c);
         v->addReserva(&r);
     }
+}
+
+
+int Menu::askInt() {
+    int n;
+    string temp;
+
+    cout << "\nHow many vehicles do you wish to see?";
+    cin >> temp;
+
+    try {
+        n = stoi(temp);
+    }
+    catch (exception e) {
+        cout << "Sorry, wrong input\n";
+        askInt();
+    }
+    return n;
+
+
 }

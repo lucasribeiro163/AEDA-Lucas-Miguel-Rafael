@@ -216,9 +216,15 @@ public:
       * Função que imprime os carros de um cliente Dono.
       */
     void printCars();
-
+    /**
+     * Função que adiciona uma cedencia a arvore dos contratos.
+     * @param contract - contrato a adicionar.
+     */
     void addCedencia(Contract *contract);
-
+    /**
+     * Função que devolve o ultimo contrato celebrado.
+     * @return
+     */
     Contract* getLastContract();
 };
 
@@ -258,12 +264,28 @@ public:
 	 */
     Administrador(string nome, int nif, string password, int id);
 
+    /**
+     * Função que devolve o ID.
+     * @return
+     */
     int getId() const;
 
+    /**
+     * Funcão que devolve o nome.
+     * @return
+     */
     const string &getNome() const;
 
+    /**
+     * Função que devolve o nif.
+     * @return
+     */
     int getNif() const;
 
+    /**
+     * Função que devolve a password.
+     * @return
+     */
     const string &getPassword() const;
 
 };
